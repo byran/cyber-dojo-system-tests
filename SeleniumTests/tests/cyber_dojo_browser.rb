@@ -5,33 +5,33 @@ require './cyber_dojo_main_page'
 class CyberDojoBrowser
 
   def initialize
-    @browser = Selenium::WebDriver.for :chrome if ENV['browser'] == 'chrome'
-    @browser = Selenium::WebDriver.for :firefox if ENV['browser'] == 'firefox'
+    @driver = Selenium::WebDriver.for :chrome if ENV['browser'] == 'chrome'
+    @driver = Selenium::WebDriver.for :firefox if ENV['browser'] == 'firefox'
     @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
 
-    @mainPage = CyberDojoMainPage.new(@browser, @wait)
+    @mainPage = CyberDojoMainPage.new(@driver, @wait)
 
-    @browser.manage.window.resize_to 1920, 1080
+    @driver.manage.window.resize_to 1920, 1080
   end
 
   def close
-    @browser.quit
+    @driver.quit
   end
 
   def navigate_home
-    @browser.navigate.to "http://cyber-dojo.org"
+    @driver.navigate.to "http://cyber-dojo.org"
   end
 
   def title
-    @browser.title
+    @driver.title
   end
 
   def save_screenshot(filename)
-    @browser.save_screenshot(filename + ".png")
+    @driver.save_screenshot(filename + ".png")
   end
 
   def page
-    url = @browser.current_url
+    url = @driver.current_url
 
     match = /http\:\/\/cyber-dojo\.org\/(.*)\/(.*)/.match(url)
 
