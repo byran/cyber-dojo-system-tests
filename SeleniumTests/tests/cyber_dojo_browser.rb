@@ -1,15 +1,17 @@
 require 'selenium-webdriver'
 
 require './cyber_dojo_main_page'
+require '../tests/cyber_dojo_setup_default_start_point_page'
 
 class CyberDojoBrowser
 
   def initialize
-    @driver = Selenium::WebDriver.for :chrome if ENV['browser'] == 'chrome'
     @driver = Selenium::WebDriver.for :firefox if ENV['browser'] == 'firefox'
+    @driver = Selenium::WebDriver.for :chrome if ENV['browser'] == 'chrome' || @driver == nil
     @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
 
     @mainPage = CyberDojoMainPage.new(@driver, @wait)
+    @setupDefaultStartPointPage = CyberDojoSetupDefaultStartPointPage.new(@driver, @wait)
 
     @driver.manage.window.resize_to 1920, 1080
   end
@@ -30,22 +32,22 @@ class CyberDojoBrowser
     @driver.save_screenshot(filename + ".png")
   end
 
-  def page
+  def page_url
     url = @driver.current_url
+    url.slice! "http://cyber-dojo.org/"
 
-    match = /http\:\/\/cyber-dojo\.org\/(.*)\/(.*)/.match(url)
+    splitUrl = url.split("/")
+    splitUrl.first
+  end
 
-    if match != nil
-      case match[1]
-        when "setup_default_start_point"
-          return 1
-        else
-          return 2
-      end
-    elsif url == "http://cyber-dojo.org/"
-      return @mainPage
-    end
-    url
+  def home_page
+    @wait.until { page_url == nil }
+    @mainPage
+  end
+
+  def setup_default_start_point_page
+    @wait.until { page_url == "setup_default_start_point" }
+    @setupDefaultStartPointPage
   end
 
 end

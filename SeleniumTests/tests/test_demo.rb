@@ -6,16 +6,18 @@ class TestDemo < CyberDojoTest
     browser.navigate_home
 
     assert_equal "home", browser.title
- end
+  end
 
   def test_navigating_to_the_setup_page
     browser.navigate_home
 
     browser.save_screenshot('home')
 
-    browser.page.setup_button.click
+    browser.home_page.setup_button.click
 
-    sleep(2) # Need wait, instead of a sleep
+    browser.setup_default_start_point_page.language("C++ (g++)").click
+
+    sleep(1)
 
     browser.save_screenshot('setup')
   end
