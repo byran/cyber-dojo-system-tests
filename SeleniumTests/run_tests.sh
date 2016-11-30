@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker run -t --rm  cyberdojo/seleniumtest
+docker run -t --rm cyberdojo/seleniumtest
