@@ -1,7 +1,8 @@
 require 'selenium-webdriver'
 
 require './cyber_dojo_main_page'
-require '../tests/cyber_dojo_setup_default_start_point_page'
+require './cyber_dojo_setup_default_start_point_show_languages_page'
+require './cyber_dojo_setup_default_start_point_show_exercises_page'
 
 class CyberDojoBrowser
 
@@ -11,7 +12,8 @@ class CyberDojoBrowser
     @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
 
     @mainPage = CyberDojoMainPage.new(@driver, @wait)
-    @setupDefaultStartPointPage = CyberDojoSetupDefaultStartPointPage.new(@driver, @wait)
+    @setupDefaultStartPointPageShowLanugages = CyberDojoSetupDefaultStartPointShowLanguagesPage.new(@driver, @wait)
+    @setupDefaultStartPointPageShowExercises = CyberDojoSetupDefaultStartPointShowExercisesPage.new(@driver, @wait)
 
     @driver.manage.window.resize_to 1920, 1080
   end
@@ -29,6 +31,10 @@ class CyberDojoBrowser
   end
 
   def save_screenshot(filename)
+    # Not keen on this sleep but Firefox will take a screen shot before completing
+    # the previous action if it's not present.
+    # TODO: Find a better way to complete actions before taking a screen shot
+    sleep 1
     @driver.save_screenshot(filename + ".png")
   end
 
@@ -36,18 +42,22 @@ class CyberDojoBrowser
     url = @driver.current_url
     url.slice! "http://cyber-dojo.org/"
 
-    splitUrl = url.split("/")
-    splitUrl.first
+    url.split("/")
   end
 
   def home_page
-    @wait.until { page_url == nil }
+    @wait.until { page_url == [] }
     @mainPage
   end
 
-  def setup_default_start_point_page
-    @wait.until { page_url == "setup_default_start_point" }
-    @setupDefaultStartPointPage
+  def setup_default_start_point_show_languages_page
+    @wait.until { page_url[0] == "setup_default_start_point" && page_url[1] == "show_languages" }
+    @setupDefaultStartPointPageShowLanugages
+  end
+
+  def setup_default_start_point_show_exercises_page
+    @wait.until { page_url[0] == "setup_default_start_point" && page_url[1] == "show_exercises" }
+    @setupDefaultStartPointPageShowExercises
   end
 
 end

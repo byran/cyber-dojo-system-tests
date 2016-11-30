@@ -1,10 +1,6 @@
-require 'selenium-webdriver'
+require './cyber_dojo_page'
 
-class CyberDojoMainPage
-  def initialize(driver, wait)
-    @driver = driver
-    @wait = wait
-  end
+class CyberDojoMainPage < CyberDojoPage
 
   def setup_button
     @wait.until { @driver.find_element :id => 'setup-a-new-practice-session-button' }
