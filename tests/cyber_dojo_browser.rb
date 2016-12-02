@@ -9,7 +9,7 @@ class CyberDojoBrowser
   def initialize
 #    @driver = Selenium::WebDriver.for :firefox if ENV['browser'] == 'firefox'
 #    @driver = Selenium::WebDriver.for :chrome if ENV['browser'] == 'chrome' || @driver == nil
-    @driver = Selenium::WebDriver.for :remote, :url => "http://localhost:4444/wd/hub", :desired_capabilities => :firefox
+    @driver = Selenium::WebDriver.for :remote, :url => "http://192.168.1.129:4444/wd/hub", :desired_capabilities => :firefox
     @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
 
     @mainPage = CyberDojoMainPage.new(@driver, @wait)
