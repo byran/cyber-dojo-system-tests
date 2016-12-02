@@ -36,7 +36,7 @@ class CyberDojoBrowser
     # the previous action if it's not present.
     # TODO: Find a better way to complete actions before taking a screen shot
     sleep 1
-    @driver.save_screenshot(filename + ".png")
+    @driver.save_screenshot("images/" + filename + ".png")
   end
 
   def page_url
