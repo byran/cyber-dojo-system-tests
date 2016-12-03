@@ -7,9 +7,14 @@ require './cyber_dojo_setup_default_start_point_show_exercises_page'
 class CyberDojoBrowser
 
   def initialize
-#    @driver = Selenium::WebDriver.for :firefox if ENV['browser'] == 'firefox'
-#    @driver = Selenium::WebDriver.for :chrome if ENV['browser'] == 'chrome' || @driver == nil
-    @driver = Selenium::WebDriver.for :remote, :url => "http://192.168.1.129:4444/wd/hub", :desired_capabilities => :firefox
+    if ENV['browser'] == 'firefox'
+      @driver = Selenium::WebDriver.for :remote, :url => "http://hub:4444/wd/hub", :desired_capabilities => :firefox
+
+    end
+    if ENV['browser'] == 'chrome' || @driver == nil
+      @driver = Selenium::WebDriver.for :remote, :url => "http://hub:4444/wd/hub", :desired_capabilities => :chrome
+    end
+
     @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
 
     @mainPage = CyberDojoMainPage.new(@driver, @wait)
@@ -17,6 +22,8 @@ class CyberDojoBrowser
     @setupDefaultStartPointPageShowExercises = CyberDojoSetupDefaultStartPointShowExercisesPage.new(@driver, @wait)
 
     @driver.manage.window.resize_to 1920, 1080
+
+    @baseURL = "http://nginx/"
   end
 
   def close
@@ -24,7 +31,7 @@ class CyberDojoBrowser
   end
 
   def navigate_home
-    @driver.navigate.to "http://cyber-dojo.org"
+    @driver.navigate.to @baseURL
   end
 
   def title
@@ -41,7 +48,7 @@ class CyberDojoBrowser
 
   def page_url
     url = @driver.current_url
-    url.slice! "http://cyber-dojo.org/"
+    url.slice! @baseURL
 
     url.split("/")
   end

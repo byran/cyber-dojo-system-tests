@@ -16,6 +16,9 @@ services:
     environment:
       - "HUB_PORT_4444_TCP_ADDR=hub"
       - "HUB_PORT_4444_TCP_PORT=4444"
+    networks:
+      - "default"
+      - "cyber-dojo"
 
   node_chrome:
     image: selenium/node-chrome
@@ -26,3 +29,11 @@ services:
     environment:
       - "HUB_PORT_4444_TCP_ADDR=hub"
       - "HUB_PORT_4444_TCP_PORT=4444"
+    networks:
+      - "default"
+      - "cyber-dojo"
+
+networks:
+  cyber-dojo:
+    external:
+      name: app_default
