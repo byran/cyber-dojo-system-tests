@@ -3,6 +3,15 @@ require File.join(File.expand_path(File.dirname(__FILE__)), "page.rb")
 module CyberDojo
   class SetupDefaultStartPointShowExercisesPage < Page
 
+    def load_completed?
+      begin
+        CyberDojo::find_item_in_cyber_dojo_list(@driver, "exercises-list", "Zeckendorf Number") &&
+            !@driver.find_element(:id => "create-it").nil?
+      rescue
+        false
+      end
+    end
+
     def select_exercise(name)
       exercise = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, "exercises-list", name) }
       exercise.click

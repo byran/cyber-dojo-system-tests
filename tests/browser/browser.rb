@@ -7,6 +7,8 @@ require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start
 module CyberDojo
   class Browser
 
+    attr_reader :wait
+
     def initialize
       hubUrl = ENV['hub']
       hubUrl = "http://hub:4444/wd/hub" if hubUrl.nil?

@@ -7,6 +7,10 @@ module CyberDojo
       @wait = wait
     end
 
+    def load_completed?
+      false
+    end
+
   end
 
   def self.find_item_in_cyber_dojo_list(driver, listId, itemText)
