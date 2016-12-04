@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/cyber-dojo/system-tests.svg?branch=master)](https://travis-ci.org/cyber-dojo/system-tests)
+
 # Selenium system tests for cyber-dojo.org
 
 TODO: write some more instructions :)
