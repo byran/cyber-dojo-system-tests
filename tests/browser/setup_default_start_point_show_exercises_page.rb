@@ -17,6 +17,10 @@ class CyberDojoSetupDefaultStartPointShowExercisesPage < CyberDojoPage
 
   end
 
+  def select_exercise(name)
+    @wait.until { exercise name }
+  end
+
   def set_it_up_button
     @wait.until { @driver.find_element :id => "create-it" }
   end
