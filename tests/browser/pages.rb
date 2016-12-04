@@ -19,7 +19,7 @@ module CyberDojo
       add_page [], @main
 
       @setup_default_start_point_show_languages = SetupDefaultStartPointShowLanguagesPage.new(driver, wait)
-      add_page [ "setup_default_start_point", "show_languages"], @setup_default_start_point_show_languages
+      add_page [ "setup_default_start_point", "show_languages" ], @setup_default_start_point_show_languages
 
       @setup_default_start_point_show_exercises = SetupDefaultStartPointShowExercisesPage.new(driver, wait)
       add_page [ "setup_default_start_point", "show_exercises" ], @setup_default_start_point_show_exercises

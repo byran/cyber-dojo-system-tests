@@ -19,7 +19,10 @@ class CyberDojoTest < Minitest::Test
   end
 
   def assert_page_loaded(page)
-    assert @browser.wait.until_or_false{ page.load_completed? }, "Failed to load page"
+    assert @browser.wait.until_or_false{
+      page.load_completed? &&
+          @browser.page == page
+    }, "Failed to load page"
   end
 
 end
