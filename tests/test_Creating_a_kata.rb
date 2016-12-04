@@ -7,8 +7,8 @@ class CreatingAKataTest < CyberDojoTest
 
     browser.home_page.setup_button.click
 
-    browser.setup_default_start_point_show_languages_page.language("C++ (g++)").click
-    browser.setup_default_start_point_show_languages_page.framework("assert").click
+    browser.setup_default_start_point_show_languages_page.select_language "C++ (g++)"
+    browser.setup_default_start_point_show_languages_page.select_framework "assert"
     browser.setup_default_start_point_show_languages_page.next_button.click
 
     browser.setup_default_start_point_show_exercises_page.select_exercise "(Verbal)"

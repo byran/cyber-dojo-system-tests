@@ -2,23 +2,9 @@ require File.join(File.expand_path(File.dirname(__FILE__)), "page.rb")
 
 class CyberDojoSetupDefaultStartPointShowExercisesPage < CyberDojoPage
 
-  def exercise(name)
-    exercisesList = @wait.until { @driver.find_element :id => "exercises-list" }
-
-    exercises = @wait.until { exercisesList.find_elements :class => "filename" }
-
-    for exercise in exercises
-      if exercise.text == name
-        return exercise
-      end
-    end
-
-    return nil
-
-  end
-
   def select_exercise(name)
-    @wait.until { exercise name }
+    exercise = @wait.until { find_item_in_cyber_dojo_list(@driver, "exercises-list", name) }
+    exercise.click
   end
 
   def set_it_up_button
