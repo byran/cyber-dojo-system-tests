@@ -7,12 +7,15 @@ require './cyber_dojo_setup_default_start_point_show_exercises_page'
 class CyberDojoBrowser
 
   def initialize
+    hubUrl = ENV['hub']
+    hubUrl = "http://hub:4444/wd/hub" if hubUrl.nil?
+
     if ENV['browser'] == 'firefox'
-      @driver = Selenium::WebDriver.for :remote, :url => "http://hub:4444/wd/hub", :desired_capabilities => :firefox
+      @driver = Selenium::WebDriver.for :remote, :url => hubUrl, :desired_capabilities => :firefox
 
     end
     if ENV['browser'] == 'chrome' || @driver == nil
-      @driver = Selenium::WebDriver.for :remote, :url => "http://hub:4444/wd/hub", :desired_capabilities => :chrome
+      @driver = Selenium::WebDriver.for :remote, :url => hubUrl, :desired_capabilities => :chrome
     end
 
     @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
