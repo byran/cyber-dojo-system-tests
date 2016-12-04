@@ -25,6 +25,7 @@ class CyberDojoBrowser
     @setupDefaultStartPointPageShowExercises = CyberDojoSetupDefaultStartPointShowExercisesPage.new(@driver, @wait)
 
     @driver.manage.window.resize_to 1920, 1080
+    @driver.manage.timeouts.implicit_wait = 20
 
     @baseURL = "http://nginx/"
   end

@@ -17,4 +17,34 @@ class CyberDojoSetupDefaultStartPointShowExercisesPage < CyberDojoPage
 
   end
 
+  def set_it_up_button
+    @wait.until { @driver.find_element :id => "create-it" }
+  end
+
+  # Enter dojo dialog
+  def dojo_id
+    @wait.until { @driver.find_element :id => "dojo-id" }
+  end
+
+  def enter_page_button
+    @wait.until { @driver.find_element :class => "enter-page" }
+  end
+
+  def start_coding_button
+    @wait.until { @driver.find_element :class => "start-coding" }
+  end
+
+  # Start coding dialog
+  def avatar_image
+    @wait.until { @driver.find_element :class => "avatar_image" }
+  end
+
+  def ok_button
+    buttons = @wait.until { @driver.find_elements :class => "ui-button-text" }
+
+    index = buttons.find_index { |b| b.text == "ok" }
+
+    buttons[index]
+  end
+
 end
