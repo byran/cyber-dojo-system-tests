@@ -11,8 +11,7 @@ script:
 
     - ./cyber-dojo up
 
-    # pull images used in tests
+    # pull image used in tests
     - docker pull cyberdojofoundation/gcc_assert:latest
-    - docker pull cyberdojofoundation/ruby_test_unit:latest
 
     - ./run_tests.sh
