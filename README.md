@@ -2,7 +2,7 @@
 
 TODO: write some more instructions :)
 
-Tests are stores in the ```SeleniumTests/tests``` directory
+Tests are stores in the ```/tests``` directory
 
 ## Building the docker images
 
@@ -12,14 +12,15 @@ Tests are stores in the ```SeleniumTests/tests``` directory
 
 ## Running the tests
 
-To run tests using Google Chrome
+### To run tests using Google Chrome
 
 ```
-docker run -t --rm  cyberdojo/seleniumtest
+cyber-dojo up
+./run_tests.sh
+cyber-dojo down
 ```
 
-To run tests using Firefox
+### To run tests using Firefox
 
-```
-docker run -t --rm -e "browser=firefox" cyberdojo/seleniumtest
-```
+Currently you have to modify the run_tests.sh and add ```-e "browser=firefox"``` to the docker run
+
