@@ -11,7 +11,7 @@ script:
 
     - ./cyber-dojo up
 
-    # pull images used in tests so test-duration does not include pull time
+    # pull images used in tests
     - docker pull cyberdojofoundation/gcc_assert:latest
     - docker pull cyberdojofoundation/ruby_test_unit:latest
 
