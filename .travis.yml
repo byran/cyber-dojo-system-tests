@@ -1,0 +1,25 @@
+
+sudo: required
+services: docker
+language: generic
+
+env:
+    global:
+        - DOCKER_ENGINE_VERSION=1.12.2
+
+before_install:
+    # upgrade docker-engine to specific version
+    - sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_ENGINE_VERSION}-0~trusty
+
+script:
+    - ./build_all.sh
+
+    - curl -O https://raw.githubusercontent.com/cyber-dojo/commander/master/cyber-dojo
+    - chmod +x cyber-dojo
+    - ./cyber-dojo up
+
+    # pull images used in tests so test-duration does not include pull time
+    - docker pull cyberdojofoundation/gcc_assert:latest
+    - docker pull cyberdojofoundation/ruby_test_unit:latest
+
+    - ./run_tests.sh
