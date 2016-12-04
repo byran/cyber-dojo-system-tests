@@ -11,7 +11,7 @@ class CreatingAKataTest < CyberDojoTest
 
     assert_page_loaded(pages.setup_default_start_point_show_languages)
 
-    browser.page.select_language "C++ (g++)"
+    browser.page.select_language "C (gcc)"
     browser.page.select_framework "assert"
     browser.page.next_button.click
 
