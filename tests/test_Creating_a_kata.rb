@@ -5,7 +5,11 @@ class CreatingAKataTest < CyberDojoTest
   def test_Creating_a_kata
     browser.navigate_home
 
+    assert_page_loaded(browser.home_page)
+
     browser.home_page.setup_button.click
+
+    assert_page_loaded(browser.setup_default_start_point_show_languages_page)
 
     browser.setup_default_start_point_show_languages_page.select_language "C++ (g++)"
     browser.setup_default_start_point_show_languages_page.select_framework "assert"
