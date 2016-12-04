@@ -1,14 +1,13 @@
 require 'selenium-webdriver'
 
-require File.join(File.expand_path(File.dirname(__FILE__)), "main_page.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start_point_show_languages_page.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start_point_show_exercises_page.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "kata_edit_page.rb")
+require File.join(File.expand_path(File.dirname(__FILE__)), "pages.rb")
+require File.join(File.expand_path(File.dirname(__FILE__)), "wait_mixin.rb")
 
 module CyberDojo
   class Browser
 
     attr_reader :wait
+    attr_reader :pages
 
     def initialize
       hubUrl = ENV['hub']
@@ -22,11 +21,9 @@ module CyberDojo
       end
 
       @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
+      @wait.extend(WaitMixIn)
 
-      @mainPage = MainPage.new(@driver, @wait)
-      @setupDefaultStartPointPageShowLanugages = SetupDefaultStartPointShowLanguagesPage.new(@driver, @wait)
-      @setupDefaultStartPointPageShowExercises = SetupDefaultStartPointShowExercisesPage.new(@driver, @wait)
-      @kataEditPage = KataEditPage.new(@driver, @wait)
+      @pages = Pages.new(@driver, @wait)
 
       @driver.manage.window.resize_to 1920, 1080
       @driver.manage.timeouts.implicit_wait = 20
@@ -66,24 +63,15 @@ module CyberDojo
       url.split("/")
     end
 
-    def home_page
-      @wait.until { page_url == [] }
-      @mainPage
-    end
+    def page
+      currentUrl = page_url
 
-    def setup_default_start_point_show_languages_page
-      @wait.until { page_url[0] == "setup_default_start_point" && page_url[1] == "show_languages" }
-      @setupDefaultStartPointPageShowLanugages
-    end
+      @pages.all_pages.each do |p|
+        return p[:page] if p[:url] == currentUrl
+        return p[:page] if (p[:url] & currentUrl == p[:url]) && (p[:url] != [])
+      end
 
-    def setup_default_start_point_show_exercises_page
-      @wait.until { page_url[0] == "setup_default_start_point" && page_url[1] == "show_exercises" }
-      @setupDefaultStartPointPageShowExercises
-    end
-
-    def kata_edit_page
-      @wait.until { page_url[0] == "kata" && page_url[1] == "edit" }
-      @kataEditPage
+      nil
     end
   end
 end

@@ -14,12 +14,12 @@ class CyberDojoTest < Minitest::Test
 
   attr_reader :browser
 
+  def pages
+    @browser.pages
+  end
+
   def assert_page_loaded(page)
-    begin
-      @browser.wait.until { page.load_completed? }
-    rescue
-      flunk "Failed to load page"
-    end
+    assert @browser.wait.until_or_false{ page.load_completed? }, "Failed to load page"
   end
 
 end
