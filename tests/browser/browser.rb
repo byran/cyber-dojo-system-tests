@@ -3,6 +3,7 @@ require 'selenium-webdriver'
 require File.join(File.expand_path(File.dirname(__FILE__)), "main_page.rb")
 require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start_point_show_languages_page.rb")
 require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start_point_show_exercises_page.rb")
+require File.join(File.expand_path(File.dirname(__FILE__)), "kata_edit_page.rb")
 
 module CyberDojo
   class Browser
@@ -25,6 +26,7 @@ module CyberDojo
       @mainPage = MainPage.new(@driver, @wait)
       @setupDefaultStartPointPageShowLanugages = SetupDefaultStartPointShowLanguagesPage.new(@driver, @wait)
       @setupDefaultStartPointPageShowExercises = SetupDefaultStartPointShowExercisesPage.new(@driver, @wait)
+      @kataEditPage = KataEditPage.new(@driver, @wait)
 
       @driver.manage.window.resize_to 1920, 1080
       @driver.manage.timeouts.implicit_wait = 20
@@ -79,5 +81,9 @@ module CyberDojo
       @setupDefaultStartPointPageShowExercises
     end
 
+    def kata_edit_page
+      @wait.until { page_url[0] == "kata" && page_url[1] == "edit" }
+      @kataEditPage
+    end
   end
 end

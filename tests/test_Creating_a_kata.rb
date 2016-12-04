@@ -26,8 +26,7 @@ class CreatingAKataTest < CyberDojoTest
 
     browser.switch_to_window 1
 
-    browser.save_screenshot "start"
-
+    assert_page_loaded(browser.kata_edit_page)
   end
 
 end
