@@ -1,12 +1,6 @@
 require File.join(File.expand_path(File.dirname(__FILE__)), "cyber_dojo_test.rb")
 
-class DemoTest < CyberDojoTest
-
-  def test_check_the_home_page_title
-    browser.navigate_home
-
-    assert_equal "home", browser.title
-  end
+class CreatingAKataTest < CyberDojoTest
 
   def test_Creating_a_kata
     browser.navigate_home
