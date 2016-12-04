@@ -23,6 +23,11 @@ class CreatingAKataTest < CyberDojoTest
     browser.setup_default_start_point_show_exercises_page.start_coding_button.click
 
     browser.setup_default_start_point_show_exercises_page.ok_button.click
+
+    browser.switch_to_window 1
+
+    browser.save_screenshot "start"
+
   end
 
 end

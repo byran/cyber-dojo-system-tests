@@ -45,6 +45,10 @@ module CyberDojo
       @driver.title
     end
 
+    def switch_to_window(index)
+      @driver.switch_to.window(@driver.window_handles[index])
+    end
+
     def save_screenshot(filename)
       # Not keen on this sleep but Firefox will take a screen shot before completing
       # the previous action if it's not present.
