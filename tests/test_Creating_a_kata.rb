@@ -11,6 +11,11 @@ class CreatingAKataTest < CyberDojoTest
     browser.setup_default_start_point_show_languages_page.select_framework "assert"
     browser.setup_default_start_point_show_languages_page.next_button.click
 
+    # This stops a problem with chrome sometimes throwing an exception when trying to
+    # click on the exercise name in the next step
+    # TODO: Find a better way to wait for the page load to complete
+    sleep 0.5
+
     browser.setup_default_start_point_show_exercises_page.select_exercise "(Verbal)"
     browser.setup_default_start_point_show_exercises_page.set_it_up_button.click
 

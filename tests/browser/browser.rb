@@ -13,7 +13,6 @@ module CyberDojo
 
       if ENV['browser'] == 'firefox'
         @driver = Selenium::WebDriver.for :remote, :url => hubUrl, :desired_capabilities => :firefox
-
       end
       if ENV['browser'] == 'chrome' || @driver == nil
         @driver = Selenium::WebDriver.for :remote, :url => hubUrl, :desired_capabilities => :chrome
@@ -27,6 +26,7 @@ module CyberDojo
 
       @driver.manage.window.resize_to 1920, 1080
       @driver.manage.timeouts.implicit_wait = 20
+      @driver.manage.timeouts.page_load = 10
 
       @baseURL = "http://nginx/"
     end
