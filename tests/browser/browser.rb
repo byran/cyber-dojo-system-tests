@@ -1,8 +1,8 @@
 require 'selenium-webdriver'
 
-require './cyber_dojo_main_page'
-require './cyber_dojo_setup_default_start_point_show_languages_page'
-require './cyber_dojo_setup_default_start_point_show_exercises_page'
+require File.join(File.expand_path(File.dirname(__FILE__)), "main_page.rb")
+require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start_point_show_languages_page.rb")
+require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start_point_show_exercises_page.rb")
 
 class CyberDojoBrowser
 

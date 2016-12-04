@@ -1,6 +1,6 @@
 require "minitest/autorun"
 
-require "./cyber_dojo_browser"
+require File.join(File.expand_path(File.dirname(__FILE__)), "browser/browser.rb")
 
 class CyberDojoTest < Minitest::Test
 

@@ -1,4 +1,4 @@
-require "./cyber_dojo_test"
+require File.join(File.expand_path(File.dirname(__FILE__)), "cyber_dojo_test.rb")
 
 class DemoTest < CyberDojoTest
 

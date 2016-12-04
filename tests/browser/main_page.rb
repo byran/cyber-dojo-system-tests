@@ -1,4 +1,4 @@
-require './cyber_dojo_page'
+require File.join(File.expand_path(File.dirname(__FILE__)), "page.rb")
 
 class CyberDojoMainPage < CyberDojoPage
 
