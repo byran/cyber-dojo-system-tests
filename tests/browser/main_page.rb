@@ -1,17 +1,19 @@
 require File.join(File.expand_path(File.dirname(__FILE__)), "page.rb")
 
-class CyberDojoMainPage < CyberDojoPage
+module CyberDojo
+  class MainPage < Page
 
-  def setup_button
-    @wait.until { @driver.find_element :id => 'setup-a-new-practice-session-button' }
+    def setup_button
+      @wait.until { @driver.find_element :id => 'setup-a-new-practice-session-button' }
+    end
+
+    def enter_button
+      @wait.until { @driver.find_element :id => 'enter-button' }
+    end
+
+    def donate_button
+      @wait.until { @driver.find_element :id => 'donate-button' }
+    end
+
   end
-
-  def enter_button
-    @wait.until { @driver.find_element :id => 'enter-button' }
-  end
-
-  def donate_button
-    @wait.until { @driver.find_element :id => 'donate-button' }
-  end
-
 end

@@ -5,7 +5,7 @@ require File.join(File.expand_path(File.dirname(__FILE__)), "browser/browser.rb"
 class CyberDojoTest < Minitest::Test
 
   def setup
-    @browser = CyberDojoBrowser.new
+    @browser = CyberDojo::Browser.new
   end
 
   def teardown
