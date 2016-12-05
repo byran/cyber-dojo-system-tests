@@ -1,6 +1,6 @@
-require "minitest/autorun"
+require 'minitest/autorun'
 
-require File.join(File.expand_path(File.dirname(__FILE__)), "browser/browser.rb")
+require_relative './browser/browser.rb'
 
 class CyberDojoTest < Minitest::Test
 
@@ -22,7 +22,7 @@ class CyberDojoTest < Minitest::Test
     assert @browser.wait.until_or_false{
       page.load_completed? &&
           @browser.page == page
-    }, "Failed to load page"
+    }, 'Failed to load page'
   end
 
   def create_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")

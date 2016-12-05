@@ -1,24 +1,25 @@
 require 'selenium-webdriver'
 
-require File.join(File.expand_path(File.dirname(__FILE__)), "pages.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "wait_mixin.rb")
+require_relative './pages.rb'
+require_relative './wait_mixin.rb'
 
 module CyberDojo
+
   class Browser
 
     attr_reader :wait
     attr_reader :pages
-    attr_reader :base_url
+    attr_reader :base_URL
 
     def initialize
-      hubUrl = ENV['hub']
-      hubUrl = "http://hub:4444/wd/hub" if hubUrl.nil?
+      hub_url = ENV['hub']
+      hub_url = 'http://hub:4444/wd/hub' if hub_url.nil?
 
       if ENV['browser'] == 'firefox'
-        @driver = Selenium::WebDriver.for :remote, :url => hubUrl, :desired_capabilities => :firefox
+        @driver = Selenium::WebDriver.for :remote, :url => hub_url, :desired_capabilities => :firefox
       end
       if ENV['browser'] == 'chrome' || @driver == nil
-        @driver = Selenium::WebDriver.for :remote, :url => hubUrl, :desired_capabilities => :chrome
+        @driver = Selenium::WebDriver.for :remote, :url => hub_url, :desired_capabilities => :chrome
       end
 
       @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
@@ -30,7 +31,7 @@ module CyberDojo
       @driver.manage.timeouts.implicit_wait = 20
       @driver.manage.timeouts.page_load = 10
 
-      @base_url = "http://nginx/"
+      @base_URL = 'http://nginx/'
     end
 
     def close
@@ -38,7 +39,7 @@ module CyberDojo
     end
 
     def navigate_home
-      @driver.navigate.to @base_url
+      @driver.navigate.to @base_URL
     end
 
     def title
@@ -54,25 +55,24 @@ module CyberDojo
       # the previous action if it's not present.
       # TODO: Find a better way to complete actions before taking a screen shot
       sleep 1
-      @driver.save_screenshot("images/" + filename + ".png")
+      @driver.save_screenshot('images/' + filename + '.png')
     end
 
     def page_url
       url = @driver.current_url
-      url.slice! @base_url
-
+      url.slice! @base_URL
       url.split("/")
     end
 
     def page
-      currentUrl = page_url
-
+      current_url = page_url
       @pages.all_pages.each do |p|
-        return p[:page] if p[:url] == currentUrl
-        return p[:page] if (p[:url] & currentUrl == p[:url]) && (p[:url] != [])
+        return p[:page] if p[:url] == current_url
+        return p[:page] if (p[:url] & current_url == p[:url]) && (p[:url] != [])
       end
-
       nil
     end
+
   end
+
 end

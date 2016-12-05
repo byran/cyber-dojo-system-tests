@@ -11,7 +11,7 @@ class RunningTestsInAKataTest < CyberDojoTest
 
     assert_equal 1, browser.page.number_of_traffic_lights
     assert_equal "red", browser.page.traffic_light(0).attribute("data-colour")
-    assert_equal browser.base_url + "images/bulb_red.png", browser.page.traffic_light_image(0).attribute("src")
+    assert_equal browser.base_URL + "images/bulb_red.png", browser.page.traffic_light_image(0).attribute("src")
     assert_equal "1", browser.page.traffic_light_count_element.text
   end
 

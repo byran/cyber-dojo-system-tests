@@ -4,7 +4,7 @@
 docker-compose --file=cyber_dojo_selenium/docker-compose.yml up -d
 
 # Wait for nodes to connect to the hub
-sleep 1
+sleep 3
 
 # Run the tests
 docker run -t --rm --network cyberdojoselenium_default -e "browser=chrome" -v `pwd`/tests:/tests cyberdojo/system-test-environment
