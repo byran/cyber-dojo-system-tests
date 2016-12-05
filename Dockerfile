@@ -1,4 +1,4 @@
-FROM cyberdojo/selenium-test-environment
+FROM cyberdojo/system-test-environment
 MAINTAINER Byran Wills-Heath <byran@adgico.co.uk>
 
 COPY tests/ /tests/

@@ -7,7 +7,7 @@ docker-compose --file=cyber_dojo_selenium/docker-compose.yml up -d
 sleep 1
 
 # Run the tests
-docker run -t --rm --network cyberdojoselenium_default -e "browser=chrome" -v `pwd`/tests:/tests cyberdojo/selenium-test-environment
+docker run -t --rm --network cyberdojoselenium_default -e "browser=chrome" -v `pwd`/tests:/tests cyberdojo/system-test-environment
 RESULT=$?
 
 # Take down the selenium hub and nodes
