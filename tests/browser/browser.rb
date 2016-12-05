@@ -47,6 +47,7 @@ module CyberDojo
     end
 
     def switch_to_window(index)
+      @wait.until { @driver.window_handles.count > index }
       @driver.switch_to.window(@driver.window_handles[index])
     end
 
