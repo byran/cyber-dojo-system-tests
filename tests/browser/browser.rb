@@ -12,7 +12,7 @@ module CyberDojo
 
     def initialize
       hub_url = ENV['hub']
-      hub_url = "http://hub:4444/wd/hub" if hub_url.nil?
+      hub_url = 'http://hub:4444/wd/hub' if hub_url.nil?
 
       if ENV['browser'] == 'firefox'
         @driver = Selenium::WebDriver.for :remote, :url => hub_url, :desired_capabilities => :firefox
@@ -30,7 +30,7 @@ module CyberDojo
       @driver.manage.timeouts.implicit_wait = 20
       @driver.manage.timeouts.page_load = 10
 
-      @base_URL = "http://nginx/"
+      @base_URL = 'http://nginx/'
     end
 
     def close
@@ -54,7 +54,7 @@ module CyberDojo
       # the previous action if it's not present.
       # TODO: Find a better way to complete actions before taking a screen shot
       sleep 1
-      @driver.save_screenshot("images/" + filename + ".png")
+      @driver.save_screenshot('images/' + filename + '.png')
     end
 
     def page_url
