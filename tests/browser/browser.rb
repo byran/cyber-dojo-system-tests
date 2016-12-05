@@ -8,6 +8,7 @@ module CyberDojo
 
     attr_reader :wait
     attr_reader :pages
+    attr_reader :base_url
 
     def initialize
       hubUrl = ENV['hub']
@@ -29,7 +30,7 @@ module CyberDojo
       @driver.manage.timeouts.implicit_wait = 20
       @driver.manage.timeouts.page_load = 10
 
-      @baseURL = "http://nginx/"
+      @base_url = "http://nginx/"
     end
 
     def close
@@ -37,7 +38,7 @@ module CyberDojo
     end
 
     def navigate_home
-      @driver.navigate.to @baseURL
+      @driver.navigate.to @base_url
     end
 
     def title
@@ -58,7 +59,7 @@ module CyberDojo
 
     def page_url
       url = @driver.current_url
-      url.slice! @baseURL
+      url.slice! @base_url
 
       url.split("/")
     end
