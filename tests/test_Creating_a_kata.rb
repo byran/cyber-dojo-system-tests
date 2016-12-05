@@ -1,4 +1,4 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), "cyber_dojo_test.rb")
+require_relative './cyber_dojo_test.rb'
 
 class CreatingAKataTest < CyberDojoTest
 
