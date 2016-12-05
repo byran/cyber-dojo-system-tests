@@ -3,6 +3,12 @@ require_relative './page.rb'
 module CyberDojo
   class KataEditPage < Page
 
+    def initialize(driver, wait)
+      super(driver, wait)
+
+      @wait_11_seconds = Selenium::WebDriver::Wait.new(:timeout => 11)
+    end
+
     def load_completed?
       begin
         !@driver.find_element(:id => 'test-button').nil?
@@ -15,9 +21,13 @@ module CyberDojo
       @wait.until { @driver.find_element(:id => 'test-button') }
     end
 
+    def spinner
+      @wait.until { @driver.find_element(:id => 'test-spinner') }
+    end
+
     def wait_for_spinner_to_show_and_hide
-      # TODO: Actually check that the spinner was shown and hidden
-      sleep 5
+      s = spinner
+      @wait_11_seconds.until { !s.displayed? }
     end
 
     def number_of_traffic_lights
