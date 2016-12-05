@@ -23,6 +23,7 @@ class CreatingAKataTest < CyberDojoTest
     browser.page.start_coding_button.click
 
     browser.page.ok_button.click
+    sleep 2
 
     browser.switch_to_window 1
 
