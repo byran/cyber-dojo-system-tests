@@ -7,7 +7,9 @@ script:
     - curl -O https://raw.githubusercontent.com/cyber-dojo/commander/master/cyber-dojo
     - chmod +x cyber-dojo
 
-    - ./build_all.sh
+    # Only build the cyber-dojo/system-tests image, the cyber-dojo/system-tests-environment
+    # image can be pulled as it does not change very often
+    - ./build.sh
 
     - ./cyber-dojo up
 
