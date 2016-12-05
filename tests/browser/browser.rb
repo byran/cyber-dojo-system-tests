@@ -1,7 +1,7 @@
 require 'selenium-webdriver'
 
-require File.join(File.expand_path(File.dirname(__FILE__)), "pages.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "wait_mixin.rb")
+require_relative './pages.rb'
+require_relative './wait_mixin.rb'
 
 module CyberDojo
   class Browser
