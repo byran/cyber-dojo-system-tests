@@ -22,7 +22,7 @@ module CyberDojo
         @driver = Selenium::WebDriver.for :remote, :url => hub_url, :desired_capabilities => :chrome
       end
 
-      @wait = Selenium::WebDriver::Wait.new(:timeout => 4)
+      @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
       @wait.extend(WaitMixIn)
 
       @pages = Pages.new(@driver, @wait)
