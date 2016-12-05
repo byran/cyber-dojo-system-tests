@@ -1,4 +1,4 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), "page.rb")
+require_relative './page.rb'
 
 module CyberDojo
   class SetupDefaultStartPointShowExercisesPage < Page

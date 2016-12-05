@@ -1,7 +1,7 @@
-require File.join(File.expand_path(File.dirname(__FILE__)), "main_page.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start_point_show_languages_page.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "setup_default_start_point_show_exercises_page.rb")
-require File.join(File.expand_path(File.dirname(__FILE__)), "kata_edit_page.rb")
+require_relative './main_page.rb'
+require_relative './setup_default_start_point_show_languages_page.rb'
+require_relative './setup_default_start_point_show_exercises_page.rb'
+require_relative './kata_edit_page.rb'
 
 module CyberDojo
   class Pages
