@@ -46,6 +46,18 @@ module CyberDojo
       traffic_light_elements[index].find_element(:tag_name => "img")
     end
 
+    def select_file(filename)
+      file = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'filename-list', filename) }
+      @driver.scroll_into_view file
+      file.click
+    end
+
+    def editor
+      editor_divs = @wait.until { @driver.find_elements :class => 'filename_div' }
+      editor = editor_divs.find { |e| e.displayed? }
+      editor.find_element :class => 'file_content' if !editor.nil?
+    end
+
     private
 
     def traffic_light_elements
