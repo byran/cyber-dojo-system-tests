@@ -9,10 +9,8 @@ class RunningTestsInAKataTest < CyberDojoTest
 
     browser.page.wait_for_spinner_to_show_and_hide
 
-    assert_equal 1, browser.page.number_of_traffic_lights
-    assert_equal 'red', browser.page.traffic_light(0).attribute('data-colour')
-    assert_equal browser.base_URL + 'images/bulb_red.png', browser.page.traffic_light_image(0).attribute('src')
-    assert_equal '1', browser.page.traffic_light_count_element.text
+    assert_number_of_traffic_lights_is 1
+    assert_traffic_light_at_index_is_colour 0, 'red'
   end
 
   def test_Code_passing_the_tests_adds_a_green_traffic_light
@@ -28,10 +26,8 @@ class RunningTestsInAKataTest < CyberDojoTest
 
     browser.page.wait_for_spinner_to_show_and_hide
 
-    assert_equal 1, browser.page.number_of_traffic_lights
-    assert_equal 'green', browser.page.traffic_light(0).attribute('data-colour')
-    assert_equal browser.base_URL + 'images/bulb_green.png', browser.page.traffic_light_image(0).attribute('src')
-    assert_equal '1', browser.page.traffic_light_count_element.text
+    assert_number_of_traffic_lights_is 1
+    assert_traffic_light_at_index_is_colour 0, 'green'
   end
 
   def test_A_syntax_error_in_the_code_adds_a_amber_traffic_light
@@ -46,10 +42,18 @@ class RunningTestsInAKataTest < CyberDojoTest
 
     browser.page.wait_for_spinner_to_show_and_hide
 
-    assert_equal 1, browser.page.number_of_traffic_lights
-    assert_equal 'amber', browser.page.traffic_light(0).attribute('data-colour')
-    assert_equal browser.base_URL + 'images/bulb_amber.png', browser.page.traffic_light_image(0).attribute('src')
-    assert_equal '1', browser.page.traffic_light_count_element.text
+    assert_number_of_traffic_lights_is 1
+    assert_traffic_light_at_index_is_colour 0, 'amber'
+  end
+
+  def assert_number_of_traffic_lights_is(count)
+    assert_equal count, browser.page.number_of_traffic_lights
+    assert_equal "#{count}", browser.page.traffic_light_count_element.text
+  end
+
+  def assert_traffic_light_at_index_is_colour(index, colour)
+    assert_equal colour, browser.page.traffic_light(index).attribute('data-colour')
+    assert_equal browser.base_URL + "images/bulb_#{colour}.png", browser.page.traffic_light_image(index).attribute('src')
   end
 
 end
