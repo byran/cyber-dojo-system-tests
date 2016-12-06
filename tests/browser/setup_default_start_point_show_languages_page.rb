@@ -16,11 +16,13 @@ module CyberDojo
 
     def select_language(name)
       language = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'languages-list', name) }
+      @driver.scroll_into_view language
       language.click
     end
 
     def select_framework(name)
       framework = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'tests-list', name) }
+      @driver.scroll_into_view framework
       framework.click
     end
 

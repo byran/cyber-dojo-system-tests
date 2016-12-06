@@ -2,6 +2,7 @@ require 'selenium-webdriver'
 
 require_relative './pages.rb'
 require_relative './wait_mixin.rb'
+require_relative './driver_mix_in.rb'
 
 module CyberDojo
 
@@ -21,6 +22,7 @@ module CyberDojo
       if ENV['browser'] == 'chrome' || @driver == nil
         @driver = Selenium::WebDriver.for :remote, :url => hub_url, :desired_capabilities => :chrome
       end
+      @driver.extend(DriverMixIn)
 
       @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
       @wait.extend(WaitMixIn)
