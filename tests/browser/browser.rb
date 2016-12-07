@@ -70,10 +70,17 @@ module CyberDojo
     def page
       current_url = page_url
       @pages.all_pages.each do |p|
-        return p[:page] if p[:url] == current_url
-        return p[:page] if (p[:url] & current_url == p[:url]) && (p[:url] != [])
+        return p[:page] if beginning_of_first_array_matches_beginning_of_second_array p[:url], current_url
       end
       nil
+    end
+
+    private
+
+    def beginning_of_first_array_matches_beginning_of_second_array(a, b)
+      return a == b if a.count == 0
+
+      a == b[0 .. a.count - 1]
     end
 
   end
