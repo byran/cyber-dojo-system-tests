@@ -14,6 +14,18 @@ class CyberDojoTest < Minitest::Test
 
   attr_reader :browser
 
+  def method_missing(sym, *args, &block)
+    if @browser.page.respond_to? sym
+      @browser.page.send sym, *args, &block
+    else
+      super sym, *args, &block
+    end
+  end
+
+  def respond_to?(method, include_private = false)
+    super || @browser.page.respond_to?(method, include_private)
+  end
+
   def pages
     @browser.pages
   end

@@ -7,23 +7,22 @@ class CreatingAKataTest < CyberDojoTest
 
     assert_page_loaded(pages.main)
 
-    browser.page.setup_button.click
+    setup_button.click
 
     assert_page_loaded(pages.setup_default_start_point_show_languages)
 
-    browser.page.select_language 'C (gcc)'
-    browser.page.select_framework 'assert'
-    browser.page.next_button.click
+    select_language 'C (gcc)'
+    select_framework 'assert'
+    next_button.click
 
     assert_page_loaded(pages.setup_default_start_point_show_exercises)
 
-    browser.page.select_exercise '(Verbal)'
-    browser.page.set_it_up_button.click
+    select_exercise '(Verbal)'
+    set_it_up_button.click
 
-    browser.page.start_coding_button.click
+    start_coding_button.click
 
-    browser.page.ok_button.click
-    sleep 2
+    ok_button.click
 
     browser.switch_to_window 1
 
