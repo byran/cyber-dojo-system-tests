@@ -3,7 +3,7 @@ require_relative './cyber_dojo_test.rb'
 class RunningTestsInAKataTest < CyberDojoTest
 
   def test_The_starting_test_fails
-    create_kata
+    create_and_enter_kata
 
     test_button.click
 
@@ -14,7 +14,7 @@ class RunningTestsInAKataTest < CyberDojoTest
   end
 
   def test_Code_passing_the_tests_adds_a_green_traffic_light
-    create_kata
+    create_and_enter_kata
 
     select_file 'hiker.c'
 
@@ -31,7 +31,7 @@ class RunningTestsInAKataTest < CyberDojoTest
   end
 
   def test_A_syntax_error_in_the_code_adds_a_amber_traffic_light
-    create_kata
+    create_and_enter_kata
 
     select_file 'hiker.c'
 
@@ -47,7 +47,7 @@ class RunningTestsInAKataTest < CyberDojoTest
   end
 
   def test_A_traffic_light_is_added_for_each_test_run
-    create_kata
+    create_and_enter_kata
 
     test_button.click
     wait_for_spinner_to_show_and_hide

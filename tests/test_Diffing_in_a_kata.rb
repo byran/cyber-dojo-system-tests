@@ -3,7 +3,7 @@ require_relative './cyber_dojo_test.rb'
 class DiffingInAKataTest < CyberDojoTest
 
   def test_A_diff_dialog_appears_when_a_traffic_light_is_clicked
-    create_kata
+    create_and_enter_kata
 
     select_file 'hiker.c'
     editor.clear

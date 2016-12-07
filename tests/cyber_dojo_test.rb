@@ -37,7 +37,7 @@ class CyberDojoTest < Minitest::Test
     }, 'Failed to load page'
   end
 
-  def create_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
+  def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
     browser.navigate_home
 
     assert_page_loaded(pages.main)
