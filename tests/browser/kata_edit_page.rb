@@ -43,7 +43,7 @@ module CyberDojo
     end
 
     def traffic_light_image(index)
-      traffic_light_elements[index].find_element(:tag_name => "img")
+      traffic_light_elements[index].find_element(:tag_name => 'img')
     end
 
     def select_file(filename)
@@ -58,10 +58,26 @@ module CyberDojo
       editor.find_element :class => 'file_content' if !editor.nil?
     end
 
+    def diff_dialog
+      @wait.until { @driver.find_element(:id => 'diff-content') }
+    end
+
+    def select_diff(filename)
+      file_diff = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'diff-filenames', filename) }
+      @driver.scroll_into_view file_diff
+      file_diff.click
+    end
+
+    def diff_view
+      diff_divs = @wait.until { @driver.find_element(:id => 'diff-content').find_elements(:class => 'filename_div') }
+      diff = diff_divs.find { |d| d.displayed? }
+      diff.find_element :class => 'diff-sheet' if !diff.nil?
+    end
+
     private
 
     def traffic_light_elements
-      @wait.until { @driver.find_element(:id => "traffic-lights").find_elements(:class => "diff-traffic-light") }
+      @wait.until { @driver.find_element(:id => 'traffic-lights').find_elements(:class => 'diff-traffic-light') }
     end
 
   end
