@@ -3,8 +3,8 @@ require_relative './page.rb'
 module CyberDojo
   class KataEditPage < Page
 
-    def initialize(driver, wait)
-      super(driver, wait)
+    def initialize(driver, browser, wait)
+      super(driver, browser, wait)
 
       @wait_11_seconds = Selenium::WebDriver::Wait.new(:timeout => 11)
     end
@@ -74,10 +74,22 @@ module CyberDojo
       diff.find_element :class => 'diff-sheet' if !diff.nil?
     end
 
+    def kata_id
+      url_to_id_and_avatar[1]
+    end
+
+    def avatar
+      url_to_id_and_avatar[2]
+    end
+
     private
 
     def traffic_light_elements
       @wait.until { @driver.find_element(:id => 'traffic-lights').find_elements(:class => 'diff-traffic-light') }
+    end
+
+    def url_to_id_and_avatar
+      /([0-9A-F]*)\?avatar\=([a-z]*)/.match(@browser.page_url[2])
     end
 
   end

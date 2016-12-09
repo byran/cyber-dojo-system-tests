@@ -4,13 +4,18 @@ module CyberDojo
 
   class Page
 
-    def initialize(driver, wait)
+    def initialize(driver, browser, wait)
       @driver = driver
+      @browser = browser
       @wait = wait
     end
 
     def load_completed?
       false
+    end
+
+    def update_driver(driver)
+      @driver = driver
     end
 
   end

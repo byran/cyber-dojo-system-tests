@@ -13,6 +13,19 @@ module CyberDojo
     attr_reader :base_URL
 
     def initialize
+      create_browser
+
+      @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+      @wait.extend(WaitMixIn)
+
+      @pages = Pages.new(@driver, self, @wait)
+
+      @base_URL = 'http://nginx/'
+    end
+
+    private
+
+    def create_browser
       hub_url = ENV['hub']
       hub_url = 'http://hub:4444/wd/hub' if hub_url.nil?
 
@@ -24,20 +37,22 @@ module CyberDojo
       end
       @driver.extend(DriverMixIn)
 
-      @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
-      @wait.extend(WaitMixIn)
-
-      @pages = Pages.new(@driver, @wait)
-
       @driver.manage.window.resize_to 1920, 1080
       @driver.manage.timeouts.implicit_wait = 20
       @driver.manage.timeouts.page_load = 10
-
-      @base_URL = 'http://nginx/'
     end
+
+    public
 
     def close
       @driver.quit
+      @driver = nil
+    end
+
+    def restart
+      close
+      create_browser
+      @pages.update_driver @driver
     end
 
     def navigate_home
