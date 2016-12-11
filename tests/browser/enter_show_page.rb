@@ -22,6 +22,10 @@ module CyberDojo
       @wait.until { @driver.find_element(:id => 'start-button') }
     end
 
+    def dashboard_button
+      @wait.until { @driver.find_element(:id => 'dashboard-button') }
+    end
+
     def resume_coding_button
       @wait.until { @driver.find_element(:id => 'resume-button') }
     end
