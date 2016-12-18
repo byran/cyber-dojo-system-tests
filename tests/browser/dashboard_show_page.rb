@@ -40,8 +40,12 @@ module CyberDojo
       }
 
       for row in rows
-        avatar_image_div = row.find_element(:class => 'avatar-image')
-        return row if !avatar_image_div.nil? && avatar_image_div.attribute('data-avatar-name') == avatar
+        begin
+          avatar_image_div = row.find_element(:class => 'avatar-image')
+          return row if !avatar_image_div.nil? && avatar_image_div.attribute('data-avatar-name') == avatar
+        rescue Selenium::WebDriver::Error::NoSuchElementError => ignore
+          # Ignore NoSuchElementError as there may be sub table rows without an avatar-image
+        end
       end
 
       nil

@@ -23,6 +23,7 @@ module CyberDojo
 
       @main = MainPage.new(driver, browser, wait)
       add_page [], @main
+      add_page [ 'dojo', 'index' ], @main
 
       @setup_default_start_point_show_languages = SetupDefaultStartPointShowLanguagesPage.new(driver, browser, wait)
       add_page [ 'setup_default_start_point', 'show_languages' ], @setup_default_start_point_show_languages

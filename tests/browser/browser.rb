@@ -68,6 +68,17 @@ module CyberDojo
       @driver.switch_to.window(@driver.window_handles[index])
     end
 
+    def switch_to_window_with_title_starting_with(title)
+      windows = @driver.window_handles
+
+      for handle in windows
+        @driver.switch_to.window(handle)
+        return true if @driver.title.start_with?(title)
+      end
+
+      false
+    end
+
     def save_screenshot(filename)
       # Not keen on this sleep but Firefox will take a screen shot before completing
       # the previous action if it's not present.

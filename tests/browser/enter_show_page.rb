@@ -30,6 +30,13 @@ module CyberDojo
       @wait.until { @driver.find_element(:id => 'resume-button') }
     end
 
+    # Start coding dialog
+    def ok_button
+      buttons = @wait.until { @driver.find_elements :class => 'ui-button-text' }
+      index = buttons.find_index { |b| b.text == 'ok' }
+      buttons[index]
+    end
+
     # Resume coding dialog
     def resume_dialog
       @wait.until { @driver.find_element(:class => 'ui-dialog') }
