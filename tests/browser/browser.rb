@@ -12,7 +12,13 @@ module CyberDojo
     attr_reader :pages
     attr_reader :base_URL
 
+    attr_reader :default_implicit_timeout
+
     def initialize
+      @start_time = Time::now
+      @last_time = @start_time
+      @default_implicit_timeout = 20
+
       create_browser
 
       @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
@@ -38,7 +44,7 @@ module CyberDojo
       @driver.extend(DriverMixIn)
 
       @driver.manage.window.resize_to 1920, 1080
-      @driver.manage.timeouts.implicit_wait = 20
+      @driver.manage.timeouts.implicit_wait = @default_implicit_timeout
       @driver.manage.timeouts.page_load = 10
     end
 
@@ -53,6 +59,20 @@ module CyberDojo
       close
       create_browser
       @pages.update_driver @driver
+    end
+
+    def debug_print_timing(message)
+      current_time = Time::now
+      time_since_start = (current_time - @start_time).round(2)
+      time_since_last = (current_time - @last_time).round(2)
+
+      print "---- Timing ----\n"
+      print message + "\n" if !message.nil?
+      print 'Since start : ' + time_since_start.to_s + "\n"
+      print 'Since last  : ' + time_since_last.to_s + "\n"
+      print "----------------\n"
+
+      @last_time = current_time
     end
 
     def navigate_home

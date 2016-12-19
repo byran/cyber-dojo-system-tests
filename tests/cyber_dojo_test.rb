@@ -26,6 +26,10 @@ class CyberDojoTest < Minitest::Test
     super || @browser.page.respond_to?(method, include_private)
   end
 
+  def debug_print_timing(message)
+    @browser.debug_print_timing(message)
+  end
+
   def pages
     @browser.pages
   end
