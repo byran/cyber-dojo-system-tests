@@ -32,6 +32,15 @@ module CyberDojo
       traffic_lights_table_row_for_avatar(avatar).find_element(:class => 'traffic-light-count')
     end
 
+    def traffic_light(avatar, test_index)
+      traffic_lights = traffic_lights_table_row_for_avatar(avatar).find_elements(:class => 'diff-traffic-light')
+      traffic_lights[test_index - 1]
+    end
+
+    def traffic_light_colour(avatar, test_index)
+      traffic_light(avatar, test_index).attribute('data-colour')
+    end
+
     private
 
     def traffic_lights_table_row_for_avatar(avatar)

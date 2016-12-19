@@ -30,6 +30,9 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     assert_page_loaded pages.dashboard_show
 
     assert_equal '2', traffic_light_count(avatar_animal).text
+    assert_equal 'red', traffic_light_colour(avatar_animal, 1)
+    assert_equal 'green', traffic_light_colour(avatar_animal, 2)
+
   end
 
   def test_Multiple_katas_can_be_seen_in_the_dashboard
@@ -75,7 +78,11 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     assert_page_loaded pages.dashboard_show
 
     assert_equal '2', traffic_light_count(avatar_1_animal).text
+    assert_equal 'red', traffic_light_colour(avatar_1_animal, 1)
+    assert_equal 'green', traffic_light_colour(avatar_1_animal, 2)
+
     assert_equal '1', traffic_light_count(avatar_2_animal).text
+    assert_equal 'red', traffic_light_colour(avatar_2_animal, 1)
   end
 
 end
