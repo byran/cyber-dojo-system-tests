@@ -15,7 +15,7 @@ module CyberDojo
 
     def select_exercise(name)
       exercise = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'exercises-list', name) }
-      @driver.scroll_into_view exercise
+      @driver.scroll_into_view(exercise)
       exercise.click
     end
 

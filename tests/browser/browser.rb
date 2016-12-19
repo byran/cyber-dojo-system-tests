@@ -36,14 +36,14 @@ module CyberDojo
       hub_url = 'http://hub:4444/wd/hub' if hub_url.nil?
 
       if ENV['browser'] == 'firefox'
-        @driver = Selenium::WebDriver.for :remote, :url => hub_url, :desired_capabilities => :firefox
+        @driver = Selenium::WebDriver.for(:remote, :url => hub_url, :desired_capabilities => :firefox)
       end
       if ENV['browser'] == 'chrome' || @driver == nil
-        @driver = Selenium::WebDriver.for :remote, :url => hub_url, :desired_capabilities => :chrome
+        @driver = Selenium::WebDriver.for(:remote, :url => hub_url, :desired_capabilities => :chrome)
       end
       @driver.extend(DriverMixIn)
 
-      @driver.manage.window.resize_to 1920, 1080
+      @driver.manage.window.resize_to(1920, 1080)
       @driver.manage.timeouts.implicit_wait = @default_implicit_timeout
       @driver.manage.timeouts.page_load = 10
     end
@@ -58,7 +58,7 @@ module CyberDojo
     def restart
       close
       create_browser
-      @pages.update_driver @driver
+      @pages.update_driver(@driver)
     end
 
     def debug_print_timing(message)
@@ -76,7 +76,7 @@ module CyberDojo
     end
 
     def navigate_home
-      @driver.navigate.to @base_URL
+      @driver.navigate.to(@base_URL)
     end
 
     def title
@@ -116,7 +116,7 @@ module CyberDojo
     def page
       current_url = page_url
       @pages.all_pages.each do |p|
-        return p[:page] if beginning_of_first_array_matches_beginning_of_second_array p[:url], current_url
+        return p[:page] if beginning_of_first_array_matches_beginning_of_second_array(p[:url], current_url)
       end
       nil
     end

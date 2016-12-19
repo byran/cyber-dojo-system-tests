@@ -22,23 +22,23 @@ module CyberDojo
       @all_pages = []
 
       @main = MainPage.new(driver, browser, wait)
-      add_page [], @main
-      add_page [ 'dojo', 'index' ], @main
+      add_page([], @main)
+      add_page([ 'dojo', 'index' ], @main)
 
       @setup_default_start_point_show_languages = SetupDefaultStartPointShowLanguagesPage.new(driver, browser, wait)
-      add_page [ 'setup_default_start_point', 'show_languages' ], @setup_default_start_point_show_languages
+      add_page([ 'setup_default_start_point', 'show_languages' ], @setup_default_start_point_show_languages)
 
       @setup_default_start_point_show_exercises = SetupDefaultStartPointShowExercisesPage.new(driver, browser, wait)
-      add_page [ 'setup_default_start_point', 'show_exercises' ], @setup_default_start_point_show_exercises
+      add_page([ 'setup_default_start_point', 'show_exercises' ], @setup_default_start_point_show_exercises)
 
       @kata_edit = KataEditPage.new(driver, browser, wait)
-      add_page [ 'kata', 'edit' ], @kata_edit
+      add_page([ 'kata', 'edit' ], @kata_edit)
 
       @enter_show = EnterShowPage.new(driver, browser, wait)
-      add_page [ 'enter', 'show' ], @enter_show
+      add_page([ 'enter', 'show' ], @enter_show)
 
       @dashboard_show = DashboardShowPage.new(driver, browser, wait)
-      add_page [ 'dashboard', 'show' ], @dashboard_show
+      add_page([ 'dashboard', 'show' ], @dashboard_show)
     end
 
     def add_page(url_array, page)
