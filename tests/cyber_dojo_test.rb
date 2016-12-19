@@ -15,10 +15,10 @@ class CyberDojoTest < Minitest::Test
   attr_reader :browser
 
   def method_missing(sym, *args, &block)
-    if @browser.page.respond_to? sym
-      @browser.page.send sym, *args, &block
+    if @browser.page.respond_to?(sym)
+      @browser.page.send(sym, *args, &block)
     else
-      super sym, *args, &block
+      super(sym, *args, &block)
     end
   end
 
@@ -35,10 +35,10 @@ class CyberDojoTest < Minitest::Test
   end
 
   def assert_page_loaded(page)
-    assert @browser.wait.until_or_false{
+    assert(@browser.wait.until_or_false{
       page.load_completed? &&
           @browser.page == page
-    }, 'Failed to load page'
+    }, 'Failed to load page')
   end
 
   def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
@@ -50,30 +50,30 @@ class CyberDojoTest < Minitest::Test
 
     assert_page_loaded(pages.setup_default_start_point_show_languages)
 
-    browser.page.select_language language
-    browser.page.select_framework framework
+    browser.page.select_language(language)
+    browser.page.select_framework(framework)
     browser.page.next_button.click
 
     assert_page_loaded(pages.setup_default_start_point_show_exercises)
 
-    browser.page.select_exercise exercise
+    browser.page.select_exercise(exercise)
     browser.page.set_it_up_button.click
 
     browser.page.start_coding_button.click
 
     browser.page.ok_button.click
 
-    browser.switch_to_window 1
+    browser.switch_to_window(1)
 
     assert_page_loaded(pages.kata_edit)
   end
 
   def run_a_failing_test
-    select_file 'hiker.c'
+    select_file('hiker.c')
 
     editor.clear
-    editor.send_keys "#include \"hiker.h\"\n"
-    editor.send_keys "int answer(void) { return 47; }\n"
+    editor.send_keys("#include \"hiker.h\"\n")
+    editor.send_keys("int answer(void) { return 47; }\n")
 
     test_button.click
 
@@ -81,11 +81,11 @@ class CyberDojoTest < Minitest::Test
   end
 
   def run_a_passing_test
-    select_file 'hiker.c'
+    select_file('hiker.c')
 
     editor.clear
-    editor.send_keys "#include \"hiker.h\"\n"
-    editor.send_keys "int answer(void) { return 42; }\n"
+    editor.send_keys("#include \"hiker.h\"\n")
+    editor.send_keys("int answer(void) { return 42; }\n")
 
     test_button.click
 

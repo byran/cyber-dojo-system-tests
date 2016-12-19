@@ -10,11 +10,11 @@ def run_tests
 end
 
 if ENV['browser'] == 'chrome'
-  print("Running tests against chrome\n\n")
+  print "Running tests against chrome\n\n"
   run_tests
 elsif ENV['browser'] == 'firefox'
-  print("Running tests against firefox\n\n")
+  print "Running tests against firefox\n\n"
   run_tests
 else
-  print("Unknown browser specified\n\n")
+  print "Unknown browser specified\n\n"
 end

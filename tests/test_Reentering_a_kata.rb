@@ -11,19 +11,19 @@ class ReenteringAKataTest < CyberDojoTest
     browser.restart
 
     browser.navigate_home
-    assert_page_loaded pages.main
+    assert_page_loaded(pages.main)
 
     enter_button.click
-    assert_page_loaded pages.enter_show
+    assert_page_loaded(pages.enter_show)
 
-    kata_id_text_box.send_keys id
+    kata_id_text_box.send_keys(id)
     resume_coding_button.click
     resume_avatar(avatar_animal).click
 
-    browser.switch_to_window 1
+    browser.switch_to_window(1)
 
-    assert_page_loaded pages.kata_edit
-    assert_equal avatar_animal, avatar, 'Incorrect avatar reentered'
+    assert_page_loaded(pages.kata_edit)
+    assert_equal(avatar_animal, avatar, 'Incorrect avatar reentered')
   end
 
 end
