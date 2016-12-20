@@ -6,10 +6,10 @@ TODO: write some more instructions :)
 
 Tests are stores in the ```/tests``` directory
 
-## Building the docker images
+## Building the cyberdojo/system-tests docker image
 
 ```
-./build_all.sh
+./build.sh
 ```
 
 ## Running the tests
