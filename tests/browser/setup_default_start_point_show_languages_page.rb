@@ -15,19 +15,23 @@ module CyberDojo
     end
 
     def select_language(name)
-      language = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'languages-list', name) }
+      language = @wait.until_with_message("Unable to find language '#{name}'") {
+        CyberDojo::find_item_in_cyber_dojo_list(@driver, 'languages-list', name)
+      }
       @driver.scroll_into_view(language)
       language.click
     end
 
     def select_framework(name)
-      framework = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'tests-list', name) }
+      framework = @wait.until_with_message("Unable to find framework '#{name}'") {
+        CyberDojo::find_item_in_cyber_dojo_list(@driver, 'tests-list', name)
+      }
       @driver.scroll_into_view(framework)
       framework.click
     end
 
     def next_button
-      @wait.until { @driver.find_element :id => 'choose-exercise' }
+      @wait.until_with_message("Unable to find next button") { @driver.find_element :id => 'choose-exercise' }
     end
 
   end
