@@ -9,6 +9,16 @@ class CyberDojoTest < Minitest::Test
   end
 
   def teardown
+    if not passed?
+      begin
+        @browser.save_screenshot(name)
+      rescue
+        print "Failed to save screenshot for '#{name}'\n"
+      else
+        print "Save screenshot as '#{name}'\n"
+      end
+    end
+
     @browser.close
   end
 
