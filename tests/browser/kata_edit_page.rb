@@ -18,11 +18,15 @@ module CyberDojo
     end
 
     def test_button
-      @wait.until { @driver.find_element(:id => 'test-button') }
+      @wait.until_with_message('Unable to find test button on "kata/edit" page') {
+        @driver.find_element(:id => 'test-button')
+      }
     end
 
     def spinner
-      @wait.until { @driver.find_element(:id => 'test-spinner') }
+      @wait.until_with_message('Unable to find spinner on "kata/edit" page') {
+        @driver.find_element(:id => 'test-spinner')
+      }
     end
 
     def wait_for_spinner_to_show_and_hide
@@ -35,7 +39,9 @@ module CyberDojo
     end
 
     def traffic_light_count_element
-      @wait.until { @driver.find_element(:class => "traffic-light-count") }
+      @wait.until_with_message('Unable to find traffic light count on "kata/edit" page') {
+        @driver.find_element(:class => "traffic-light-count")
+      }
     end
 
     def traffic_light(index)
@@ -54,13 +60,17 @@ module CyberDojo
     end
 
     def editor
-      editor_divs = @wait.until { @driver.find_elements(:class => 'filename_div') }
+      editor_divs = @wait.until_with_message('Unable to find editor on "kata/edit" page') {
+        @driver.find_elements(:class => 'filename_div')
+      }
       editor = editor_divs.find { |e| e.displayed? }
       editor.find_element(:class => 'file_content') if !editor.nil?
     end
 
     def diff_dialog
-      @wait.until { @driver.find_element(:id => 'diff-content') }
+      @wait.until_with_message('Unable to find diff dialog on "kata/edit" page') {
+        @driver.find_element(:id => 'diff-content')
+      }
     end
 
     def select_diff(filename)
@@ -71,7 +81,9 @@ module CyberDojo
     end
 
     def diff_view
-      diff_divs = @wait.until { @driver.find_element(:id => 'diff-content').find_elements(:class => 'filename_div') }
+      diff_divs = @wait.until_with_message('Unable to find diff view on "kata/edit" page') {
+        @driver.find_element(:id => 'diff-content').find_elements(:class => 'filename_div')
+      }
       diff = diff_divs.find { |d| d.displayed? }
       diff.find_element(:class => 'diff-sheet') if !diff.nil?
     end
@@ -87,7 +99,9 @@ module CyberDojo
     private
 
     def traffic_light_elements
-      @wait.until { @driver.find_element(:id => 'traffic-lights').find_elements(:class => 'diff-traffic-light') }
+      @wait.until_with_message('Unable to find traffic lights on "kata/edit" page') {
+        @driver.find_element(:id => 'traffic-lights').find_elements(:class => 'diff-traffic-light')
+      }
     end
 
     def url_to_id_and_avatar

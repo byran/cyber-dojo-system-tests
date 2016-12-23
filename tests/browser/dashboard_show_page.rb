@@ -21,11 +21,15 @@ module CyberDojo
     end
 
     def auto_refresh_checkbox
-      @wait.until { @driver.find_element(:id => 'auto-refresh-container').find_element(:tag_name => 'label') }
+      @wait.until_with_message('Unable to find auto refresh checkbox on "dashboard/show" page') {
+        @driver.find_element(:id => 'auto-refresh-container').find_element(:tag_name => 'label')
+      }
     end
 
     def minute_columns_checkbox
-      @wait.until { @driver.find_element(:id => 'minute-columns-container').find_element(:tag_name => 'label') }
+      @wait.until_with_message('Unable to find minute columns checkbox on "dashboard/show" page') {
+        @driver.find_element(:id => 'minute-columns-container').find_element(:tag_name => 'label')
+      }
     end
 
     def traffic_light_count(avatar)
@@ -44,7 +48,7 @@ module CyberDojo
     private
 
     def traffic_lights_table_row_for_avatar(avatar)
-      rows = @wait.until {
+      rows = @wait.until_with_message('Unable to find traffic lights on "dashboard/show" page') {
         @driver.find_element(:id => 'traffic-lights').find_elements(:tag_name => 'tr')
       }
 

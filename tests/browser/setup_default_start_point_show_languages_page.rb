@@ -15,21 +15,23 @@ module CyberDojo
     end
 
     def select_language(name)
-      language = @wait.until_with_message("Unable to find language '#{name}'") {
+      language = @wait.until_with_message("Unable to find language '#{name}' on \"setup_default_start_point/show_languages\" page") {
         find_item_in_cyber_dojo_list('languages-list', name)
       }
-      click_on_element_until_it_has_class("Unable to click on language '#{name}'", language, 'selected')
+      click_on_element_until_it_has_class("Unable to click on language '#{name}' on \"setup_default_start_point/show_languages\" page", language, 'selected')
     end
 
     def select_framework(name)
-      framework = @wait.until_with_message("Unable to find framework '#{name}'") {
+      framework = @wait.until_with_message("Unable to find framework '#{name}' on \"setup_default_start_point/show_languages\" page") {
         find_item_in_cyber_dojo_list('tests-list', name)
       }
-      click_on_element_until_it_has_class("Unable to click on framework '#{name}'", framework, 'selected')
+      click_on_element_until_it_has_class("Unable to click on framework '#{name}' on \"setup_default_start_point/show_languages\" page", framework, 'selected')
     end
 
     def next_button
-      @wait.until_with_message("Unable to find next button") { @driver.find_element(:id => 'choose-exercise') }
+      @wait.until_with_message("Unable to find next button on \"setup_default_start_point/show_languages\" page") {
+        @driver.find_element(:id => 'choose-exercise')
+      }
     end
 
   end
