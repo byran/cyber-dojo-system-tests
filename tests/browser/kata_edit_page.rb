@@ -47,9 +47,10 @@ module CyberDojo
     end
 
     def select_file(filename)
-      file = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'filename-list', filename) }
-      @driver.scroll_into_view file
-      file.click
+      file = @wait.until_with_message("Unable to find file '#{filename}'") {
+        find_item_in_cyber_dojo_list('filename-list', filename)
+      }
+      click_on_element_until_it_has_class("Unable to click on file '#{filename}'", file, 'selected')
     end
 
     def editor
@@ -63,9 +64,10 @@ module CyberDojo
     end
 
     def select_diff(filename)
-      file_diff = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'diff-filenames', filename) }
-      @driver.scroll_into_view file_diff
-      file_diff.click
+      file_diff = @wait.until_with_message("Unable to find file diff '#{filename}'") {
+        find_item_in_cyber_dojo_list('diff-filenames', filename)
+      }
+      click_on_element_until_it_has_class("Unable to click on file diff '#{filename}'", file_diff, 'selected')
     end
 
     def diff_view

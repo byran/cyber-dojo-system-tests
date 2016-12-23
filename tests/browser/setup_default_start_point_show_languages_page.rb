@@ -16,18 +16,16 @@ module CyberDojo
 
     def select_language(name)
       language = @wait.until_with_message("Unable to find language '#{name}'") {
-        CyberDojo::find_item_in_cyber_dojo_list(@driver, 'languages-list', name)
+        find_item_in_cyber_dojo_list('languages-list', name)
       }
-      @driver.scroll_into_view(language)
-      language.click
+      click_on_element_until_it_has_class("Unable to click on language '#{name}'", language, 'selected')
     end
 
     def select_framework(name)
       framework = @wait.until_with_message("Unable to find framework '#{name}'") {
-        CyberDojo::find_item_in_cyber_dojo_list(@driver, 'tests-list', name)
+        find_item_in_cyber_dojo_list('tests-list', name)
       }
-      @driver.scroll_into_view(framework)
-      framework.click
+      click_on_element_until_it_has_class("Unable to click on framework '#{name}'", framework, 'selected')
     end
 
     def next_button

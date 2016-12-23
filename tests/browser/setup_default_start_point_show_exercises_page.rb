@@ -6,7 +6,7 @@ module CyberDojo
 
     def load_completed?
       begin
-        CyberDojo::find_item_in_cyber_dojo_list(@driver, 'exercises-list', 'Zeckendorf Number') &&
+        find_item_in_cyber_dojo_list('exercises-list', 'Zeckendorf Number') &&
             !@driver.find_element(:id => 'create-it').nil?
       rescue
         false
@@ -14,9 +14,10 @@ module CyberDojo
     end
 
     def select_exercise(name)
-      exercise = @wait.until { CyberDojo::find_item_in_cyber_dojo_list(@driver, 'exercises-list', name) }
-      @driver.scroll_into_view(exercise)
-      exercise.click
+      exercise = @wait.until_with_message("Unable to find exercise '#{name}'") {
+        find_item_in_cyber_dojo_list('exercises-list', name)
+      }
+      click_on_element_until_it_has_class("Unable to click on exercise '#{name}'", exercise, 'selected')
     end
 
     def set_it_up_button
