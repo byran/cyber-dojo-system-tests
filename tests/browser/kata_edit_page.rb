@@ -54,9 +54,9 @@ module CyberDojo
     end
 
     def editor
-      editor_divs = @wait.until { @driver.find_elements :class => 'filename_div' }
+      editor_divs = @wait.until { @driver.find_elements(:class => 'filename_div') }
       editor = editor_divs.find { |e| e.displayed? }
-      editor.find_element :class => 'file_content' if !editor.nil?
+      editor.find_element(:class => 'file_content') if !editor.nil?
     end
 
     def diff_dialog
@@ -73,7 +73,7 @@ module CyberDojo
     def diff_view
       diff_divs = @wait.until { @driver.find_element(:id => 'diff-content').find_elements(:class => 'filename_div') }
       diff = diff_divs.find { |d| d.displayed? }
-      diff.find_element :class => 'diff-sheet' if !diff.nil?
+      diff.find_element(:class => 'diff-sheet') if !diff.nil?
     end
 
     def kata_id

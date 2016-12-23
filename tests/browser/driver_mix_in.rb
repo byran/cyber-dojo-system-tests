@@ -16,7 +16,7 @@ module CyberDojo
     def print_sub_elements_with_indent(element, indent = '')
       print_element_details element, indent
 
-      sub_elements = element.find_elements :xpath => './*'
+      sub_elements = element.find_elements(:xpath => './*')
       for sub_element in sub_elements
         print_sub_elements_with_indent sub_element, indent + '| '
       end

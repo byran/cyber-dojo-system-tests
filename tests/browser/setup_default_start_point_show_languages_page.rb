@@ -29,7 +29,7 @@ module CyberDojo
     end
 
     def next_button
-      @wait.until_with_message("Unable to find next button") { @driver.find_element :id => 'choose-exercise' }
+      @wait.until_with_message("Unable to find next button") { @driver.find_element(:id => 'choose-exercise') }
     end
 
   end

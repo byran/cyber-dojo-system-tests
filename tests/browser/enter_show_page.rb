@@ -32,7 +32,7 @@ module CyberDojo
 
     # Start coding dialog
     def ok_button
-      buttons = @wait.until { @driver.find_elements :class => 'ui-button-text' }
+      buttons = @wait.until { @driver.find_elements(:class => 'ui-button-text') }
       index = buttons.find_index { |b| b.text == 'ok' }
       buttons[index]
     end
