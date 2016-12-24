@@ -1,9 +1,9 @@
-require_relative './main_page.rb'
-require_relative './setup_default_start_point_show_languages_page.rb'
-require_relative './setup_default_start_point_show_exercises_page.rb'
-require_relative './kata_edit_page.rb'
-require_relative './enter_show_page.rb'
-require_relative './dashboard_show_page.rb'
+require_relative 'main_page'
+require_relative 'setup_default_start_point_show_languages_page'
+require_relative 'setup_default_start_point_show_exercises_page'
+require_relative 'kata_edit_page'
+require_relative 'enter_show_page'
+require_relative 'dashboard_show_page'
 
 module CyberDojo
 

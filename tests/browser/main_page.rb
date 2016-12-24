@@ -1,4 +1,4 @@
-require_relative './page.rb'
+require_relative 'page'
 
 module CyberDojo
   class MainPage < Page

@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 
-require_relative './browser/browser.rb'
+require_relative 'browser/browser'
 
 class CyberDojoTest < Minitest::Test
 

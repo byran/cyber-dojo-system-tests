@@ -1,8 +1,8 @@
 require 'selenium-webdriver'
 
-require_relative './pages.rb'
-require_relative './wait_mixin.rb'
-require_relative './driver_mix_in.rb'
+require_relative 'pages'
+require_relative 'wait_mixin'
+require_relative 'driver_mix_in'
 
 module CyberDojo
 

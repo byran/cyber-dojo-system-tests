@@ -1,4 +1,4 @@
-require_relative './cyber_dojo_test.rb'
+require_relative 'cyber_dojo_test'
 
 class RunningTestsInAKataTest < CyberDojoTest
 
