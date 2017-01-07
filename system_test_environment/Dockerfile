@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM cyberdojo/ruby
 MAINTAINER Byran Wills-Heath <byran@adgico.co.uk>
 
 COPY container_scripts/*.sh /
