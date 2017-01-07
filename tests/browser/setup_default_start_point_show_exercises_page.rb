@@ -53,11 +53,11 @@ module CyberDojo
     end
 
     def ok_button
-      buttons = @wait.until_with_message("Unable to find ok button in start coding dialog on \"setup_default_start_point/show_exercises\" page") {
-        @driver.find_elements(:class => 'ui-button-text')
+      @wait.until_with_message("Unable to find ok button in start coding dialog on \"setup_default_start_point/show_exercises\" page") {
+        buttons = @driver.find_elements(:class => 'ui-button-text')
+        index = buttons.find_index { |b| b.text == 'ok' }
+        buttons[index]
       }
-      index = buttons.find_index { |b| b.text == 'ok' }
-      buttons[index]
     end
 
   end
