@@ -22,7 +22,7 @@ module CyberDojo
       until Time.now > end_time
         begin
           result = yield
-          return result
+          return result if result
         rescue *@ignored => last_error
           # swallowed
         end

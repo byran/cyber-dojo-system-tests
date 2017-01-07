@@ -51,6 +51,10 @@ class CyberDojoTest < Minitest::Test
     }, 'Failed to load page')
   end
 
+  def wait_for_button_to_be_enabled(button)
+    assert(@browser.wait.until_or_false{ true if button.enabled? }, "'#{button.text}' button was not enabled")
+  end
+
   def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
     browser.navigate_home
 

@@ -20,6 +20,7 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     assert_page_loaded(pages.enter_show)
 
     kata_id_text_box.send_keys(id)
+    wait_for_button_to_be_enabled(dashboard_button)
     dashboard_button.click
 
     assert_page_loaded(pages.dashboard_show)
