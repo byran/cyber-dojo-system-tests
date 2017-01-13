@@ -46,7 +46,7 @@ module CyberDojo
 
       message << " (#{last_error.message})" if last_error
 
-      raise WaitFailure, message
+      fail WaitFailure, message
     end
 
   end
