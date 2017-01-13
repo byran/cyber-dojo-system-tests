@@ -44,12 +44,23 @@ module CyberDojo
       }
     end
 
+    def traffic_light_count_element_present?
+        @driver.find_elements(:class => "traffic-light-count").count != 0
+    end
+
     def traffic_light(index)
       traffic_light_elements[index]
     end
 
     def traffic_light_image(index)
       traffic_light_elements[index].find_element(:tag_name => 'img')
+    end
+
+    def traffic_light_elements_present?
+      div = @wait.until_with_message('Unable to find traffic lights div on "kata/edit" page') {
+        @driver.find_element(:id => 'traffic-lights')
+      }
+      div.find_elements(:class => 'diff-traffic-light').count != 0
     end
 
     def select_file(filename)
