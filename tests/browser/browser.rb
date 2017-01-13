@@ -17,11 +17,11 @@ module CyberDojo
     def initialize
       @start_time = Time::now
       @last_time = @start_time
-      @default_implicit_timeout = 20
+      @default_implicit_timeout = 0.2
 
       create_browser
 
-      @wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+      @wait = Selenium::WebDriver::Wait.new(:timeout => 10, :ignore => [TypeError])
       @wait.extend(WaitMixIn)
 
       @pages = Pages.new(@driver, self, @wait)
