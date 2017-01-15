@@ -21,7 +21,7 @@ module CyberDojo
 
       create_browser
 
-      @wait = Selenium::WebDriver::Wait.new(:timeout => 10, :ignore => [TypeError])
+      @wait = Selenium::WebDriver::Wait.new(:timeout => 10, :ignore => [Selenium::WebDriver::Error::NoSuchElementError, TypeError])
       @wait.extend(WaitMixIn)
 
       @pages = Pages.new(@driver, self, @wait)
