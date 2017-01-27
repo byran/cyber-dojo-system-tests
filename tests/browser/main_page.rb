@@ -7,6 +7,7 @@ module CyberDojo
       begin
         !@driver.find_element(:id => 'setup-a-new-practice-session-button').nil? &&
             !@driver.find_element(:id => 'enter-button').nil? &&
+            !@driver.find_element(:id => 'review-button').nil? &&
             !@driver.find_element(:id => 'donate-button').nil?
       rescue
         false
@@ -22,6 +23,12 @@ module CyberDojo
     def enter_button
       @wait.until_with_message('Unable to find enter button on home page') {
         @driver.find_element(:id => 'enter-button')
+      }
+    end
+
+    def review_button
+      @wait.until_with_message('Unable to find review button on home page') {
+        @driver.find_element(:id => 'review-button')
       }
     end
 

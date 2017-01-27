@@ -1,6 +1,7 @@
 require_relative 'page'
 
 module CyberDojo
+
   class EnterShowPage < Page
 
     def load_completed?
@@ -13,7 +14,6 @@ module CyberDojo
       end
     end
 
-
     def kata_id_text_box
       @wait.until_with_message('Unable to find kata id text box on "enter/show" page') {
         @driver.find_element(:id => 'kata-id-input')
@@ -23,12 +23,6 @@ module CyberDojo
     def start_coding_button
       @wait.until_with_message('Unable to find start coding button on "enter/show" page') {
         @driver.find_element(:id => 'start-button')
-      }
-    end
-
-    def dashboard_button
-      @wait.until_with_message('Unable to find dashboard button on "enter/show" page') {
-        @driver.find_element(:id => 'dashboard-button')
       }
     end
 
@@ -65,5 +59,6 @@ module CyberDojo
       nil
     end
 
-  end
-end
+  end # class
+
+end # module

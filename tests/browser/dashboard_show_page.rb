@@ -1,6 +1,7 @@
 require_relative 'page'
 
 module CyberDojo
+
   class DashboardShowPage < Page
 
     def load_completed?
@@ -51,24 +52,23 @@ module CyberDojo
       rows = @wait.until_with_message('Unable to find traffic lights on "dashboard/show" page') {
         @driver.find_element(:id => 'traffic-lights').find_elements(:tag_name => 'tr')
       }
-
       begin
         @driver.manage.timeouts.implicit_wait = 0.05
-
         for row in rows
           begin
             avatar_image_div = row.find_element(:class => 'avatar-image')
             return row if !avatar_image_div.nil? && avatar_image_div.attribute('data-avatar-name') == avatar
           rescue Selenium::WebDriver::Error::NoSuchElementError => ignore
-            # Ignore NoSuchElementError as there may be sub table rows without an avatar-image
+            # Ignore NoSuchElementError as there may be
+            # sub-table rows without an avatar-image
           end
         end
-
         nil
       ensure
         @driver.manage.timeouts.implicit_wait = @browser.default_implicit_timeout
       end
     end
 
-  end
-end
+  end # class
+
+end # module

@@ -18,7 +18,6 @@ class CyberDojoTest < Minitest::Test
         print "Save screenshot as '#{name}'\n"
       end
     end
-
     @browser.close
   end
 

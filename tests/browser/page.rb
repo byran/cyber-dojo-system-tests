@@ -3,7 +3,6 @@ require 'selenium-webdriver'
 module CyberDojo
 
   class FailedToClickOnElement < Exception
-
   end
 
   class Page
@@ -36,13 +35,10 @@ module CyberDojo
     end
 
     def click_on_element_until_it_has_class(fail_message, element, required_class, timeout = 10, interval = 0.2)
-
       end_time = Time.now + timeout
-
       until Time.now > end_time
         @driver.scroll_into_view(element)
         element.click
-
         all_classes = element.attribute('class')
         if not all_classes.nil?
           classes = all_classes.split(' ')
@@ -50,10 +46,9 @@ module CyberDojo
         end
         sleep interval
       end
-
       raise FailedToClickOnElement, fail_message
     end
 
-  end
+  end # class Page
 
-end
+end # module

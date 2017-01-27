@@ -3,6 +3,7 @@ require_relative 'setup_default_start_point_show_languages_page'
 require_relative 'setup_default_start_point_show_exercises_page'
 require_relative 'kata_edit_page'
 require_relative 'enter_show_page'
+require_relative 'enter_review_page'
 require_relative 'dashboard_show_page'
 
 module CyberDojo
@@ -14,6 +15,7 @@ module CyberDojo
     attr_reader :setup_default_start_point_show_exercises
     attr_reader :kata_edit
     attr_reader :enter_show
+    attr_reader :enter_review
     attr_reader :dashboard_show
 
     attr_reader :all_pages
@@ -37,6 +39,9 @@ module CyberDojo
       @enter_show = EnterShowPage.new(driver, browser, wait)
       add_page([ 'enter', 'show' ], @enter_show)
 
+      @enter_review = EnterReviewPage.new(driver, browser, wait)
+      add_page([ 'enter', 'review' ], @enter_review)
+
       @dashboard_show = DashboardShowPage.new(driver, browser, wait)
       add_page([ 'dashboard', 'show' ], @dashboard_show)
     end
@@ -52,4 +57,5 @@ module CyberDojo
     end
 
   end
+
 end

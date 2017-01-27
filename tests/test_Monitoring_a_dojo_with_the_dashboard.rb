@@ -16,8 +16,8 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     browser.navigate_home
     assert_page_loaded(pages.main)
 
-    enter_button.click
-    assert_page_loaded(pages.enter_show)
+    review_button.click
+    assert_page_loaded(pages.enter_review)
 
     kata_id_text_box.send_keys(id)
     wait_for_button_to_be_enabled(dashboard_button)
@@ -33,7 +33,6 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     assert_equal('2', traffic_light_count(avatar_animal).text)
     assert_equal('red', traffic_light_colour(avatar_animal, 1))
     assert_equal('green', traffic_light_colour(avatar_animal, 2))
-
   end
 
   def test_Multiple_katas_can_be_seen_in_the_dashboard
@@ -63,12 +62,12 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     assert_equal(id, kata_id, "Entered a different dojo")
     avatar_2_animal = avatar
 
-    # Open the dashboar
+    # Open the dashboard
     browser.switch_to_window_with_title_starting_with('home')
     assert_page_loaded(pages.main)
 
-    enter_button.click
-    assert_page_loaded(pages.enter_show)
+    review_button.click
+    assert_page_loaded(pages.enter_review)
 
     dashboard_button.click
     assert_page_loaded(pages.dashboard_show)
