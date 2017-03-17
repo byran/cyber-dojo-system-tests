@@ -5,6 +5,7 @@ require_relative 'setup_default_start_point_show_languages_page_steps'
 require_relative 'setup_default_start_point_show_exercises_page'
 require_relative 'setup_default_start_point_show_exercises_page_steps'
 require_relative 'kata_edit_page'
+require_relative 'kata_edit_page_steps'
 require_relative 'enter_show_page'
 require_relative 'enter_show_page_steps'
 require_relative 'enter_review_page'
@@ -43,7 +44,7 @@ module CyberDojo
       add_page([ 'setup_default_start_point', 'show_exercises' ], @setup_default_start_point_show_exercises, @setup_default_start_point_show_exercises_steps)
 
       @kata_edit = KataEditPage.new(driver, browser, wait)
-      @kata_edit_steps = PageSteps.new(@kata_edit, test)
+      @kata_edit_steps = KataEditPageSteps.new(@kata_edit, test)
       add_page([ 'kata', 'edit' ], @kata_edit, @kata_edit_steps)
 
       @enter_show = EnterShowPage.new(driver, browser, wait)
