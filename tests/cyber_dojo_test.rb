@@ -5,7 +5,7 @@ require_relative 'browser/browser'
 class CyberDojoTest < Minitest::Test
 
   def setup
-    @browser = CyberDojo::Browser.new
+    @browser = CyberDojo::Browser.new(self)
   end
 
   def teardown
@@ -26,13 +26,15 @@ class CyberDojoTest < Minitest::Test
   def method_missing(sym, *args, &block)
     if @browser.page.respond_to?(sym)
       @browser.page.send(sym, *args, &block)
+    elsif @browser.steps != nil && @browser.steps.respond_to?(sym)
+      @browser.steps.send(sym, *args, &block)
     else
       super(sym, *args, &block)
     end
   end
 
   def respond_to?(method, include_private = false)
-    super || @browser.page.respond_to?(method, include_private)
+    super || @browser.page.respond_to?(method, include_private) || (@browser.steps != nil && @browser.steps.respond_to?(method, include_private))
   end
 
   def debug_print_timing(message)

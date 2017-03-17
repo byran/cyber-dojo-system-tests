@@ -29,16 +29,6 @@ class ReenteringAKataTest < CyberDojoTest
     assert_page_loaded(pages.enter_show)
   end
 
-  def enter_kata_id(id)
-    kata_id_text_box.send_keys(id)
-    wait_for_button_to_be_enabled(resume_coding_button)
-  end
-
-  def resume_coding_using_avatar(avatar_animal)
-    resume_coding_button.click
-    resume_avatar(avatar_animal).click
-  end
-
   def switch_to_editor_window
     browser.switch_to_window(1)
     assert_page_loaded(pages.kata_edit)

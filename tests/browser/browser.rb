@@ -14,7 +14,7 @@ module CyberDojo
 
     attr_reader :default_implicit_timeout
 
-    def initialize
+    def initialize(test)
       @start_time = Time::now
       @last_time = @start_time
       @default_implicit_timeout = 0.2
@@ -24,7 +24,7 @@ module CyberDojo
       @wait = Selenium::WebDriver::Wait.new(:timeout => 10, :ignore => [Selenium::WebDriver::Error::NoSuchElementError, TypeError])
       @wait.extend(WaitMixIn)
 
-      @pages = Pages.new(@driver, self, @wait)
+      @pages = Pages.new(@driver, self, @wait, test)
 
       @base_URL = 'http://nginx/'
     end
@@ -119,6 +119,14 @@ module CyberDojo
       current_url = page_url
       @pages.all_pages.each do |p|
         return p[:page] if beginning_of_first_array_matches_beginning_of_second_array(p[:url], current_url)
+      end
+      nil
+    end
+
+    def steps
+      current_url = page_url
+      @pages.all_pages.each do |p|
+        return p[:steps] if beginning_of_first_array_matches_beginning_of_second_array(p[:url], current_url)
       end
       nil
     end
