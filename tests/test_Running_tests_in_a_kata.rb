@@ -6,33 +6,19 @@ class RunningTestsInAKataTest < CyberDojoTest
     create_and_enter_kata
     assert_there_are_no_traffic_lights
 
-    run_tests
+    run_kata_tests
     assert_traffic_lights('red')
 
     edit_hiker_c("abc")
-    run_tests
+    run_kata_tests
     assert_traffic_lights('red', 'amber')
 
     edit_hiker_c("int answer() { return 42; }")
-    run_tests
+    run_kata_tests
     assert_traffic_lights('red', 'amber', 'green')
   end
 
   private
-
-  def edit_hiker_c(content)
-    select_file('hiker.c')
-    editor.clear
-
-    editor.send_keys("#include \"hiker.h\"\n")
-    editor.send_keys("#{content}\n")
-  end
-
-  def run_tests
-    test_button.click
-    wait_for_spinner_to_show_and_hide
-  end
-
 
   def assert_there_are_no_traffic_lights
     refute(traffic_light_count_element_present?, 'Traffic light count was found')
