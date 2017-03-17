@@ -24,9 +24,7 @@ class CyberDojoTest < Minitest::Test
   attr_reader :browser
 
   def method_missing(sym, *args, &block)
-    if @browser.page.respond_to?(sym)
-      @browser.page.send(sym, *args, &block)
-    elsif @browser.steps != nil && @browser.steps.respond_to?(sym)
+    if @browser.steps.respond_to?(sym)
       @browser.steps.send(sym, *args, &block)
     else
       super(sym, *args, &block)
@@ -34,7 +32,7 @@ class CyberDojoTest < Minitest::Test
   end
 
   def respond_to?(method, include_private = false)
-    super || @browser.page.respond_to?(method, include_private) || (@browser.steps != nil && @browser.steps.respond_to?(method, include_private))
+    super || @browser.steps.respond_to?(method, include_private)
   end
 
   def debug_print_timing(message)
