@@ -1,6 +1,9 @@
 require_relative 'main_page'
+require_relative 'main_page_steps'
 require_relative 'setup_default_start_point_show_languages_page'
+require_relative 'setup_default_start_point_show_languages_page_steps'
 require_relative 'setup_default_start_point_show_exercises_page'
+require_relative 'setup_default_start_point_show_exercises_page_steps'
 require_relative 'kata_edit_page'
 require_relative 'enter_show_page'
 require_relative 'enter_show_page_steps'
@@ -27,16 +30,16 @@ module CyberDojo
       @all_pages = []
 
       @main = MainPage.new(driver, browser, wait)
-      @main_steps = PageSteps.new(@main, test)
+      @main_steps = MainPageSteps.new(@main, test)
       add_page([], @main, @main_steps)
       add_page([ 'dojo', 'index' ], @main, @main_steps)
 
       @setup_default_start_point_show_languages = SetupDefaultStartPointShowLanguagesPage.new(driver, browser, wait)
-      @setup_default_start_point_show_languages_steps = PageSteps.new(@setup_default_start_point_show_languages, test)
+      @setup_default_start_point_show_languages_steps = SetupDefaultStartPointShowLanguagesPageSteps.new(@setup_default_start_point_show_languages, test)
       add_page([ 'setup_default_start_point', 'show_languages' ], @setup_default_start_point_show_languages, @setup_default_start_point_show_languages_steps)
 
       @setup_default_start_point_show_exercises = SetupDefaultStartPointShowExercisesPage.new(driver, browser, wait)
-      @setup_default_start_point_show_exercises_steps = PageSteps.new(@setup_default_start_point_show_exercises, test)
+      @setup_default_start_point_show_exercises_steps = SetupDefaultStartPointShowExercisesPageSteps.new(@setup_default_start_point_show_exercises, test)
       add_page([ 'setup_default_start_point', 'show_exercises' ], @setup_default_start_point_show_exercises, @setup_default_start_point_show_exercises_steps)
 
       @kata_edit = KataEditPage.new(driver, browser, wait)

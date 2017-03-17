@@ -54,6 +54,12 @@ class CyberDojoTest < Minitest::Test
     assert(@browser.wait.until_or_false{ true if button.enabled? }, "'#{button.text}' button was not enabled")
   end
 
+  def navigate_home
+    browser.navigate_home
+
+    assert_page_loaded(pages.main)
+  end
+
   def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
     browser.navigate_home
 
