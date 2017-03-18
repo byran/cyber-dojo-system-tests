@@ -15,6 +15,7 @@ module CyberDojo
     end
 
     def start_a_new_kata
+      wait_for_button_to_be_enabled(start_coding_button)
       start_coding_button.click
       ok_button.click
     end
