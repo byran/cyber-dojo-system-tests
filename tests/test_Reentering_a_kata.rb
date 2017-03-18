@@ -11,9 +11,7 @@ class ReenteringAKataTest < CyberDojoTest
     browser.restart
 
     navigate_to_the_enter_page
-
     enter_kata_id(id)
-
     resume_coding_using_avatar(avatar_animal)
 
     switch_to_editor_window
