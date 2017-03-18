@@ -18,6 +18,15 @@ class RunningTestsInAKataTest < CyberDojoTest
     assert_traffic_lights('red', 'amber', 'green')
   end
 
+  def test_A_timeout_traffic_light_is_added_if_the_test_enters_an_infinate_loop
+    create_and_enter_kata
+
+    edit_hiker_c("int answer() { while(1); return 42; }")
+    run_kata_tests
+
+    assert_traffic_lights('timed_out')
+  end
+
   private
 
   def assert_there_are_no_traffic_lights

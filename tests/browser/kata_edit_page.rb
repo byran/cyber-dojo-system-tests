@@ -6,7 +6,7 @@ module CyberDojo
     def initialize(driver, browser, wait)
       super(driver, browser, wait)
 
-      @wait_11_seconds = Selenium::WebDriver::Wait.new(:timeout => 11)
+      @wait_15_seconds = Selenium::WebDriver::Wait.new(:timeout => 15)
     end
 
     def load_completed?
@@ -31,7 +31,7 @@ module CyberDojo
 
     def wait_for_spinner_to_show_and_hide
       s = spinner
-      @wait_11_seconds.until { !s.displayed? }
+      @wait_15_seconds.until { !s.displayed? }
     end
 
     def number_of_traffic_lights
