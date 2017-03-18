@@ -70,4 +70,9 @@ class CyberDojoTest < Minitest::Test
     select_an_exercise_then_enter_kata(exercise)
   end
 
+  def switch_to_editor_window(index = 1)
+    @browser.switch_to_window(index)
+    assert_page_loaded(pages.kata_edit)
+  end
+
 end

@@ -9,9 +9,9 @@ require_relative 'kata_edit_page_steps'
 require_relative 'enter_show_page'
 require_relative 'enter_show_page_steps'
 require_relative 'enter_review_page'
+require_relative 'enter_review_page_steps'
 require_relative 'dashboard_show_page'
-
-require_relative 'page_steps'
+require_relative 'dashboard_show_page_steps'
 
 module CyberDojo
 
@@ -52,11 +52,11 @@ module CyberDojo
       add_page([ 'enter', 'show' ], @enter_show, @enter_show_steps)
 
       @enter_review = EnterReviewPage.new(driver, browser, wait)
-      @enter_review_steps = PageSteps.new(@enter_review, test)
+      @enter_review_steps = EnterReviewPageSteps.new(@enter_review, test)
       add_page([ 'enter', 'review' ], @enter_review, @enter_review_steps)
 
       @dashboard_show = DashboardShowPage.new(driver, browser, wait)
-      @dashboard_show_steps = PageSteps.new(@dashboard_show, test)
+      @dashboard_show_steps = DashboardShowPageSteps.new(@dashboard_show, test)
       add_page([ 'dashboard', 'show' ], @dashboard_show, @dashboard_show_steps)
     end
 
