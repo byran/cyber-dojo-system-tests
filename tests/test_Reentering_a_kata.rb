@@ -27,9 +27,4 @@ class ReenteringAKataTest < CyberDojoTest
     assert_page_loaded(pages.enter_show)
   end
 
-  def switch_to_editor_window
-    browser.switch_to_window(1)
-    assert_page_loaded(pages.kata_edit)
-  end
-
 end

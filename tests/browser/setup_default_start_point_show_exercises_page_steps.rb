@@ -12,9 +12,7 @@ module CyberDojo
 
       ok_button.click
 
-      browser.switch_to_window(1)
-
-      assert_page_loaded(pages.kata_edit)
+      switch_to_editor_window
     end
 
   end
