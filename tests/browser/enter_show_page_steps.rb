@@ -14,7 +14,7 @@ module CyberDojo
       resume_avatar(avatar_animal).click
     end
 
-    def start_a_new_kata
+    def start_a_new_avatar
       wait_for_button_to_be_enabled(start_coding_button)
       start_coding_button.click
       ok_button.click

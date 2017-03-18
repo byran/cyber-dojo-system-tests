@@ -10,7 +10,7 @@ module CyberDojo
       assert_page_loaded(pages.setup_default_start_point_show_languages)
     end
 
-    def start_entering_an_existing_dojo
+    def start_entering_an_existing_kata
       enter_button.click
       assert_page_loaded(pages.enter_show)
     end
