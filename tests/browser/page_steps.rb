@@ -5,6 +5,7 @@ module CyberDojo
     def initialize(page, test)
       @page = page
       @test = test
+      @respond_to_active = false
     end
 
     def method_missing(sym, *args, &block)
@@ -18,7 +19,15 @@ module CyberDojo
     end
 
     def respond_to?(method, include_private = false)
-      super || @page.respond_to?(method, include_private) || @test.respond_to?(method, include_private)
+      # Block a recursive loop if the method called
+      # is not implemented on any of the objects
+      return false if @respond_to_active
+      @respond_to_active = true
+
+      responds_to = super || @page.respond_to?(method, include_private) || @test.respond_to?(method, include_private)
+
+      @respond_to_active = false
+      responds_to
     end
 
   end
