@@ -17,6 +17,10 @@ module CyberDojo
       end
     end
 
+    def driver_action
+      @driver.action
+    end
+
     def test_button
       @wait.until_with_message('Unable to find test button on "kata/edit" page') {
         @driver.find_element(:id => 'test-button')
@@ -75,7 +79,7 @@ module CyberDojo
         @driver.find_elements(:class => 'filename_div')
       }
       editor = editor_divs.find { |e| e.displayed? }
-      editor.find_element(:class => 'file_content') if !editor.nil?
+      editor.find_element(:css => '.CodeMirror textarea') if !editor.nil?
     end
 
     def diff_dialog
