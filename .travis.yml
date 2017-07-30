@@ -14,7 +14,9 @@ script:
     # image can be pulled as it does not change very often
     - ./build.sh
 
-    - ./cyber-dojo up
+    - URL=https://raw.githubusercontent.com/cyber-dojo/start-points-languages/master/languages_list_travis
+    - ./cyber-dojo start-point create small --list=${URL}
+    - ./cyber-dojo up --languages=small
 
     # pull image used in tests
     - docker pull cyberdojofoundation/gcc_assert:latest
