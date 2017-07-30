@@ -3,28 +3,13 @@ require_relative 'cyber_dojo_test'
 class CreatingAKataTest < CyberDojoTest
 
   def test_Creating_a_kata
-    browser.navigate_home
+    navigate_home
 
-    assert_page_loaded(pages.main)
+    start_setting_up_a_kata
 
-    setup_button.click
+    select_a_language_and_framework('C (gcc)', 'assert')
 
-    assert_page_loaded(pages.setup_default_start_point_show_languages)
-
-    select_language('C (gcc)')
-    select_framework('assert')
-    next_button.click
-
-    assert_page_loaded(pages.setup_default_start_point_show_exercises)
-
-    select_exercise('(Verbal)')
-    set_it_up_button.click
-
-    start_coding_button.click
-
-    ok_button.click
-
-    browser.switch_to_window(1)
+    select_an_exercise_then_enter_kata('(Verbal)')
 
     assert_page_loaded(pages.kata_edit)
   end

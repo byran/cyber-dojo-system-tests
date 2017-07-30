@@ -5,21 +5,11 @@ class DiffingInAKataTest < CyberDojoTest
   def test_A_diff_dialog_appears_when_a_traffic_light_is_clicked
     create_and_enter_kata
 
-    select_file('hiker.c')
-    editor.clear
-    editor.send_keys("#include \"hiker.h\"\n")
-    editor.send_keys("int answer(void) { return 49; }\n")
+    edit_hiker_c("int answer(void) { return 49; }")
+    run_kata_tests
 
-    test_button.click
-    wait_for_spinner_to_show_and_hide
-
-    select_file('hiker.c')
-    editor.clear
-    editor.send_keys("#include \"hiker.h\"\n")
-    editor.send_keys("int answer(void) { return 42; }\n")
-
-    test_button.click
-    wait_for_spinner_to_show_and_hide
+    edit_hiker_c("int answer(void) { return 42; }")
+    run_kata_tests
 
     traffic_light(1).click
 

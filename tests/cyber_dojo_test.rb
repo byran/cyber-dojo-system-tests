@@ -5,7 +5,7 @@ require_relative 'browser/browser'
 class CyberDojoTest < Minitest::Test
 
   def setup
-    @browser = CyberDojo::Browser.new
+    @browser = CyberDojo::Browser.new(self)
   end
 
   def teardown
@@ -24,15 +24,15 @@ class CyberDojoTest < Minitest::Test
   attr_reader :browser
 
   def method_missing(sym, *args, &block)
-    if @browser.page.respond_to?(sym)
-      @browser.page.send(sym, *args, &block)
+    if @browser.steps.respond_to?(sym)
+      @browser.steps.send(sym, *args, &block)
     else
       super(sym, *args, &block)
     end
   end
 
   def respond_to?(method, include_private = false)
-    super || @browser.page.respond_to?(method, include_private)
+    super || @browser.steps.respond_to?(method, include_private)
   end
 
   def debug_print_timing(message)
@@ -54,55 +54,25 @@ class CyberDojoTest < Minitest::Test
     assert(@browser.wait.until_or_false{ true if button.enabled? }, "'#{button.text}' button was not enabled")
   end
 
-  def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
+  def navigate_home
     browser.navigate_home
 
     assert_page_loaded(pages.main)
+  end
 
-    browser.page.setup_button.click
+  def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
+    navigate_home
 
-    assert_page_loaded(pages.setup_default_start_point_show_languages)
+    start_setting_up_a_kata
 
-    browser.page.select_language(language)
-    browser.page.select_framework(framework)
-    browser.page.next_button.click
+    select_a_language_and_framework(language, framework)
 
-    assert_page_loaded(pages.setup_default_start_point_show_exercises)
+    select_an_exercise_then_enter_kata(exercise)
+  end
 
-    browser.page.select_exercise(exercise)
-    browser.page.set_it_up_button.click
-
-    browser.page.start_coding_button.click
-
-    browser.page.ok_button.click
-
-    browser.switch_to_window(1)
-
+  def switch_to_editor_window(index = 1)
+    @browser.switch_to_window(index)
     assert_page_loaded(pages.kata_edit)
-  end
-
-  def run_a_failing_test
-    select_file('hiker.c')
-
-    editor.clear
-    editor.send_keys("#include \"hiker.h\"\n")
-    editor.send_keys("int answer(void) { return 47; }\n")
-
-    test_button.click
-
-    wait_for_spinner_to_show_and_hide
-  end
-
-  def run_a_passing_test
-    select_file('hiker.c')
-
-    editor.clear
-    editor.send_keys("#include \"hiker.h\"\n")
-    editor.send_keys("int answer(void) { return 42; }\n")
-
-    test_button.click
-
-    wait_for_spinner_to_show_and_hide
   end
 
 end
