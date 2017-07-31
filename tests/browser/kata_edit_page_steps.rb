@@ -6,7 +6,11 @@ module CyberDojo
 
     def edit_hiker_c(content)
       select_file('hiker.c')
-      editor.clear
+      driver_action.key_down(:control)
+          .send_keys("a")
+          .key_up(:control)
+          .send_keys(:delete)
+          .perform
 
       editor.send_keys("#include \"hiker.h\"\n")
       editor.send_keys("#{content}\n")
