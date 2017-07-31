@@ -75,11 +75,11 @@ module CyberDojo
     end
 
     def editor
-      editor_divs = @wait.until_with_message('Unable to find editor on "kata/edit" page') {
-        @driver.find_elements(:class => 'filename_div')
+      @wait.until_with_message('Unable to find editor on "kata/edit" page') {
+        editor_divs = @driver.find_elements(:class => 'filename_div')
+        editor = editor_divs.find { |e| e.displayed? }
+        editor.find_element(:css => '.CodeMirror textarea') if !editor.nil?
       }
-      editor = editor_divs.find { |e| e.displayed? }
-      editor.find_element(:css => '.CodeMirror textarea') if !editor.nil?
     end
 
     def diff_dialog
