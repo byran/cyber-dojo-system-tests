@@ -27,6 +27,12 @@ module CyberDojo
       }
     end
 
+    def rename_button
+      @wait.until_with_message('Unable to find rename button on "kata/edit" page') {
+        @driver.find_element(:id => 'rename')
+      }
+    end
+
     def spinner
       @wait.until_with_message('Unable to find spinner on "kata/edit" page') {
         @driver.find_element(:id => 'test-spinner')
@@ -109,6 +115,18 @@ module CyberDojo
 
     def avatar
       url_to_id_and_avatar[2]
+    end
+
+    def rename_dialog_filename
+      @wait.until_with_message('Unable to find text input for renaming file on "kata/edit" page') {
+        @driver.find_element(:id => 'rename-filename')
+      }
+    end
+
+    def rename_dialog_ok_button
+      @wait.until_with_message('Unable to find ok button when renaming a file on "kata/edit" page') {
+        @driver.find_element(:id => 'file-ok')
+      }
     end
 
     private
