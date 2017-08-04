@@ -21,6 +21,7 @@ class RunningTestsInAKataTest < CyberDojoTest
 
     rename_button.click
 
+    rename_dialog_filename.clear
     rename_dialog_filename.send_keys(newFileName)
 
     rename_dialog_ok_button.click
