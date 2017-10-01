@@ -8,14 +8,14 @@ module CyberDojo
       begin
         auto_refresh = @driver.find_element(:id => 'auto-refresh-container')
         minute_column = @driver.find_element(:id => 'minute-columns-container')
-        footer = @driver.find_element(:id => 'footer')
+        app_bar = @driver.find_element(:id => 'app-bar')
 
         !auto_refresh.nil? &&
             auto_refresh.displayed? &&
             !minute_column.nil? &&
             minute_column.displayed? &&
-            !footer.nil? &&
-            footer.displayed?
+            !app_bar.nil? &&
+            app_bar.displayed?
       rescue
         false
       end
