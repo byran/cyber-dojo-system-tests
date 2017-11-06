@@ -5,7 +5,7 @@ module CyberDojo
 
     def load_completed?
       begin
-        !@driver.find_element(:id => 'setup-a-new-practice-session-button').nil? &&
+        !@driver.find_element(:id => 'setup-a-new-default-practice-session-button').nil? &&
             !@driver.find_element(:id => 'enter-button').nil? &&
             !@driver.find_element(:id => 'review-button').nil? &&
             !@driver.find_element(:id => 'donate-button').nil?
