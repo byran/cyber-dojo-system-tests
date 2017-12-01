@@ -13,7 +13,7 @@ script:
     # image can be pulled as it does not change very often
     - ./build.sh
 
-    - URL=https://raw.githubusercontent.com/cyber-dojo/start-points-languages/master/languages_list_travis
+    - URL=https://raw.githubusercontent.com/cyber-dojo/start-points-languages/master/languages_list_small
     - ./cyber-dojo start-point create small --list=${URL}
     - ./cyber-dojo up --languages=small
 
