@@ -6,9 +6,7 @@ module CyberDojo
 
     def select_an_exercise_then_enter_kata(exercise)
       select_exercise(exercise)
-      set_it_up_button.click
-
-      start_coding_button.click
+      set_it_up_button_individual.click
 
       ok_button.click
 

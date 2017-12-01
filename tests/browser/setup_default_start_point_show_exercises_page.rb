@@ -7,7 +7,8 @@ module CyberDojo
     def load_completed?
       begin
         find_item_in_cyber_dojo_list('exercises-list', 'Zeckendorf Number') &&
-            !@driver.find_element(:id => 'create-it').nil?
+            !@driver.find_element(:id => 'create-it-individual').nil? &&
+            !@driver.find_element(:id => 'create-it-team').nil?
       rescue
         false
       end
@@ -20,9 +21,15 @@ module CyberDojo
       click_on_element_until_it_has_class("Unable to click on exercise '#{name}' on \"setup_default_start_point/show_exercises\" page", exercise, 'selected')
     end
 
-    def set_it_up_button
-      @wait.until_with_message("Unable to find set it up button on \"setup_default_start_point/show_exercises\" page") {
-        @driver.find_element(:id => 'create-it')
+    def set_it_up_button_individual
+      @wait.until_with_message("Unable to find 'set it up & start programming' button on \"setup_default_start_point/show_exercises\" page") {
+        @driver.find_element(:id => 'create-it-individual')
+      }
+    end
+
+    def set_it_up_button_team
+      @wait.until_with_message("Unable to find 'set it up & show the hex-id' button on \"setup_default_start_point/show_exercises\" page") {
+        @driver.find_element(:id => 'create-it-team')
       }
     end
 
@@ -37,13 +44,7 @@ module CyberDojo
       @wait.until_with_message("Unable to find enter page button in enter dojo dialog on \"setup_default_start_point/show_exercises\" page") {
         @driver.find_element(:class => 'enter-page')
       }
-    end
-
-    def start_coding_button
-      @wait.until_with_message("Unable to find start coding button in enter dojo dialog on \"setup_default_start_point/show_exercises\" page") {
-        @driver.find_element(:class => 'start-coding')
-      }
-    end
+      end
 
     # Start coding dialog
     def avatar_image
