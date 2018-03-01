@@ -13,9 +13,9 @@ class CyberDojoTest < Minitest::Test
       begin
         @browser.save_screenshot(name)
       rescue
-        print "Failed to save screenshot for '#{name}'\n"
+        puts "Failed to save screenshot for '#{name}'"
       else
-        print "Save screenshot as '#{name}'\n"
+        puts "Save screenshot as '#{name}'"
       end
     end
     @browser.close
@@ -45,28 +45,25 @@ class CyberDojoTest < Minitest::Test
 
   def assert_page_loaded(page)
     assert(@browser.wait.until_or_false{
-      page.load_completed? &&
-          @browser.page == page
+      page.load_completed? && @browser.page == page
     }, 'Failed to load page')
   end
 
   def wait_for_button_to_be_enabled(button)
-    assert(@browser.wait.until_or_false{ true if button.enabled? }, "'#{button.text}' button was not enabled")
+    assert(@browser.wait.until_or_false{
+      true if button.enabled?
+      }, "'#{button.text}' button was not enabled")
   end
 
   def navigate_home
     browser.navigate_home
-
     assert_page_loaded(pages.main)
   end
 
   def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
     navigate_home
-
     start_setting_up_a_kata
-
     select_a_language_and_framework(language, framework)
-
     select_an_exercise_then_enter_kata(exercise)
   end
 

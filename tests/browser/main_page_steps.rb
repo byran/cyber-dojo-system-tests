@@ -5,7 +5,11 @@ module CyberDojo
   class MainPageSteps < PageSteps
 
     def start_setting_up_a_kata
-      setup_default_button.click
+      im_on_my_own_button.click
+      assert_page_loaded(pages.individual)
+      p "1"
+      setup_default_button.click #<<<
+      p "2"
       assert_page_loaded(pages.setup_default_start_point_show_languages)
     end
 

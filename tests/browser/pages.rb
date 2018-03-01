@@ -1,5 +1,7 @@
 require_relative 'main_page'
 require_relative 'main_page_steps'
+require_relative 'individual_page'
+require_relative 'individual_page_steps'
 require_relative 'setup_default_start_point_show_languages_page'
 require_relative 'setup_default_start_point_show_languages_page_steps'
 require_relative 'setup_default_start_point_show_exercises_page'
@@ -18,6 +20,7 @@ module CyberDojo
   class Pages
 
     attr_reader :main
+    attr_reader :individual
     attr_reader :setup_default_start_point_show_languages
     attr_reader :setup_default_start_point_show_exercises
     attr_reader :kata_edit
@@ -34,6 +37,10 @@ module CyberDojo
       @main_steps = MainPageSteps.new(@main, test)
       add_page([], @main, @main_steps)
       add_page([ 'dojo', 'index' ], @main, @main_steps)
+
+      @individual = IndividualPage.new(driver, browser, wait)
+      @individual_steps = IndividualPageSteps.new(@individual, test)
+      add_page([ 'individual', 'show' ], @individual, @individual_steps)
 
       @setup_default_start_point_show_languages = SetupDefaultStartPointShowLanguagesPage.new(driver, browser, wait)
       @setup_default_start_point_show_languages_steps = SetupDefaultStartPointShowLanguagesPageSteps.new(@setup_default_start_point_show_languages, test)

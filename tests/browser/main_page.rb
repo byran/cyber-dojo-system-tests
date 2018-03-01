@@ -5,37 +5,36 @@ module CyberDojo
 
     def load_completed?
       begin
-        !@driver.find_element(:id => 'setup-a-new-default-practice-session-button').nil? &&
-            !@driver.find_element(:id => 'enter-button').nil? &&
-            !@driver.find_element(:id => 'review-button').nil? &&
-            !@driver.find_element(:id => 'donate-button').nil?
+        !@driver.find_element(:id => 'individual').nil? &&
+        !@driver.find_element(:id => 'group').nil? &&
+        !@driver.find_element(:id => 'donate').nil?
       rescue
         false
       end
     end
 
-    def setup_default_button
-      @wait.until_with_message('Unable to find [setup default] button on home page') {
-        @driver.find_element(:id => 'setup-a-new-default-practice-session-button')
+    def im_on_my_own_button
+      @wait.until_with_message(diagnostic("i'm on my own")) {
+        @driver.find_element(:id => 'individual')
       }
     end
 
-    def enter_button
-      @wait.until_with_message('Unable to find [enter] button on home page') {
-        @driver.find_element(:id => 'enter-button')
-      }
-    end
-
-    def review_button
-      @wait.until_with_message('Unable to find [review] button on home page') {
-        @driver.find_element(:id => 'review-button')
+    def were_in_a_group_button
+      @wait.until_with_message(diagnostic("we're in a group")) {
+        @driver.find_element(:id => 'group')
       }
     end
 
     def donate_button
-      @wait.until_with_message('Unable to find [donate] button on home page') {
-        @driver.find_element(:id => 'donate-button')
+      @wait.until_with_message(diagnostic('donate')) {
+        @driver.find_element(:id => 'donate')
       }
+    end
+
+    private
+
+    def diagnostic(text)
+      "Unable to find [#{text}] button on home page"
     end
 
   end

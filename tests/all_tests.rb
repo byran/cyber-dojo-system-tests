@@ -1,6 +1,7 @@
 def run_tests
   directory = File.expand_path(File.dirname(__FILE__))
   test_filter = File.join(directory, "**", "test_*.rb")
+  #test_filter = File.join(directory, "**", "test_Creat*.rb")
 
   test_files = Dir.glob(test_filter)
 
@@ -10,11 +11,11 @@ def run_tests
 end
 
 if ENV['browser'] == 'chrome'
-  print "Running tests against chrome\n\n"
+  puts "Running tests against chrome\n"
   run_tests
 elsif ENV['browser'] == 'firefox'
-  print "Running tests against firefox\n\n"
+  puts "Running tests against firefox\n"
   run_tests
 else
-  print "Unknown browser specified\n\n"
+  puts "Unknown browser specified\n"
 end
