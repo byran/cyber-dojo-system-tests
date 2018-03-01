@@ -2,10 +2,12 @@ require_relative 'main_page'
 require_relative 'main_page_steps'
 require_relative 'individual_page'
 require_relative 'individual_page_steps'
-require_relative 'setup_default_start_point_show_languages_page'
-require_relative 'setup_default_start_point_show_languages_page_steps'
-require_relative 'setup_default_start_point_show_exercises_page'
-require_relative 'setup_default_start_point_show_exercises_page_steps'
+require_relative 'setup_default_start_point_show_page'
+require_relative 'setup_default_start_point_show_page_steps'
+require_relative 'kata_individual_page'
+require_relative 'kata_individual_page_steps'
+#require_relative 'setup_default_start_point_show_exercises_page'
+#require_relative 'setup_default_start_point_show_exercises_page_steps'
 require_relative 'kata_edit_page'
 require_relative 'kata_edit_page_steps'
 require_relative 'enter_show_page'
@@ -21,8 +23,8 @@ module CyberDojo
 
     attr_reader :main
     attr_reader :individual
-    attr_reader :setup_default_start_point_show_languages
-    attr_reader :setup_default_start_point_show_exercises
+    attr_reader :setup_default_start_point_show
+    attr_reader :kata_individual
     attr_reader :kata_edit
     attr_reader :enter_show
     attr_reader :enter_review
@@ -42,13 +44,17 @@ module CyberDojo
       @individual_steps = IndividualPageSteps.new(@individual, test)
       add_page([ 'individual', 'show' ], @individual, @individual_steps)
 
-      @setup_default_start_point_show_languages = SetupDefaultStartPointShowLanguagesPage.new(driver, browser, wait)
-      @setup_default_start_point_show_languages_steps = SetupDefaultStartPointShowLanguagesPageSteps.new(@setup_default_start_point_show_languages, test)
-      add_page([ 'setup_default_start_point', 'show_languages' ], @setup_default_start_point_show_languages, @setup_default_start_point_show_languages_steps)
+      @setup_default_start_point_show = SetupDefaultStartPointShowPage.new(driver, browser, wait)
+      @setup_default_start_point_show_steps = SetupDefaultStartPointShowPageSteps.new(@setup_default_start_point_show, test)
+      add_page([ 'setup_default_start_point', 'show' ], @setup_default_start_point_show, @setup_default_start_point_show_steps)
 
-      @setup_default_start_point_show_exercises = SetupDefaultStartPointShowExercisesPage.new(driver, browser, wait)
-      @setup_default_start_point_show_exercises_steps = SetupDefaultStartPointShowExercisesPageSteps.new(@setup_default_start_point_show_exercises, test)
-      add_page([ 'setup_default_start_point', 'show_exercises' ], @setup_default_start_point_show_exercises, @setup_default_start_point_show_exercises_steps)
+      @kata_individual = KataIndividualPage.new(driver, browser, wait)
+      @kata_individual_steps = KataIndividualPageSteps.new(@kata_individual, test)
+      add_page([ 'kata', 'individual' ], @kata_individual, @kata_individual_steps)
+
+      #@setup_default_start_point_show_exercises = SetupDefaultStartPointShowExercisesPage.new(driver, browser, wait)
+      #@setup_default_start_point_show_exercises_steps = SetupDefaultStartPointShowExercisesPageSteps.new(@setup_default_start_point_show_exercises, test)
+      #add_page([ 'setup_default_start_point', 'show_exercises' ], @setup_default_start_point_show_exercises, @setup_default_start_point_show_exercises_steps)
 
       @kata_edit = KataEditPage.new(driver, browser, wait)
       @kata_edit_steps = KataEditPageSteps.new(@kata_edit, test)

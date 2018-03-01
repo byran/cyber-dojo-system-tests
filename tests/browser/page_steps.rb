@@ -23,8 +23,10 @@ module CyberDojo
       # is not implemented on any of the objects
       return false if @respond_to_active
       @respond_to_active = true
-
-      responds_to = super || @page.respond_to?(method, include_private) || @test.respond_to?(method, include_private)
+      responds_to =
+        super ||
+          @page.respond_to?(method, include_private) ||
+            @test.respond_to?(method, include_private)
 
       @respond_to_active = false
       responds_to

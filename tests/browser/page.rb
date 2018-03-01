@@ -24,9 +24,11 @@ module CyberDojo
     protected
 
     def find_item_in_cyber_dojo_list(list_id, item_text)
+      puts "find_item_in_cyber_dojo_list(#{list_id}, #{item_text})"
       list = @driver.find_element(:id => list_id)
       list_items = list.find_elements(:class => 'filename')
       for item in list_items
+        puts "comparing it to: #{item.text}"
         if item.text == item_text
           return item
         end
@@ -49,6 +51,6 @@ module CyberDojo
       raise FailedToClickOnElement, fail_message
     end
 
-  end # class Page
+  end # class
 
 end # module

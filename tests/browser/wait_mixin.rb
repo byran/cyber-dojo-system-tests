@@ -3,7 +3,6 @@ module CyberDojo
   module WaitMixIn
 
     class WaitFailure < Exception
-
       def location
         last_before_assertion = ""
         self.backtrace.reverse_each do |s|
@@ -12,7 +11,6 @@ module CyberDojo
         end
         last_before_assertion.sub(/:in .*$/, "")
       end
-
     end
 
 
@@ -43,9 +41,7 @@ module CyberDojo
         end
         sleep @interval
       end
-
       message << " (#{last_error.message})" if last_error
-
       fail WaitFailure, message
     end
 

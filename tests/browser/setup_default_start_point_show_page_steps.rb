@@ -2,8 +2,7 @@ require_relative 'page_steps'
 
 module CyberDojo
 
-  class MainPageSteps < PageSteps
+  class SetupDefaultStartPointShowPageSteps < PageSteps
   end
 
 end
-

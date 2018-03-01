@@ -60,12 +60,12 @@ class CyberDojoTest < Minitest::Test
     assert_page_loaded(pages.main)
   end
 
-  def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
-    navigate_home
-    start_setting_up_a_kata
-    select_a_language_and_framework(language, framework)
-    select_an_exercise_then_enter_kata(exercise)
-  end
+  #def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
+  #  navigate_home
+  #  start_setting_up_a_kata
+  #  select_a_language_and_framework(language, framework)
+  #  select_an_exercise_then_enter_kata(exercise)
+  #end
 
   def switch_to_editor_window(index = 1)
     @browser.switch_to_window(index)

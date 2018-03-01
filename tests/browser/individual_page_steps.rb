@@ -4,10 +4,9 @@ module CyberDojo
 
   class IndividualPageSteps < PageSteps
 
-    #def toggle_auto_refresh
-    #  checkbox = auto_refresh_checkbox
-    #  checkbox.click
-    #  assert_page_loaded(pages.dashboard_show)
+    #def click_create_a_new_session
+    #  create_a_new_session_button.click
+    #  assert_page_loaded(pages.setup_default_start_point_show)
     #end
 
   end

@@ -1,11 +1,11 @@
 require_relative 'page'
 
 module CyberDojo
+
   class KataEditPage < Page
 
     def initialize(driver, browser, wait)
       super(driver, browser, wait)
-
       @wait_15_seconds = Selenium::WebDriver::Wait.new(:timeout => 15)
     end
 
@@ -141,5 +141,6 @@ module CyberDojo
       /([0-9A-F]*)\?avatar\=([a-z]*)/.match(@browser.page_url[2])
     end
 
-  end
-end
+  end # class
+
+end # module
