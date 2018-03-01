@@ -1,6 +1,5 @@
-sudo: false
 services: docker
-language: generic
+language: bash
 
 addons:
   artifacts: true

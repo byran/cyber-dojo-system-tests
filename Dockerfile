@@ -1,5 +1,5 @@
-FROM cyberdojo/system-test-environment
-MAINTAINER Byran Wills-Heath <byran@adgico.co.uk>
+FROM  cyberdojo/system-test-environment
+LABEL maintainer=byran@adgico.co.uk
 
 COPY tests/ /tests/
 

@@ -1,20 +1,39 @@
 #!/bin/bash
 
 # Bring up selenium hub and nodes
-docker-compose --file=cyber_dojo_selenium/docker-compose.yml up -d
+docker-compose \
+  --file=cyber_dojo_selenium/docker-compose.yml \
+  up \
+  -d
 
 # Wait for nodes to connect to the hub
 sleep 5
 
 # Run the tests
-docker run -e "browser=chrome" -t --rm --network cyberdojoselenium_default -v `pwd`/tests/artifacts:/tests/artifacts cyberdojo/system-tests
+docker run \
+  --env "browser=chrome" \
+  --tty \
+  --rm \
+  --network cyberdojoselenium_default \
+  --volume `pwd`/tests/artifacts:/tests/artifacts \
+  cyberdojo/system-tests
+
 CHROME_RESULT=$?
 
-docker run -e "browser=firefox" -t --rm --network cyberdojoselenium_default -v `pwd`/tests/artifacts:/tests/artifacts cyberdojo/system-tests
+docker run \
+  --env "browser=firefox" \
+  --tty \
+  --rm \
+  --network cyberdojoselenium_default \
+  --volume `pwd`/tests/artifacts:/tests/artifacts \
+  cyberdojo/system-tests
+
 FIREFOX_RESULT=$?
 
 # Take down the selenium hub and nodes
-docker-compose --file=cyber_dojo_selenium/docker-compose.yml down
+docker-compose \
+  --file=cyber_dojo_selenium/docker-compose.yml \
+  down
 
 if [[ "$CHROME_RESULT" -eq "0" && "$FIREFOX_RESULT" -eq "0" ]]; then
     exit 0

@@ -1,5 +1,5 @@
-FROM cyberdojo/ruby
-MAINTAINER Byran Wills-Heath <byran@adgico.co.uk>
+FROM  cyberdojo/ruby
+LABEL maintainer=byran@adgico.co.uk
 
 COPY container_scripts/*.sh /
 

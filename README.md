@@ -7,7 +7,7 @@ If you're a developer wanting to build your own cyber-dojo server from source [s
 
 TODO: write some more instructions :)
 
-Tests are stores in the ```/tests``` directory
+Tests are stored in the ```/tests``` directory
 
 ## Building the cyberdojo/system-tests docker image
 
