@@ -6,9 +6,9 @@ module CyberDojo
 
     def load_completed?
       begin
-        !@driver.find_element(:id => 'create').nil? &&
-        !@driver.find_element(:id => 'create-custom').nil? &&
-        !@driver.find_element(:id => 'rejoin').nil?
+        @driver.find_element(:id => 'create') &&
+        @driver.find_element(:id => 'create-custom') &&
+        @driver.find_element(:id => 'rejoin')
       rescue
         false
       end

@@ -6,9 +6,11 @@ module CyberDojo
 
     def load_completed?
       begin
-        !@driver.find_element(:id => 'languages-list').nil? &&
-        !@driver.find_element(:id => 'exercises-list').nil? &&
-        !@driver.find_element(:id => 'ok').nil?
+        @driver.find_element(:id => 'languages-list') &&
+        @driver.find_element(:id => 'exercises-list') &&
+        @driver.find_element(:id => 'ok') &&
+        find_item_in_cyber_dojo_list('languages-list', 'VisualBasic, NUnit') &&
+        find_item_in_cyber_dojo_list('exercises-list', 'Zeckendorf Number')
       rescue
         false
       end

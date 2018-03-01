@@ -7,8 +7,8 @@ module CyberDojo
     def load_completed?
       begin
         find_item_in_cyber_dojo_list('exercises-list', 'Zeckendorf Number') &&
-            !@driver.find_element(:id => 'create-it-individual').nil? &&
-            !@driver.find_element(:id => 'create-it-team').nil?
+        @driver.find_element(:id => 'create-it-individual') &&
+        @driver.find_element(:id => 'create-it-team')
       rescue
         false
       end

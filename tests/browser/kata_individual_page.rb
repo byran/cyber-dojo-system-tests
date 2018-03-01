@@ -6,7 +6,7 @@ module CyberDojo
 
     def load_completed?
       begin
-        !@driver.find_element(:id => 'ok').nil?
+        @driver.find_element(:id => 'ok')
       rescue
         false
       end
