@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Install packages need to build the gems
 apk --update --no-cache add build-base libffi-dev

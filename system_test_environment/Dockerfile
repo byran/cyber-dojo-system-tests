@@ -1,4 +1,4 @@
-FROM  cyberdojo/ruby
+FROM  cyberdojofoundation/ruby
 LABEL maintainer=byran@adgico.co.uk
 
 COPY container_scripts/*.sh /
