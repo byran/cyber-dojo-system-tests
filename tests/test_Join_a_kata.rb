@@ -2,10 +2,6 @@ require_relative 'cyber_dojo_test'
 
 class JoinAKataTest < CyberDojoTest
 
-  # These tests in unreliable. I'm frequently getting
-  # Selenium::WebDriver::Error::ScriptTimeOutError: timeout: cannot determine loading status
-  # from timeout: Timed out receiving message from renderer: -0.004
-
   def test_An_individual_kata_can_be_joined_from_the_homepage
     individual_create_and_join_kata
     id = kata_id

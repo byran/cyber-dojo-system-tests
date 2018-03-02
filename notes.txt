@@ -1,0 +1,20 @@
+
+These tests are unreliable when run from my laptop.
+At the moment I'm in a hotel with flaky wifi and I think this
+may be the reason. I'm frequently getting...
+
+Selenium::WebDriver::Error::ScriptTimeOutError: timeout: cannot determine loading status
+from timeout: Timed out receiving message from renderer: -0.004
+
+But when I the tests are run on Travis they pass ok.
+
+This looks network related...
+https://stackoverflow.com/questions/40273832/selenium-chromedriver-2-25-timeoutexception-cannot-determine-loading-status/40274597
+
+from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
+
+chrome_options = Options()
+chrome_options.add_argument('--dns-prefetch-disable')
+driver = Chrome(chrome_options=chrome_options)
+
