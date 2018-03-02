@@ -60,22 +60,23 @@ class CyberDojoTest < Minitest::Test
     assert_page_loaded(pages.main)
   end
 
-  def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
+  def create_and_enter_kata(language = 'C (gcc)', framework = 'assert', exercise = '(Verbal)')
     navigate_home
-
     im_on_my_own_button.click
+
     assert_page_loaded(pages.individual)
-
     create_a_new_session_button.click
+
     assert_page_loaded(pages.setup_default_start_point_show)
-
-    select_display_name('C (gcc), assert')
-    select_exercise('(Verbal)')
+    display_name = [language,framework].join(', ')
+    select_display_name(display_name)
+    select_exercise(exercise)
     ok_button.click
-    assert_page_loaded(pages.kata_individual)
 
+    assert_page_loaded(pages.kata_individual)
     ok_button.click
     switch_to_editor_window
+
     assert_page_loaded(pages.kata_edit)
   end
 

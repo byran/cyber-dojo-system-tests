@@ -8,8 +8,8 @@ module CyberDojo
       id_text_box.send_keys(id)
     end
 
-    def resume_coding_using_avatar(animal)
-      resume_avatar_image(animal).click
+    def rejoin_coding_using_avatar(animal)
+      rejoin_avatar_image(animal).click
     end
 
   end

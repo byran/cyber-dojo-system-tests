@@ -2,22 +2,26 @@ require_relative 'main_page'
 require_relative 'main_page_steps'
 require_relative 'individual_page'
 require_relative 'individual_page_steps'
+require_relative 'group_page'
+require_relative 'group_page_steps'
+
 require_relative 'setup_default_start_point_show_page'
 require_relative 'setup_default_start_point_show_page_steps'
 require_relative 'kata_individual_page'
 require_relative 'kata_individual_page_steps'
-#require_relative 'setup_default_start_point_show_exercises_page'
-#require_relative 'setup_default_start_point_show_exercises_page_steps'
+require_relative 'kata_group_page'
+require_relative 'kata_group_page_steps'
+
 require_relative 'kata_edit_page'
 require_relative 'kata_edit_page_steps'
-require_relative 'enter_show_page'
-require_relative 'enter_show_page_steps'
-require_relative 'enter_review_page'
-require_relative 'enter_review_page_steps'
+#require_relative 'enter_show_page'
+#require_relative 'enter_show_page_steps'
+#require_relative 'enter_review_page'
+#require_relative 'enter_review_page_steps'
 require_relative 'dashboard_show_page'
 require_relative 'dashboard_show_page_steps'
-require_relative 'idrejoin_show_page'
-require_relative 'idrejoin_show_page_steps'
+require_relative 'id_rejoin_show_page'
+require_relative 'id_rejoin_show_page_steps'
 
 module CyberDojo
 
@@ -25,11 +29,11 @@ module CyberDojo
 
     attr_reader :main
     attr_reader :individual
+    attr_reader :group
     attr_reader :setup_default_start_point_show
     attr_reader :kata_individual
+    attr_reader :kata_group
     attr_reader :kata_edit
-    attr_reader :enter_show
-    attr_reader :enter_review
     attr_reader :dashboard_show
     attr_reader :id_rejoin_show
 
@@ -47,6 +51,10 @@ module CyberDojo
       @individual_steps = IndividualPageSteps.new(@individual, test)
       add_page([ 'individual', 'show' ], @individual, @individual_steps)
 
+      @group = GroupPage.new(driver, browser, wait)
+      @group_steps = GroupPageSteps.new(@group, test)
+      add_page([ 'group', 'show' ], @group, @group_steps)
+
       @setup_default_start_point_show = SetupDefaultStartPointShowPage.new(driver, browser, wait)
       @setup_default_start_point_show_steps = SetupDefaultStartPointShowPageSteps.new(@setup_default_start_point_show, test)
       add_page([ 'setup_default_start_point', 'show' ], @setup_default_start_point_show, @setup_default_start_point_show_steps)
@@ -55,21 +63,13 @@ module CyberDojo
       @kata_individual_steps = KataIndividualPageSteps.new(@kata_individual, test)
       add_page([ 'kata', 'individual' ], @kata_individual, @kata_individual_steps)
 
-      #@setup_default_start_point_show_exercises = SetupDefaultStartPointShowExercisesPage.new(driver, browser, wait)
-      #@setup_default_start_point_show_exercises_steps = SetupDefaultStartPointShowExercisesPageSteps.new(@setup_default_start_point_show_exercises, test)
-      #add_page([ 'setup_default_start_point', 'show_exercises' ], @setup_default_start_point_show_exercises, @setup_default_start_point_show_exercises_steps)
+      @kata_group = KataGroupPage.new(driver, browser, wait)
+      @kata_group_steps = KataGroupPageSteps.new(@kata_group, test)
+      add_page([ 'kata', 'group' ], @kata_group, @kata_group_steps)
 
       @kata_edit = KataEditPage.new(driver, browser, wait)
       @kata_edit_steps = KataEditPageSteps.new(@kata_edit, test)
       add_page([ 'kata', 'edit' ], @kata_edit, @kata_edit_steps)
-
-      @enter_show = EnterShowPage.new(driver, browser, wait)
-      @enter_show_steps = EnterShowPageSteps.new(@enter_show, test)
-      add_page([ 'enter', 'show' ], @enter_show, @enter_show_steps)
-
-      @enter_review = EnterReviewPage.new(driver, browser, wait)
-      @enter_review_steps = EnterReviewPageSteps.new(@enter_review, test)
-      add_page([ 'enter', 'review' ], @enter_review, @enter_review_steps)
 
       @dashboard_show = DashboardShowPage.new(driver, browser, wait)
       @dashboard_show_steps = DashboardShowPageSteps.new(@dashboard_show, test)

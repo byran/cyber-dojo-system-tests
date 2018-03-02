@@ -1,8 +1,8 @@
 require_relative 'cyber_dojo_test'
 
-class ReenteringAKataTest < CyberDojoTest
+class RejoinAKataTest < CyberDojoTest
 
-  def test_A_kata_can_be_reentered_from_the_homepage
+  def test_A_kata_can_be_rejoined_from_the_homepage
     create_and_enter_kata
 
     id = kata_id
@@ -10,16 +10,16 @@ class ReenteringAKataTest < CyberDojoTest
 
     browser.restart
 
-    navigate_to_the_enter_page
+    navigate_to_the_rejoin_page
     enter_kata_id(id)
-    resume_coding_using_avatar(avatar_animal)
+    rejoin_coding_using_avatar(avatar_animal)
 
     switch_to_editor_window
 
     assert_equal(avatar_animal, avatar, 'Incorrect avatar reentered')
   end
 
-  def navigate_to_the_enter_page
+  def navigate_to_the_rejoin_page
     browser.navigate_home
     assert_page_loaded(pages.main)
 

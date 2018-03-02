@@ -6,9 +6,9 @@ module CyberDojo
 
     def load_completed?
       begin
-        !@driver.find_element(:id => 'individual').nil? &&
-        !@driver.find_element(:id => 'group').nil? &&
-        !@driver.find_element(:id => 'donate').nil?
+        @driver.find_element(:id => 'individual') &&
+        @driver.find_element(:id => 'group') &&
+        @driver.find_element(:id => 'donate')
       rescue
         false
       end

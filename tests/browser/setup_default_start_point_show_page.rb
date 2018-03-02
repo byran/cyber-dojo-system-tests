@@ -8,9 +8,7 @@ module CyberDojo
       begin
         @driver.find_element(:id => 'languages-list') &&
         @driver.find_element(:id => 'exercises-list') &&
-        @driver.find_element(:id => 'ok') &&
-        find_item_in_cyber_dojo_list('languages-list', 'VisualBasic, NUnit') &&
-        find_item_in_cyber_dojo_list('exercises-list', 'Zeckendorf Number')
+        @driver.find_element(:id => 'ok')
       rescue
         false
       end

@@ -11,7 +11,7 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     browser.restart
 
     navigate_home
-    start_reviewing_a_kata
+    start_reviewing_a_kata # <<<<
     open_a_dashboard_for_kata_with_id(id)
 
     # Turn off auto refresh as it could refresh when finding elements
@@ -30,12 +30,12 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     switch_to_editor_window(2)
     run_a_failing_test
 
-    assert_equal(id, kata_id, "Entered a different dojo")
+    assert_equal(id, kata_id, 'Entered a different dojo')
     avatar_2_animal = avatar
 
     # Open the dashboard
     switch_to_window_showing_home_page
-    start_reviewing_a_kata
+    start_reviewing_a_kata # <<<<
     open_a_dashboard_for_kata
 
     # Turn off auto refresh as it could refresh when finding elements
@@ -50,20 +50,20 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
   def assert_traffic_lights(animal, *lights)
     assert_equal(lights.size.to_s, traffic_light_count(animal).text)
     lights.each_with_index do |colour, index|
-      assert_equal(colour, traffic_light_colour(animal, index + 1), "Incorrect traffic light at position #{index + 1}")
+      diagnostic = "Incorrect traffic light at position #{index + 1}"
+      assert_equal(colour, traffic_light_colour(animal, index + 1), diagnostic)
     end
   end
 
   def create_an_avatar_with_two_tests_one_failing_and_one_passing
     create_and_enter_kata
-
     run_a_failing_test
     run_a_passing_test
   end
 
   def create_another_avatar_in_the_same_kata
     switch_to_window_showing_home_page
-    start_entering_an_existing_kata
+    start_entering_an_existing_kata # <<<<<
     start_a_new_avatar
   end
 

@@ -2,7 +2,7 @@ require_relative 'page'
 
 module CyberDojo
 
-  class KataIndividualPage < Page
+  class KataGroupPage < Page
 
     def load_completed?
       begin
@@ -21,7 +21,7 @@ module CyberDojo
     private
 
     def cant_find(text)
-      'Cant find button [#{text}] on "kata/individual" page'
+      'Cant find button [#{text}] on "kata/group" page'
     end
 
   end # class
