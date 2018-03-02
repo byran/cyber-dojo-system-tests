@@ -11,9 +11,8 @@ class CreatingAKataTest < CyberDojoTest
     create_a_new_session_button.click
     assert_page_loaded(pages.setup_default_start_point_show)
 
-    #These appear to be running before the list has 'settled'
-    #select_display_name('C (gcc), assert')
-    #select_exercise('(Verbal)')
+    select_display_name('C (gcc), assert')
+    select_exercise('(Verbal)')
     ok_button.click
     assert_page_loaded(pages.kata_individual)
 
