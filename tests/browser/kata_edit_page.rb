@@ -11,7 +11,7 @@ module CyberDojo
 
     def load_completed?
       begin
-        !@driver.find_element(:id => 'test-button').nil?
+        @driver.find_element(:id => 'test-button')
       rescue
         false
       end
