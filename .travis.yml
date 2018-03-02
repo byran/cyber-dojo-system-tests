@@ -21,7 +21,7 @@ script:
     # pull image used in tests
     - docker pull cyberdojofoundation/gcc_assert:latest
 
-    - ./quick_run_tests.sh
+    - ./run_chrome_tests.sh
 
     # Remove the cyber-dojo script so it does not get uploaded as an artifact
     - rm -f cyber-dojo

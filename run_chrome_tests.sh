@@ -7,7 +7,7 @@ docker-compose \
   -d
 
 # Wait for nodes to connect to the hub
-sleep 3
+sleep 5
 
 # Run the tests
 docker run \
