@@ -25,3 +25,8 @@ script:
 
     # Remove the cyber-dojo script so it does not get uploaded as an artifact
     - rm -f cyber-dojo
+
+    # Remove the new-ux repos so they dont get uploaded either
+    - rm -rf commander
+    - rm -rf starter
+    - rm -rf web
