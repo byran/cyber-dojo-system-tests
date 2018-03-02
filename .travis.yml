@@ -19,6 +19,7 @@ script:
     # pull image used in tests
     - docker pull cyberdojofoundation/gcc_assert:latest
 
+    - ./build_new_ux_images.sh
     - ./run_tests.sh
 
     # Remove the cyber-dojo script so it does not get uploaded as an artifact
