@@ -11,12 +11,6 @@ class JoinAKataTest < CyberDojoTest
 
     navigate_to_the_join_page
     enter_kata_id(id[0..5])
-    # without this sleep you get an exception
-    # Selenium::WebDriver::Error::ElementNotVisibleError: element not visible
-    # This is because the ok button is hidden until the id is entered.
-    # TODO: find a better way to wait till the ok button is visible
-    sleep 1
-
     ok_button.click
     switch_to_editor_window
     second_avatar = avatar

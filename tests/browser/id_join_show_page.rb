@@ -21,6 +21,7 @@ module CyberDojo
     def ok_button
       @wait.until_with_message(cant_find('button', 'ok')) {
         ok = @driver.find_element(:id => 'ok')
+        ok && ok.displayed? ? ok : nil
       }
     end
 
@@ -37,22 +38,6 @@ module CyberDojo
     def quoted(text)
       '"' + text + '"'
     end
-
-=begin
-    def rejoin_avatar_image(animal)
-      @wait.until_with_message('Unable to find avatar image') {
-        avatars_div = @driver.find_element(:id => 'avatar-picker')
-        avatars_list = avatars_div.find_elements(:tag_name => 'div')
-        avatars_list.each do |avatar|
-          if avatar.attribute('data-tip') == animal
-            image = avatar.find_element(:tag_name => 'img')
-            return image if image.displayed?
-          end
-        end
-        nil
-      }
-    end
-=end
 
   end # class
 
