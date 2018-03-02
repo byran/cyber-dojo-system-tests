@@ -69,11 +69,7 @@ class CyberDojoTest < Minitest::Test
     assert_page_loaded(pages.individual)
     create_a_new_session_button.click
 
-    assert_page_loaded(pages.setup_default_start_point_show)
-    display_name = [language,framework].join(', ')
-    select_display_name(display_name)
-    select_exercise(exercise)
-    ok_button.click
+    create_a_kata(language, framework, exercise)
 
     assert_page_loaded(pages.kata_individual)
     ok_button.click
@@ -91,16 +87,22 @@ class CyberDojoTest < Minitest::Test
     assert_page_loaded(pages.group)
     create_a_new_session_button.click
 
-    assert_page_loaded(pages.setup_default_start_point_show)
-    display_name = [language,framework].join(', ')
-    select_display_name(display_name)
-    select_exercise(exercise)
-    ok_button.click
+    create_a_kata(language, framework, exercise)
 
     assert_page_loaded(pages.kata_group)
     ok_button.click
 
     assert_page_loaded(pages.dashboard_show)
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - - -
+
+  def create_a_kata(language = 'C (gcc)', framework = 'assert', exercise = '(Verbal)')
+    assert_page_loaded(pages.setup_default_start_point_show)
+    display_name = [language,framework].join(', ')
+    select_display_name(display_name)
+    select_exercise(exercise)
+    ok_button.click
   end
 
   # - - - - - - - - - - - - - - - - - - - - - -
