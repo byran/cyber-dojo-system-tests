@@ -23,8 +23,11 @@ class ReenteringAKataTest < CyberDojoTest
     browser.navigate_home
     assert_page_loaded(pages.main)
 
-    enter_button.click
-    assert_page_loaded(pages.enter_show)
+    im_on_my_own_button.click
+    assert_page_loaded(pages.individual)
+
+    rejoin_button.click
+    assert_page_loaded(pages.id_rejoin_show)
   end
 
 end

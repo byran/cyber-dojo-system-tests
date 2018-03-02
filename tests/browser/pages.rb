@@ -16,6 +16,8 @@ require_relative 'enter_review_page'
 require_relative 'enter_review_page_steps'
 require_relative 'dashboard_show_page'
 require_relative 'dashboard_show_page_steps'
+require_relative 'idrejoin_show_page'
+require_relative 'idrejoin_show_page_steps'
 
 module CyberDojo
 
@@ -29,6 +31,7 @@ module CyberDojo
     attr_reader :enter_show
     attr_reader :enter_review
     attr_reader :dashboard_show
+    attr_reader :id_rejoin_show
 
     attr_reader :all_pages
 
@@ -71,6 +74,10 @@ module CyberDojo
       @dashboard_show = DashboardShowPage.new(driver, browser, wait)
       @dashboard_show_steps = DashboardShowPageSteps.new(@dashboard_show, test)
       add_page([ 'dashboard', 'show' ], @dashboard_show, @dashboard_show_steps)
+
+      @id_rejoin_show = IdRejoinShowPage.new(driver, browser, wait)
+      @id_rejoin_show_steps = IdRejoinShowPageSteps.new(@id_rejoin_show, test);
+      add_page([ 'id_rejoin', 'show' ], @id_rejoin_show, @id_rejoin_show_steps)
     end
 
     def add_page(url_array, page, steps)

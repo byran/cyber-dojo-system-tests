@@ -1,7 +1,7 @@
 def run_tests
   directory = File.expand_path(File.dirname(__FILE__))
   #test_filter = File.join(directory, "**", "test_*.rb")
-  test_filter = File.join(directory, "**", "test_Diff*.rb")
+  test_filter = File.join(directory, "**", "test_Reen*.rb")
 
   test_files = Dir.glob(test_filter)
 
