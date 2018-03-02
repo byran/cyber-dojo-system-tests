@@ -5,18 +5,26 @@ class JoinAKataTest < CyberDojoTest
   def test_A_kata_can_be_joined_from_the_homepage
     create_and_enter_kata
     id = kata_id
-    puts id
-    puts avatar
+    first_avatar = avatar
+    assert_avatar(first_avatar)
     browser.restart
 
     navigate_to_the_join_page
     enter_kata_id(id[0..5])
+    # without this sleep you get an exception
+    # Selenium::WebDriver::Error::ElementNotVisibleError: element not visible
+    # This is because the ok button is hidden until the id is entered.
+    # TODO: find a better way to wait till the ok button is visible
+    sleep 1
+
     ok_button.click
-    #rejoin_coding_using_avatar(avatar_animal)
     switch_to_editor_window
-    puts avatar
-    #assert_equal(avatar_animal, avatar, 'Incorrect avatar reentered')
+    second_avatar = avatar
+    assert_avatar(second_avatar)
+    refute_equal first_avatar, second_avatar
   end
+
+  # - - - - - - - - - - - - - - - - - - - - -
 
   def navigate_to_the_join_page
     browser.navigate_home
@@ -27,6 +35,34 @@ class JoinAKataTest < CyberDojoTest
 
     join_button.click
     assert_page_loaded(pages.id_join_show)
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - -
+
+  def assert_avatar(name)
+    assert avatar_names.include?(name)
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - -
+
+  def avatar_names
+    %w(alligator antelope     bat       bear
+       bee       beetle       buffalo   butterfly
+       cheetah   crab         deer      dolphin
+       eagle     elephant     flamingo  fox
+       frog      gopher       gorilla   heron
+       hippo     hummingbird  hyena     jellyfish
+       kangaroo  kingfisher   koala     leopard
+       lion      lizard       lobster   moose
+       mouse     ostrich      owl       panda
+       parrot    peacock      penguin   porcupine
+       puffin    rabbit       raccoon   ray
+       rhino     salmon       seal      shark
+       skunk     snake        spider    squid
+       squirrel  starfish     swan      tiger
+       toucan    tuna         turtle    vulture
+       walrus    whale        wolf      zebra
+    )
   end
 
 end

@@ -20,7 +20,7 @@ module CyberDojo
 
     def ok_button
       @wait.until_with_message(cant_find('button', 'ok')) {
-        @driver.find_element(:id => 'ok')
+        ok = @driver.find_element(:id => 'ok')
       }
     end
 
