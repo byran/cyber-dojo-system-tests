@@ -1,7 +1,7 @@
 def run_tests
   directory = File.expand_path(File.dirname(__FILE__))
   #test_filter = File.join(directory, "**", "test_*.rb")
-  test_filter = File.join(directory, "**", "test_Creating_a_kata_group.rb")
+  test_filter = File.join(directory, "**", "test_Join*.rb")
   test_filenames = Dir.glob(test_filter)
   test_filenames.each do |filename|
     require filename
