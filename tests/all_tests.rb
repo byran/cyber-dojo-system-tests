@@ -12,6 +12,7 @@ def run_tests
   require '/tests/test_Join_a_kata.rb'
   require '/tests/test_Rejoin_a_kata.rb'
   require '/tests/test_Renaming_files_in_a_kata.rb'
+  #require '/tests/test_Monitoring_a_kata_with_a_dashboard.rb'
 
 end
 

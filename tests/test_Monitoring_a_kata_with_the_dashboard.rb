@@ -1,6 +1,6 @@
 require_relative 'cyber_dojo_test'
 
-class MonitoringADojoWithTheDashboardTest < CyberDojoTest
+class MonitoringAKataWithTheDashboardTest < CyberDojoTest
 
   def test_The_number_of_tests_added_in_a_kata_can_be_seen_in_the_dashboard_from_a_different_browser_instance
     create_an_avatar_with_two_tests_one_failing_and_one_passing
@@ -30,7 +30,7 @@ class MonitoringADojoWithTheDashboardTest < CyberDojoTest
     switch_to_editor_window(2)
     run_a_failing_test
 
-    assert_equal(id, kata_id, 'Entered a different dojo')
+    assert_equal(id, kata_id, 'Entered a different kata')
     avatar_2_animal = avatar
 
     # Open the dashboard

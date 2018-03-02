@@ -22,6 +22,7 @@ script:
     - docker pull cyberdojofoundation/gcc_assert:latest
 
     - ./run_chrome_tests.sh
+    - ./run_firefox_tests.sh
 
     # Remove the cyber-dojo script so it does not get uploaded as an artifact
     - rm -f cyber-dojo
