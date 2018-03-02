@@ -3,7 +3,7 @@ require_relative 'cyber_dojo_test'
 class RunningTestsInAKataTest < CyberDojoTest
 
   def test_A_traffic_light_is_added_for_each_test_run
-    create_and_enter_kata
+    individual_create_and_join_kata
     assert_there_are_no_traffic_lights
 
     run_kata_tests
@@ -19,7 +19,7 @@ class RunningTestsInAKataTest < CyberDojoTest
   end
 
   def test_A_timeout_traffic_light_is_added_if_the_test_enters_an_infinite_loop
-    create_and_enter_kata
+    individual_create_and_join_kata
 
     edit_hiker_c("int answer() { while(1); return 42; }")
     run_kata_tests

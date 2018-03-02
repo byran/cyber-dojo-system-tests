@@ -60,7 +60,9 @@ class CyberDojoTest < Minitest::Test
     assert_page_loaded(pages.main)
   end
 
-  def create_and_enter_kata(language = 'C (gcc)', framework = 'assert', exercise = '(Verbal)')
+  # - - - - - - - - - - - - - - - - - - - - - -
+
+  def individual_create_and_join_kata(language = 'C (gcc)', framework = 'assert', exercise = '(Verbal)')
     navigate_home
     im_on_my_own_button.click
 
@@ -79,6 +81,29 @@ class CyberDojoTest < Minitest::Test
 
     assert_page_loaded(pages.kata_edit)
   end
+
+  # - - - - - - - - - - - - - - - - - - - - - -
+
+  def group_create_a_kata(language = 'C (gcc)', framework = 'assert', exercise = '(Verbal)')
+    navigate_home
+    were_in_a_group_button.click
+
+    assert_page_loaded(pages.group)
+    create_a_new_session_button.click
+
+    assert_page_loaded(pages.setup_default_start_point_show)
+    display_name = [language,framework].join(', ')
+    select_display_name(display_name)
+    select_exercise(exercise)
+    ok_button.click
+
+    assert_page_loaded(pages.kata_group)
+    ok_button.click
+
+    assert_page_loaded(pages.dashboard_show)
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - - -
 
   def switch_to_editor_window(index = 1)
     @browser.switch_to_window(index)

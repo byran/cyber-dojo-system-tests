@@ -2,8 +2,8 @@ require_relative 'cyber_dojo_test'
 
 class JoinAKataTest < CyberDojoTest
 
-  def test_A_kata_can_be_joined_from_the_homepage
-    create_and_enter_kata
+  def test_An_individual_kata_can_be_joined_from_the_homepage
+    individual_create_and_join_kata
     id = kata_id
     first_avatar = avatar
     assert_avatar(first_avatar)
@@ -16,6 +16,11 @@ class JoinAKataTest < CyberDojoTest
     second_avatar = avatar
     assert_avatar(second_avatar)
     refute_equal first_avatar, second_avatar
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - -
+
+  def X_test_A_group_kata_can_be_joined_from_the_homepage
   end
 
   # - - - - - - - - - - - - - - - - - - - - -

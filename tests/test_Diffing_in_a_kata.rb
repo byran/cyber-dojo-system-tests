@@ -3,7 +3,7 @@ require_relative 'cyber_dojo_test'
 class DiffingInAKataTest < CyberDojoTest
 
   def test_A_diff_dialog_appears_when_a_traffic_light_is_clicked
-    create_and_enter_kata
+    individual_create_and_join_kata
 
     edit_hiker_c("int answer(void) { return 49; }")
     run_kata_tests

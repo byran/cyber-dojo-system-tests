@@ -3,7 +3,7 @@ require_relative 'cyber_dojo_test'
 class RunningTestsInAKataTest < CyberDojoTest
 
   def test_A_renamed_file_has_the_same_contents_as_the_original_file
-    create_and_enter_kata
+    individual_create_and_join_kata
 
     edit_hiker_c("int answer() { return 42; }")
 
