@@ -12,6 +12,8 @@ script:
     # image can be pulled as it does not change very often
     - ./build.sh
 
+    - ./build_new_ux_images.sh
+
     - URL=https://raw.githubusercontent.com/cyber-dojo/start-points-languages/master/languages_list_small
     - ./cyber-dojo start-point create small --list=${URL}
     - ./cyber-dojo up --languages=small
@@ -19,8 +21,7 @@ script:
     # pull image used in tests
     - docker pull cyberdojofoundation/gcc_assert:latest
 
-    - ./build_new_ux_images.sh
-    - ./run_tests.sh
+    - ./quick_run_tests.sh
 
     # Remove the cyber-dojo script so it does not get uploaded as an artifact
     - rm -f cyber-dojo
