@@ -27,7 +27,7 @@ module CyberDojo
       list = @driver.find_element(:id => list_id)
       list_items = list.find_elements(:class => 'filename')
       for item in list_items
-        if item.text == item_text
+        if @driver.textContent_of(item).strip == item_text
           return item
         end
       end

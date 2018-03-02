@@ -8,6 +8,10 @@ module CyberDojo
       execute_script('arguments[0].scrollIntoView(true);', element)
     end
 
+    def textContent_of(element)
+      execute_script('return arguments[0].textContent;', element)
+    end
+
     def print_sub_elements(element)
       print "\n============================\n"
       print_sub_elements_with_indent element
