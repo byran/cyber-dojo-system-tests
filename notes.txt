@@ -11,3 +11,10 @@ This looks network related...
 https://stackoverflow.com/questions/40273832/selenium-chromedriver-2-25-timeoutexception-cannot-determine-loading-status/40274597
 
 In this situation the best option is to turn off wifi.
+
+------------------------------------------------------
+
+Missing tests
+o) reverting
+o) forking
+o) create a session from a custom start-point
