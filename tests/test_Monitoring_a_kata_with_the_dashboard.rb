@@ -3,13 +3,9 @@ require_relative 'cyber_dojo_test'
 class MonitoringAKataWithTheDashboardTest < CyberDojoTest
 
   def test_The_number_of_tests_added_in_a_kata_can_be_seen_in_the_dashboard_from_a_different_browser_instance
-    #create_an_avatar_with_two_tests_one_failing_and_one_passing
-    create_and_enter_kata
+    id,avatar_animal = individual_create_and_join_kata
     run_a_failing_test
     run_a_passing_test
-
-    id = kata_id
-    avatar_animal = avatar
 
     browser.restart
 
@@ -23,14 +19,10 @@ class MonitoringAKataWithTheDashboardTest < CyberDojoTest
     assert_traffic_lights(avatar_animal, 'red', 'green')
   end
 
-  def test_Multiple_katas_can_be_seen_in_the_dashboard
-    #create_an_avatar_with_two_tests_one_failing_and_one_passing
-    create_and_enter_kata
+  def XX_test_Multiple_katas_can_be_seen_in_the_dashboard
+    id,avatar_1_animal = individual_create_and_join_kata
     run_a_failing_test
     run_a_passing_test
-
-    id = kata_id
-    avatar_1_animal = avatar
 
     create_another_avatar_in_the_same_kata
     switch_to_editor_window(2)
@@ -60,12 +52,6 @@ class MonitoringAKataWithTheDashboardTest < CyberDojoTest
       assert_equal(colour, traffic_light_colour(animal, index + 1), diagnostic)
     end
   end
-
-  #def create_an_avatar_with_two_tests_one_failing_and_one_passing
-  #  create_and_enter_kata
-  #  run_a_failing_test
-  #  run_a_passing_test
-  #end
 
   def create_another_avatar_in_the_same_kata
     switch_to_window_showing_home_page

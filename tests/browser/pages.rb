@@ -15,13 +15,15 @@ require_relative 'kata_group_page_steps'
 require_relative 'kata_edit_page'
 require_relative 'kata_edit_page_steps'
 
-require_relative 'dashboard_show_page'
-require_relative 'dashboard_show_page_steps'
-
 require_relative 'id_join_show_page'
 require_relative 'id_join_show_page_steps'
 require_relative 'id_rejoin_show_page'
 require_relative 'id_rejoin_show_page_steps'
+require_relative 'id_review_show_page'
+require_relative 'id_review_show_page_steps'
+
+require_relative 'dashboard_show_page'
+require_relative 'dashboard_show_page_steps'
 
 module CyberDojo
 
@@ -41,6 +43,7 @@ module CyberDojo
 
     attr_reader :id_join_show
     attr_reader :id_rejoin_show
+    attr_reader :id_review_show
 
     attr_reader :all_pages
 
@@ -79,6 +82,10 @@ module CyberDojo
       @id_rejoin_show = IdRejoinShowPage.new(driver, browser, wait)
       @id_rejoin_show_steps = IdRejoinShowPageSteps.new(@id_rejoin_show, test);
       add_page([ 'id_rejoin', 'show' ], @id_rejoin_show, @id_rejoin_show_steps)
+
+      @id_review_show = IdReviewShowPage.new(driver, browser, wait)
+      @id_review_show_steps = IdReviewShowPageSteps.new(@id_review_show, test);
+      add_page([ 'id_review', 'show' ], @id_review_show, @id_review_show_steps)
 
       @kata_edit = KataEditPage.new(driver, browser, wait)
       @kata_edit_steps = KataEditPageSteps.new(@kata_edit, test)
