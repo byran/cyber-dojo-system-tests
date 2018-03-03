@@ -125,7 +125,9 @@ class CyberDojoTest < Minitest::Test
     assert_page_loaded(pages.id_join_show)
     enter_kata_id(id[0..5])
     ok_button.click
+
     switch_to_editor_window
+
     assert_avatar(avatar)
     avatar
   end
