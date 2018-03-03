@@ -4,7 +4,8 @@
 docker-compose \
   --file=cyber_dojo_selenium/docker-compose.yml \
   up \
-  -d
+  -d \
+  node_${1}
 
 # Wait for nodes to connect to the hub
 sleep 5
