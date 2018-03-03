@@ -2,6 +2,7 @@
 
 # Install packages need to build the gems
 apk --update --no-cache add build-base libffi-dev
+apk --update --no-cache add bash
 
 gem install selenium-webdriver -N
 gem install minitest -N
