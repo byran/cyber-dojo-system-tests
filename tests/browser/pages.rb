@@ -1,9 +1,9 @@
 require_relative 'main_page'
 require_relative 'main_page_steps'
-require_relative 'individual_page'
-require_relative 'individual_page_steps'
-require_relative 'group_page'
-require_relative 'group_page_steps'
+require_relative 'individual_show_page'
+require_relative 'individual_show_page_steps'
+require_relative 'group_show_page'
+require_relative 'group_show_page_steps'
 
 require_relative 'setup_default_start_point_show_page'
 require_relative 'setup_default_start_point_show_page_steps'
@@ -30,8 +30,8 @@ module CyberDojo
   class Pages
 
     attr_reader :main
-    attr_reader :individual
-    attr_reader :group
+    attr_reader :individual_show
+    attr_reader :group_show
 
     attr_reader :setup_default_start_point_show
     attr_reader :kata_individual
@@ -55,13 +55,13 @@ module CyberDojo
       add_page([], @main, @main_steps)
       add_page([ 'dojo', 'index' ], @main, @main_steps)
 
-      @individual = IndividualPage.new(driver, browser, wait)
-      @individual_steps = IndividualPageSteps.new(@individual, test)
-      add_page([ 'individual', 'show' ], @individual, @individual_steps)
+      @individual_show = IndividualShowPage.new(driver, browser, wait)
+      @individual_show_steps = IndividualShowPageSteps.new(@individual_show, test)
+      add_page([ 'individual', 'show' ], @individual_show, @individual_show_steps)
 
-      @group = GroupPage.new(driver, browser, wait)
-      @group_steps = GroupPageSteps.new(@group, test)
-      add_page([ 'group', 'show' ], @group, @group_steps)
+      @group_show = GroupShowPage.new(driver, browser, wait)
+      @group_show_steps = GroupShowPageSteps.new(@group_show, test)
+      add_page([ 'group', 'show' ], @group_show, @group_show_steps)
 
       @setup_default_start_point_show = SetupDefaultStartPointShowPage.new(driver, browser, wait)
       @setup_default_start_point_show_steps = SetupDefaultStartPointShowPageSteps.new(@setup_default_start_point_show, test)

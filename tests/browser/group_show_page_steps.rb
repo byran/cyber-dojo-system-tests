@@ -2,7 +2,7 @@ require_relative 'page_steps'
 
 module CyberDojo
 
-  class GroupPageSteps < PageSteps
+  class GroupShowPageSteps < PageSteps
   end
 
 end

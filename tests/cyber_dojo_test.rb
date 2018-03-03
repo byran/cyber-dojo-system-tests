@@ -80,7 +80,7 @@ class CyberDojoTest < Minitest::Test
     navigate_home
     im_on_my_own_button.click
 
-    assert_page_loaded(pages.individual)
+    assert_page_loaded(pages.individual_show)
     create_a_new_session_button.click
 
     create_a_default_kata(args)
@@ -100,7 +100,7 @@ class CyberDojoTest < Minitest::Test
     navigate_home
     were_in_a_group_button.click
 
-    assert_page_loaded(pages.group)
+    assert_page_loaded(pages.group_show)
     create_a_new_session_button.click
 
     create_a_default_kata(args)
@@ -111,6 +111,39 @@ class CyberDojoTest < Minitest::Test
     assert_page_loaded(pages.dashboard_show)
     # http://.../dashboard/show/B5D987CA59
     id = @browser.page_url[2]
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - - -
+
+  def navigate_to_the_join_page_and_join(id)
+    navigate_home
+    were_in_a_group_button.click
+
+    assert_page_loaded(pages.group_show)
+    join_button.click
+
+    assert_page_loaded(pages.id_join_show)
+    enter_kata_id(id[0..5])
+    ok_button.click
+    switch_to_editor_window
+    assert_avatar(avatar)
+    avatar
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - - -
+
+  def navigate_to_the_id_review_page_and_open_dashboard(id)
+    navigate_home
+    were_in_a_group_button.click
+
+    assert_page_loaded(pages.group_show)
+    review_button.click
+
+    assert_page_loaded(pages.id_review_show)
+    enter_kata_id(id[0..5])
+    ok_button.click
+    @browser.switch_to_window_with_title_starting_with('dashboard')
+    assert_page_loaded(pages.dashboard_show)
   end
 
   # - - - - - - - - - - - - - - - - - - - - - -

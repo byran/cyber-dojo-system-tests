@@ -21,7 +21,7 @@ class RejoinAKataTest < CyberDojoTest
     assert_page_loaded(pages.main)
 
     im_on_my_own_button.click
-    assert_page_loaded(pages.individual)
+    assert_page_loaded(pages.individual_show)
 
     rejoin_button.click
     assert_page_loaded(pages.id_rejoin_show)

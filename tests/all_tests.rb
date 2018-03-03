@@ -6,16 +6,15 @@ def run_tests
   #  require filename
   #end
 
-  #require '/tests/test_Homepage.rb'
-  #require '/tests/test_Creating_a_kata.rb'
-  #require '/tests/test_Running_tests_in_a_kata.rb'
-  #require '/tests/test_Diffing_in_a_kata.rb'
-  #require '/tests/test_Join_a_kata.rb'
-  #require '/tests/test_Rejoin_a_kata.rb'
-  #require '/tests/test_Renaming_files_in_a_kata.rb'
-
+  require '/tests/test_Homepage.rb'
+  require '/tests/test_Creating_a_kata.rb'
+  require '/tests/test_Running_tests_in_a_kata.rb'
+  require '/tests/test_Diffing_in_a_kata.rb'
+  require '/tests/test_Join_a_kata.rb'
+  require '/tests/test_Rejoin_a_kata.rb'
   require '/tests/test_Review_a_kata.rb'
-  #require '/tests/test_Monitoring_a_kata_with_the_dashboard.rb'
+  require '/tests/test_Renaming_files_in_a_kata.rb'
+  require '/tests/test_Monitoring_a_kata_with_the_dashboard.rb'
 
 end
 

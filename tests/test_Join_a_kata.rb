@@ -16,21 +16,4 @@ class JoinAKataTest < CyberDojoTest
     navigate_to_the_join_page_and_join(id)
   end
 
-  # - - - - - - - - - - - - - - - - - - - - -
-
-  def navigate_to_the_join_page_and_join(id)
-    navigate_home
-    were_in_a_group_button.click
-
-    assert_page_loaded(pages.group)
-    join_button.click
-
-    assert_page_loaded(pages.id_join_show)
-    enter_kata_id(id[0..5])
-    ok_button.click
-    switch_to_editor_window
-    assert_avatar(avatar)
-    avatar
-  end
-
 end
