@@ -62,7 +62,11 @@ class CyberDojoTest < Minitest::Test
 
   # - - - - - - - - - - - - - - - - - - - - - -
 
-  def individual_create_and_join_kata(language = 'C (gcc)', framework = 'assert', exercise = '(Verbal)')
+  def individual_create_and_join_kata(
+    language = default_language,
+    framework = default_framework,
+    exercise = default_exercise
+  )
     navigate_home
     im_on_my_own_button.click
 
@@ -76,11 +80,17 @@ class CyberDojoTest < Minitest::Test
     switch_to_editor_window
 
     assert_page_loaded(pages.kata_edit)
+    assert_avatar(avatar)
+    [kata_id,avatar]
   end
 
   # - - - - - - - - - - - - - - - - - - - - - -
 
-  def group_create_a_kata(language = 'C (gcc)', framework = 'assert', exercise = '(Verbal)')
+  def group_create_kata(
+    language = default_language,
+    framework = default_framework,
+    exercise = default_exercise
+  )
     navigate_home
     were_in_a_group_button.click
 
@@ -93,11 +103,17 @@ class CyberDojoTest < Minitest::Test
     ok_button.click
 
     assert_page_loaded(pages.dashboard_show)
+    # http://.../dashboard/show/B5D987CA59
+    id = @browser.page_url[2]
   end
 
   # - - - - - - - - - - - - - - - - - - - - - -
 
-  def create_a_kata(language = 'C (gcc)', framework = 'assert', exercise = '(Verbal)')
+  def create_a_kata(
+    language = default_language,
+    framework = default_framework,
+    exercise = default_exercise
+  )
     assert_page_loaded(pages.setup_default_start_point_show)
     display_name = [language,framework].join(', ')
     select_display_name(display_name)
@@ -110,6 +126,48 @@ class CyberDojoTest < Minitest::Test
   def switch_to_editor_window(index = 1)
     @browser.switch_to_window(index)
     assert_page_loaded(pages.kata_edit)
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - -
+
+  def assert_avatar(name)
+    assert avatar_names.include?(name)
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - -
+
+  def default_language
+    'C (gcc)'
+  end
+
+  def default_framework
+    'assert'
+  end
+
+  def default_exercise
+    '(Verbal)'
+  end
+
+  # - - - - - - - - - - - - - - - - - - - - -
+
+  def avatar_names
+    %w(alligator antelope     bat       bear
+       bee       beetle       buffalo   butterfly
+       cheetah   crab         deer      dolphin
+       eagle     elephant     flamingo  fox
+       frog      gopher       gorilla   heron
+       hippo     hummingbird  hyena     jellyfish
+       kangaroo  kingfisher   koala     leopard
+       lion      lizard       lobster   moose
+       mouse     ostrich      owl       panda
+       parrot    peacock      penguin   porcupine
+       puffin    rabbit       raccoon   ray
+       rhino     salmon       seal      shark
+       skunk     snake        spider    squid
+       squirrel  starfish     swan      tiger
+       toucan    tuna         turtle    vulture
+       walrus    whale        wolf      zebra
+    )
   end
 
 end

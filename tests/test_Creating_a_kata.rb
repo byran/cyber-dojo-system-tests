@@ -7,7 +7,7 @@ class CreatingAKataIndividualTest < CyberDojoTest
   end
 
   def test_Creating_a_kata_group
-    group_create_a_kata
+    group_create_kata
   end
 
 end

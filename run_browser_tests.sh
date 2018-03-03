@@ -11,7 +11,7 @@ sleep 5
 
 # Run the tests
 docker run \
-  --env "browser=firefox" \
+  --env "browser=${1}" \
   --tty \
   --rm \
   --network cyberdojoselenium_default \
