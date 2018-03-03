@@ -1,8 +1,11 @@
 #!/bin/sh
 
-# Install packages need to build the gems
+# install packages need to build the gems
 apk --update --no-cache add build-base libffi-dev
+# install bash
 apk --update --no-cache add bash
+# make it the default shell for root user
+sed -i -e "s/bin\/ash/bin\/bash/" /etc/passwd
 
 gem install selenium-webdriver -N
 gem install minitest -N
