@@ -5,6 +5,7 @@ def run_tests
   #test_filenames.each do |filename|
   #  require filename
   #end
+
   require '/tests/test_Homepage.rb'
   require '/tests/test_Creating_a_kata.rb'
   require '/tests/test_Running_tests_in_a_kata.rb'

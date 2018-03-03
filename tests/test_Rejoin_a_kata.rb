@@ -3,10 +3,7 @@ require_relative 'cyber_dojo_test'
 class RejoinAKataTest < CyberDojoTest
 
   def test_A_kata_can_be_rejoined_from_the_homepage
-    individual_create_and_join_kata
-
-    id = kata_id
-    avatar_animal = avatar
+    id,avatar_animal = individual_create_and_join_kata
 
     browser.restart
 

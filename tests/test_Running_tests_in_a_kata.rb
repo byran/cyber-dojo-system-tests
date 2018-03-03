@@ -18,6 +18,8 @@ class RunningTestsInAKataTest < CyberDojoTest
     assert_traffic_lights('red', 'amber', 'green')
   end
 
+  # - - - - - - - - - - - - - - - - - - - -
+
   def test_A_timeout_traffic_light_is_added_if_the_test_enters_an_infinite_loop
     individual_create_and_join_kata
 
@@ -34,6 +36,8 @@ class RunningTestsInAKataTest < CyberDojoTest
     refute(traffic_light_elements_present?, 'Traffic lights were found')
   end
 
+  # - - - - - - - - - - - - - - - - - - - -
+
   def assert_traffic_lights(*lights)
     assert_traffic_lights_count_is(lights.size)
     lights.each_with_index do |colour, index|
@@ -43,6 +47,8 @@ class RunningTestsInAKataTest < CyberDojoTest
       assert_equal(expected_image_url, actual_image_url)
     end
   end
+
+  # - - - - - - - - - - - - - - - - - - - -
 
   def assert_traffic_lights_count_is(count)
     assert_equal(count, number_of_traffic_lights)
