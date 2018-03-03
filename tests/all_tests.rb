@@ -5,6 +5,7 @@ def run_tests
   test_filenames.each do |filename|
     require filename
   end
+  #require '/tests/test_Review_a_kata.rb'
 end
 
 if ENV['browser'] == 'chrome'

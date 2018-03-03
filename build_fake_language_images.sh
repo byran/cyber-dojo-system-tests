@@ -4,6 +4,8 @@
 # for languageFramework images that would otherwise be pulled
 # by the [cyber-dojo up] command.
 
+# $1 == name of cyber-dojo start-point
+
 images=(`./cyber-dojo start-point inspect $1 | tail -n +2 | awk '{ print $(NF-1) }'`)
 
 for image in "${images[@]}"
