@@ -152,7 +152,7 @@ class CyberDojoTest < Minitest::Test
 
   def create_a_default_kata(args = {})
     assert_page_loaded(pages.setup_default_start_point_show)
-    args[:display_name] ||= 'C (gcc), assert'
+    args[:display_name] ||= 'Ruby, MiniTest'
     args[:exercise] ||= '(Verbal)'
     select_display_name(args[:display_name])
     select_exercise(args[:exercise])

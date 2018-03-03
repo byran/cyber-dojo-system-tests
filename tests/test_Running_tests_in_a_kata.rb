@@ -9,11 +9,11 @@ class RunningTestsInAKataTest < CyberDojoTest
     run_kata_tests
     assert_traffic_lights('red')
 
-    edit_hiker_c("abc")
+    edit_hiker_rb('syntax-error')
     run_kata_tests
     assert_traffic_lights('red', 'amber')
 
-    edit_hiker_c("int answer() { return 42; }")
+    edit_hiker_rb('def answer; 42; end')
     run_kata_tests
     assert_traffic_lights('red', 'amber', 'green')
   end
@@ -23,7 +23,7 @@ class RunningTestsInAKataTest < CyberDojoTest
   def test_A_timeout_traffic_light_is_added_if_the_test_enters_an_infinite_loop
     individual_create_and_join_kata
 
-    edit_hiker_c("int answer() { while(1); return 42; }")
+    edit_hiker_rb('def answer; loop do; end; end')
     run_kata_tests
 
     assert_traffic_lights('timed_out')

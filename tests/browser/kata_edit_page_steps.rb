@@ -4,8 +4,12 @@ module CyberDojo
 
   class KataEditPageSteps < PageSteps
 
-    def edit_hiker_c(content)
-      select_file('hiker.c')
+    def edit_hiker_rb(content)
+      edit_file('hiker.rb', content)
+    end
+
+    def edit_file(filename, content)
+      select_file(filename)
 
       editor # This waits for the editor to appear
 
@@ -15,9 +19,10 @@ module CyberDojo
           .send_keys(:delete)
           .perform
 
-      driver_action.send_keys("#include \"hiker.h\"\n").perform
-      driver_action.send_keys("#{content}\n").perform
+      driver_action.send_keys(content+"\n").perform
     end
+
+    # - - - - - - - - - - - - - - - - - - - - - - -
 
     def run_kata_tests
       test_button.click
@@ -25,12 +30,12 @@ module CyberDojo
     end
 
     def run_a_failing_test
-      edit_hiker_c("int answer(void) { return 47; }")
+      edit_hiker_rb('def answer; 47; end')
       run_kata_tests
     end
 
     def run_a_passing_test
-      edit_hiker_c("int answer(void) { return 42; }")
+      edit_hiker_rb('def answer; 42; end')
       run_kata_tests
     end
 

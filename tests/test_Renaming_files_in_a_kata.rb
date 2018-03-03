@@ -1,15 +1,17 @@
 require_relative 'cyber_dojo_test'
 
-class RunningTestsInAKataTest < CyberDojoTest
+class RenamingFilesInAKataTest < CyberDojoTest
 
   def test_A_renamed_file_has_the_same_contents_as_the_original_file
-    individual_create_and_join_kata
-    edit_hiker_c("int answer() { return 42; }")
-    rename_file('hiker.c', 'passing.c')
+    id,avatar = individual_create_and_join_kata
+    edit_hiker_rb('def answer; 42; end')
+    rename_file('hiker.rb', 'passing.rb')
     run_kata_tests
-    # If the original hiker.c file contents were still present
-    # then the test would fail.
-    assert_equal('green', traffic_light(0).attribute('data-colour'))
+    # If the original hiker.rb file contents were still present
+    # then the test would pass because test_hiker.rb has
+    # require './hiker'
+    diagnostic = "id=#{id},avatar=#{avatar}"
+    assert_equal 'amber', traffic_light(0).attribute('data-colour'), diagnostic
   end
 
   # - - - - - - - - - - - - - - - - - - - - - - - - -

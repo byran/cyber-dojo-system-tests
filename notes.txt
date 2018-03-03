@@ -17,9 +17,3 @@ from selenium.webdriver.chrome.options import Options
 chrome_options = Options()
 chrome_options.add_argument('--dns-prefetch-disable')
 driver = Chrome(chrome_options=chrome_options)
-
-===========================================
-
-Print image-names in a start-point
-
-$ cyber-dojo start-point inspect languages | tail -n +2 | awk '{ print $(NF-1) }'
