@@ -25,13 +25,12 @@ script:
     - ./cyber-dojo start-point create small_custom --git=${URL}
     - ./build_fake_language_images.sh small_custom
 
-    # remove this one
+    # remove this dummy image...
     - docker rmi cyberdojofoundation/ruby_minitest
-    # so the real image gets pulled by this
+    # so the real image gets pulled by...
     - ./cyber-dojo up --languages=small_langs --custom=small_custom
 
-    #- ./run_firefox_and_chrome_tests.sh
-    - ./run_browser_tests.sh chrome
+    - ./run_firefox_and_chrome_tests.sh
 
     # Remove the cyber-dojo script so it does not get uploaded as an artifact
     - rm -f cyber-dojo
