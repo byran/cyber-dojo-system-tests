@@ -148,7 +148,7 @@ module CyberDojo
     end
 
     def quoted(text)
-      '"' + quoted + '"'
+      '"' + text + '"'
     end
 
     def page
