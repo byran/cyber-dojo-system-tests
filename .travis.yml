@@ -8,7 +8,7 @@ script:
     - curl -O https://raw.githubusercontent.com/cyber-dojo/commander/master/cyber-dojo
     - chmod +x cyber-dojo
 
-    - build the cyber-dojo/system-tests-environment image
+    # build the cyber-dojo/system-tests-environment image
     - cd system_test_environment
     - ./build.sh
     - cd ..
