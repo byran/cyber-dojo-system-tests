@@ -13,15 +13,14 @@ script:
     - ./build.sh
 
     - ./build_new_ux_images.sh
+    - ./build_fake_language_images.sh
 
     - URL=https://raw.githubusercontent.com/cyber-dojo/start-points-languages/master/languages_list_small
     - ./cyber-dojo start-point create small --list=${URL}
     - ./cyber-dojo up --languages=small
 
-    # pull image used in tests
-    - docker pull cyberdojofoundation/gcc_assert:latest
-
-    - ./run_firefox_and_chrome_tests.sh
+    #- ./run_firefox_and_chrome_tests.sh
+    - ./run_browser_tests.sh chrome
 
     # Remove the cyber-dojo script so it does not get uploaded as an artifact
     - rm -f cyber-dojo

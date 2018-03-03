@@ -18,3 +18,7 @@ chrome_options = Options()
 chrome_options.add_argument('--dns-prefetch-disable')
 driver = Chrome(chrome_options=chrome_options)
 
+==============================================================
+
+I'm also getting this error:
+/entry_point.sh: line 4: syntax error: bad substitution
