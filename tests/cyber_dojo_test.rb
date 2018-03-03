@@ -152,6 +152,8 @@ class CyberDojoTest < Minitest::Test
 
   def create_a_default_kata(args = {})
     assert_page_loaded(pages.setup_default_start_point_show)
+    # Use Ruby,MiniTest as it is Alpine based and so its
+    # image is small and gets pulled quickly on Travis.
     args[:display_name] ||= 'Ruby, MiniTest'
     args[:exercise] ||= '(Verbal)'
     select_display_name(args[:display_name])
