@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # - - - - - - - - - - - - - - - - - - - - - -
 
@@ -42,13 +43,14 @@ take_down_the_selenium_hub_and_nodes()
 
 # - - - - - - - - - - - - - - - - - - - - - -
 
+trap take_down_the_selenium_hub_and_nodes INT EXIT
+
 bring_up_selenium_hub_and_nodes
 wait_for_nodes_to_connect_to_the_hub
 run_tests_on chrome
 CHROME_RESULT=$?
 run_tests_on firefox
 FIREFOX_RESULT=$?
-take_down_the_selenium_hub_and_nodes
 
 if [ "$CHROME_RESULT" -ne "0" ]; then
     exit $CHROME_RESULT
