@@ -14,10 +14,7 @@ require_relative 'kata_group_page_steps'
 
 require_relative 'kata_edit_page'
 require_relative 'kata_edit_page_steps'
-#require_relative 'enter_show_page'
-#require_relative 'enter_show_page_steps'
-#require_relative 'enter_review_page'
-#require_relative 'enter_review_page_steps'
+
 require_relative 'dashboard_show_page'
 require_relative 'dashboard_show_page_steps'
 
@@ -33,11 +30,15 @@ module CyberDojo
     attr_reader :main
     attr_reader :individual
     attr_reader :group
+
     attr_reader :setup_default_start_point_show
     attr_reader :kata_individual
     attr_reader :kata_group
+
     attr_reader :kata_edit
+
     attr_reader :dashboard_show
+
     attr_reader :id_join_show
     attr_reader :id_rejoin_show
 

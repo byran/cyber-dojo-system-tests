@@ -62,18 +62,14 @@ class CyberDojoTest < Minitest::Test
 
   # - - - - - - - - - - - - - - - - - - - - - -
 
-  def individual_create_and_join_kata(
-    language = default_language,
-    framework = default_framework,
-    exercise = default_exercise
-  )
+  def individual_create_and_join_kata(args = {})
     navigate_home
     im_on_my_own_button.click
 
     assert_page_loaded(pages.individual)
     create_a_new_session_button.click
 
-    create_a_kata(language, framework, exercise)
+    create_a_kata(args)
 
     assert_page_loaded(pages.kata_individual)
     ok_button.click
@@ -86,18 +82,14 @@ class CyberDojoTest < Minitest::Test
 
   # - - - - - - - - - - - - - - - - - - - - - -
 
-  def group_create_kata(
-    language = default_language,
-    framework = default_framework,
-    exercise = default_exercise
-  )
+  def group_create_kata(args = {})
     navigate_home
     were_in_a_group_button.click
 
     assert_page_loaded(pages.group)
     create_a_new_session_button.click
 
-    create_a_kata(language, framework, exercise)
+    create_a_kata(args)
 
     assert_page_loaded(pages.kata_group)
     ok_button.click
@@ -109,15 +101,12 @@ class CyberDojoTest < Minitest::Test
 
   # - - - - - - - - - - - - - - - - - - - - - -
 
-  def create_a_kata(
-    language = default_language,
-    framework = default_framework,
-    exercise = default_exercise
-  )
+  def create_a_kata(args = {})
     assert_page_loaded(pages.setup_default_start_point_show)
-    display_name = [language,framework].join(', ')
-    select_display_name(display_name)
-    select_exercise(exercise)
+    args[:display_name] ||= 'C (gcc), assert'
+    args[:exercise] ||= '(Verbal)'
+    select_display_name(args[:display_name])
+    select_exercise(args[:exercise])
     ok_button.click
   end
 
@@ -132,20 +121,6 @@ class CyberDojoTest < Minitest::Test
 
   def assert_avatar(name)
     assert avatar_names.include?(name)
-  end
-
-  # - - - - - - - - - - - - - - - - - - - - -
-
-  def default_language
-    'C (gcc)'
-  end
-
-  def default_framework
-    'assert'
-  end
-
-  def default_exercise
-    '(Verbal)'
   end
 
   # - - - - - - - - - - - - - - - - - - - - -

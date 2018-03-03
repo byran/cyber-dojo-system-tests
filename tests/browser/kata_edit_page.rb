@@ -22,19 +22,19 @@ module CyberDojo
     end
 
     def test_button
-      @wait.until_with_message('Unable to find test button on "kata/edit" page') {
+      @wait.until_with_message(cant_find('button', 'test')) {
         @driver.find_element(:id => 'test-button')
       }
     end
 
     def rename_button
-      @wait.until_with_message('Unable to find rename button on "kata/edit" page') {
+      @wait.until_with_message(cant_find('button', 'rename')) {
         @driver.find_element(:id => 'rename')
       }
     end
 
     def spinner
-      @wait.until_with_message('Unable to find spinner on "kata/edit" page') {
+      @wait.until_with_message(cant_find('id', 'spinner')) {
         @driver.find_element(:id => 'test-spinner')
       }
     end
@@ -49,7 +49,7 @@ module CyberDojo
     end
 
     def traffic_light_count_element
-      @wait.until_with_message('Unable to find traffic light count on "kata/edit" page') {
+      @wait.until_with_message(cant_find('count', 'traffic light')) {
         @driver.find_element(:class => "traffic-light-count")
       }
     end
@@ -67,7 +67,7 @@ module CyberDojo
     end
 
     def traffic_light_elements_present?
-      div = @wait.until_with_message('Unable to find traffic lights div on "kata/edit" page') {
+      div = @wait.until_with_message(cant_find('div', 'traffic lights')) {
         @driver.find_element(:id => 'traffic-lights')
       }
       div.find_elements(:class => 'diff-traffic-light').count != 0
@@ -77,11 +77,12 @@ module CyberDojo
       file = @wait.until_with_message("Unable to find file '#{filename}'") {
         find_item_in_cyber_dojo_list('filename-list', filename)
       }
-      click_on_element_until_it_has_class("Unable to click on file '#{filename}'", file, 'selected')
+      diagnostic = "Unable to click on file '#{filename}'"
+      click_on_element_until_it_has_class(diagnostic, file, 'selected')
     end
 
     def editor
-      @wait.until_with_message('Unable to find editor on "kata/edit" page') {
+      @wait.until_with_message(cant_find('CodeMirror', 'editor')) {
         editor_divs = @driver.find_elements(:class => 'filename_div')
         editor = editor_divs.find { |e| e.displayed? }
         editor.find_element(:css => '.CodeMirror textarea') if !editor.nil?
@@ -89,20 +90,21 @@ module CyberDojo
     end
 
     def diff_dialog
-      @wait.until_with_message('Unable to find diff dialog on "kata/edit" page') {
+      @wait.until_with_message(cant_find('dialog', 'diff')) {
         @driver.find_element(:id => 'diff-content')
       }
     end
 
     def select_diff(filename)
-      file_diff = @wait.until_with_message("Unable to find file diff '#{filename}'") {
+      file_diff = @wait.until_with_message(cant_find('file diff', filename)) {
         find_item_in_cyber_dojo_list('diff-filenames', filename)
       }
-      click_on_element_until_it_has_class("Unable to click on file diff '#{filename}'", file_diff, 'selected')
+      diagnostic = "Unable to click on file diff '#{filename}'"
+      click_on_element_until_it_has_class(diagnostic, file_diff, 'selected')
     end
 
     def diff_view
-      diff_divs = @wait.until_with_message('Unable to find diff view on "kata/edit" page') {
+      diff_divs = @wait.until_with_message(cant_find('view', 'diff')) {
         @driver.find_element(:id => 'diff-content').find_elements(:class => 'filename_div')
       }
       diff = diff_divs.find { |d| d.displayed? }
@@ -118,13 +120,13 @@ module CyberDojo
     end
 
     def rename_dialog_filename
-      @wait.until_with_message('Unable to find text input for renaming file on "kata/edit" page') {
+      @wait.until_with_message(cant_find('text input', 'renaming file')) {
         @driver.find_element(:id => 'rename-filename')
       }
     end
 
     def rename_dialog_ok_button
-      @wait.until_with_message('Unable to find ok button when renaming a file on "kata/edit" page') {
+      @wait.until_with_message(cant_find('ok button', 'renaming a file')) {
         @driver.find_element(:id => 'file-ok')
       }
     end
@@ -132,13 +134,25 @@ module CyberDojo
     private
 
     def traffic_light_elements
-      @wait.until_with_message('Unable to find traffic lights on "kata/edit" page') {
+      @wait.until_with_message(cant_find('class', 'traffic lights')) {
         @driver.find_element(:id => 'traffic-lights').find_elements(:class => 'diff-traffic-light')
       }
     end
 
     def url_to_id_and_avatar
       /([0-9A-F]*)\?avatar\=([a-z]*)/.match(@browser.page_url[2])
+    end
+
+    def cant_find(type, name)
+      "Cant find #{type} #{quoted(name)} on #{page} page"
+    end
+
+    def quoted(text)
+      '"' + quoted + '"'
+    end
+
+    def page
+      quoted('kata/edit')
     end
 
   end # class

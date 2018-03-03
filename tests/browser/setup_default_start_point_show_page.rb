@@ -39,15 +39,15 @@ module CyberDojo
     private
 
     def page
-      'setup_default_start_point/show'
+      quoted('setup_default_start_point/show')
     end
 
     def cant_find(type, name)
-      "Cant find #{type} #{quoted(name)} on #{quoted(page)} page"
+      "Cant find #{type} #{quoted(name)} on #{page} page"
     end
 
     def cant_click(type, name)
-      "Cant click on #{type} #{quoted(name)} on #{quoted(page)} page"
+      "Cant click on #{type} #{quoted(name)} on #{page} page"
     end
 
     def quoted(text)
