@@ -1,8 +1,8 @@
-require_relative 'page_steps'
+require_relative 'page_operations'
 
 module CyberDojo
 
-  class IdJoinShowPageSteps < PageSteps
+  class IdJoinShowPageOperations < PageOperations
 
     def enter_kata_id(id)
       id_text_box.send_keys(id)

@@ -26,8 +26,8 @@ class CyberDojoTest < Minitest::Test
   # - - - - - - - - - - - - - - - - - - - - - -
 
   def method_missing(sym, *args, &block)
-    if @browser.steps.respond_to?(sym)
-      @browser.steps.send(sym, *args, &block)
+    if @browser.page_operations.respond_to?(sym)
+      @browser.page_operations.send(sym, *args, &block)
     else
       super(sym, *args, &block)
     end
@@ -36,7 +36,7 @@ class CyberDojoTest < Minitest::Test
   # - - - - - - - - - - - - - - - - - - - - - -
 
   def respond_to?(method, include_private = false)
-    super || @browser.steps.respond_to?(method, include_private)
+    super || @browser.page_operations.respond_to?(method, include_private)
   end
 
   # - - - - - - - - - - - - - - - - - - - - - -

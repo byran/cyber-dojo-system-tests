@@ -111,6 +111,10 @@ module CyberDojo
       url.split("/")
     end
 
+    def full_url
+      @driver.current_url
+    end
+
     def page
       current_url = page_url
       @pages.all_pages.each do |p|
@@ -119,10 +123,10 @@ module CyberDojo
       nil
     end
 
-    def steps
+    def page_operations
       current_url = page_url
       @pages.all_pages.each do |p|
-        return p[:steps] if beginning_of_first_array_matches_beginning_of_second_array(p[:url], current_url)
+        return p[:operations] if beginning_of_first_array_matches_beginning_of_second_array(p[:url], current_url)
       end
       nil
     end

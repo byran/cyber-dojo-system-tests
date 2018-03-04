@@ -1,8 +1,8 @@
-require_relative 'page_steps'
+require_relative 'page_operations'
 
 module CyberDojo
 
-  class DashboardShowPageSteps < PageSteps
+  class DashboardShowPageOperations < PageOperations
 
     def toggle_auto_refresh
       checkbox = auto_refresh_checkbox

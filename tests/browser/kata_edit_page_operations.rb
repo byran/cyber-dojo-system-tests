@@ -1,8 +1,8 @@
-require_relative 'page_steps'
+require_relative 'page_operations'
 
 module CyberDojo
 
-  class KataEditPageSteps < PageSteps
+  class KataEditPageOperations < PageOperations
 
     def edit_hiker_rb(content)
       edit_file('hiker.rb', content)
