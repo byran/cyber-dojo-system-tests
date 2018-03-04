@@ -34,7 +34,7 @@ Then(/^the diff dialog is shown$/) do
   refute_nil(diff_dialog, 'Could not find the diff dialog')
 end
 
-And(/^the diff for the "([^"]*)" file is$/) do |fileName, expected|
+Then(/^the diff for the "([^"]*)" file is$/) do |fileName, expected|
   select_diff(fileName)
 
   assert_equal(expected, diff_view.text)
