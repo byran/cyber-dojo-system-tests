@@ -42,6 +42,24 @@ Then(/^I am viewing a dashboard for the kata I've just created$/) do
          "Dashboard is showing a different kata id to the kata created")
 end
 
+Given(/^someone else has created an individual kata$/) do
+  step 'I navigate to the home page'
+  step "I click the \"I'm on my own\" button"
+  step 'I click the "create new session" button'
+  step 'I select the "Ruby, MiniTest" language and unit test framework'
+  step 'I select the "(Verbal)" exercise'
+  step 'I confirm my language/framework/exercise selection'
+  step 'I acknowledge my session id'
+  step 'I switch to the editor window'
+  step "I am in the kata I've just created"
+
+  @context['individual_short_kata_id'] = @context['short_kata_id']
+  @context['individual_avatar'] = avatar
+
+  step 'I open a new browser'
+end
+
+
 Given(/^the session leader has created a group kata$/) do
   step 'I navigate to the home page'
   step "I click the \"We're in a group\" button"
