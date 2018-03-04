@@ -13,6 +13,7 @@ require_relative 'kata_group_page'
 require_relative 'kata_group_page_operations'
 
 require_relative 'kata_edit_page'
+require_relative 'kata_edit_page_assertions'
 require_relative 'kata_edit_page_operations'
 
 require_relative 'id_join_show_page'
@@ -99,7 +100,7 @@ module CyberDojo
       add_page([ 'id_review', 'show' ], @id_review_show, @id_review_show_operations)
 
       @kata_edit = KataEditPage.new(driver, browser, wait)
-      @kata_edit_assertions = PageAssertions.new(browser, @kata_edit, assertions)
+      @kata_edit_assertions = KataEditPageAssertions.new(browser, @kata_edit, assertions)
       @kata_edit_operations = KataEditPageOperations.new(@kata_edit, @kata_edit_assertions, self)
       add_page([ 'kata', 'edit' ], @kata_edit, @kata_edit_operations)
 
