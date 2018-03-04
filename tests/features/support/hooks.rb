@@ -1,15 +1,3 @@
-require_relative '../../browser/browser'
-require_relative 'scenario'
-require_relative 'common_operations'
-
-Before do |scenario|
-  @browser = CyberDojo::Browser.new(self)
-
-  extend(CyberDojo::Scenario)
-  extend(CyberDojo::CommonOperations)
-end
-
-
 After do |scenario|
   if scenario.failed?
     begin

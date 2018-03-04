@@ -1,17 +1,6 @@
-require 'minitest/spec'
-
-class MinitestWorld
-  include Minitest::Assertions
-  attr_accessor :assertions
-
-  def initialize
-    self.assertions = 0
-
-    @context = {}
-  end
-end
+require_relative 'cyberdojo_scenario'
 
 World do
-  MinitestWorld.new
+  CyberDojo::Scenario.new
 end
 
