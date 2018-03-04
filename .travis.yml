@@ -21,7 +21,7 @@ script:
     - ./cyber-dojo start-point create small_langs --list=${URL}
     - ./build_fake_language_images.sh small_langs
 
-    - URL=https://raw.githubusercontent.com/cyber-dojo/start-points-custom
+    - URL=https://github.com/cyber-dojo/start-points-custom
     - ./cyber-dojo start-point create small_custom --git=${URL}
     - ./build_fake_language_images.sh small_custom
 
