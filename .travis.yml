@@ -8,14 +8,16 @@ script:
     - curl -O https://raw.githubusercontent.com/cyber-dojo/commander/master/cyber-dojo
     - chmod +x cyber-dojo
 
-    # build the cyber-dojo/system-tests-environment image?
+    # no need to build cyber-dojo/system-tests-environment image stable
+    # unless its source has changed...
+
     #- cd system_test_environment
     #- ./build.sh
     #- cd ..
 
     - ./build.sh
 
-    - ./build_new_ux_images.sh
+    #- ./build_new_ux_images.sh
 
     - URL=https://raw.githubusercontent.com/cyber-dojo/start-points-languages/master/languages_list_small
     - ./cyber-dojo start-point create small_langs --list=${URL}
@@ -36,6 +38,6 @@ script:
     - rm -f cyber-dojo
 
     # Remove the new-ux repos so they dont get uploaded either
-    - rm -rf commander
-    - rm -rf starter
-    - rm -rf web
+    #- rm -rf commander
+    #- rm -rf starter
+    #- rm -rf web
