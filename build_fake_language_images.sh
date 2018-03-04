@@ -6,7 +6,7 @@
 
 # $1 == name of cyber-dojo start-point
 
-images=(`./cyber-dojo start-point inspect $1 | tail -n +2 | awk '{ print $(NF-1) }'`)
+images=(`./cyber-dojo start-point inspect $1 | tail -n +2 | awk '{ print $(NF-1) }' | sort | uniq`)
 
 for image in "${images[@]}"
 do
