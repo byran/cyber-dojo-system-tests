@@ -5,10 +5,7 @@ addons:
   artifacts: true
 
 script:
-    - curl -O https://raw.githubusercontent.com/cyber-dojo/commander/master/cyber-dojo
-    - chmod +x cyber-dojo
-
-    # no need to build cyber-dojo/system-tests-environment image stable
+    # no need to build cyber-dojo/system-tests-environment
     # unless its source has changed...
 
     #- cd system_test_environment
@@ -17,14 +14,15 @@ script:
 
     - ./build.sh
 
-    #- ./build_new_ux_images.sh
+    - curl -O https://raw.githubusercontent.com/cyber-dojo/commander/master/cyber-dojo
+    - chmod +x cyber-dojo
 
-    - URL=https://raw.githubusercontent.com/cyber-dojo/start-points-languages/master/languages_list_small
-    - ./cyber-dojo start-point create small_langs --list=${URL}
+    - LANG_URL=https://raw.githubusercontent.com/cyber-dojo/start-points-languages/master/languages_list_small
+    - ./cyber-dojo start-point create small_langs --list=${LANG_URL}
     - ./build_fake_language_images.sh small_langs
 
-    - URL=https://github.com/cyber-dojo/start-points-custom
-    - ./cyber-dojo start-point create small_custom --git=${URL}
+    - CUSTOM_URL=https://github.com/cyber-dojo/start-points-custom
+    - ./cyber-dojo start-point create small_custom --git=${CUSTOM_URL}
     - ./build_fake_language_images.sh small_custom
 
     # remove this dummy image...
@@ -36,8 +34,3 @@ script:
 
     # Remove the cyber-dojo script so it does not get uploaded as an artifact
     - rm -f cyber-dojo
-
-    # Remove the new-ux repos so they dont get uploaded either
-    #- rm -rf commander
-    #- rm -rf starter
-    #- rm -rf web
