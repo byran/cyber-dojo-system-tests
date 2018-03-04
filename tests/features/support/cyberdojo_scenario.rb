@@ -1,4 +1,5 @@
 require_relative 'minitest_assertions'
+require_relative 'cyberdojo_assertions'
 require_relative 'common_operations'
 require_relative '../../browser/browser'
 
@@ -11,6 +12,7 @@ module CyberDojo
     def initialize
       @context = {}
       @assertions = MinitestAssertions.new
+      @assertions.extend(CyberDojo::Assertions)
       @browser = CyberDojo::Browser.new(@assertions)
 
       extend(CyberDojo::CommonOperations)

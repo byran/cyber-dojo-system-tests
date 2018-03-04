@@ -1,14 +1,3 @@
-
-When(/^I click the "I'm on my own" button$/) do
-  im_on_my_own_button.click
-  assert_page_loaded(pages.individual_show)
-end
-
-When(/^I click the "We're in a group" button$/) do
-  were_in_a_group_button.click
-  assert_page_loaded(pages.group_show)
-end
-
 When(/^I click the "create new session" button$/) do
   create_a_new_session_button.click
 end
@@ -40,10 +29,6 @@ When(/^I acknowledge the groups session id$/) do
   ok_button.click
 end
 
-When(/^I switch to the editor window$/) do
-  switch_to_editor_window
-end
-
 Then(/^I am in the kata I've just created$/) do
   assert_page_loaded(pages.kata_edit)
   assert_equal(@context['short_kata_id'], kata_id[0..5],
@@ -55,4 +40,18 @@ Then(/^I am viewing a dashboard for the kata I've just created$/) do
   assert_page_loaded(pages.dashboard_show)
   assert_equal(@context['short_kata_id'], kata_id[0..5],
          "Dashboard is showing a different kata id to the kata created")
+end
+
+Given(/^the session leader has created a group kata$/) do
+  step 'I navigate to the home page'
+  step "I click the \"We're in a group\" button"
+  step 'I click the "create new session" button'
+  step 'I select the "Ruby, MiniTest" language and unit test framework'
+  step 'I select the "(Verbal)" exercise'
+  step 'I confirm my language/framework/exercise selection'
+  step 'I acknowledge the groups session id'
+  step "I am viewing a dashboard for the kata I've just created"
+  step 'I open a new browser'
+
+  @context['group_short_kata_id'] = @context['short_kata_id']
 end
