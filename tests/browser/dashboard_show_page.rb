@@ -21,6 +21,10 @@ module CyberDojo
       end
     end
 
+    def kata_id
+      @browser.page_url[2]
+    end
+
     def auto_refresh_checkbox
       @wait.until_with_message('Unable to find auto refresh checkbox on "dashboard/show" page') {
         @driver.find_element(:id => 'auto-refresh-container').find_element(:tag_name => 'label')
