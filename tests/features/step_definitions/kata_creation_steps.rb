@@ -35,14 +35,13 @@ Then(/^I am in the kata I've just created$/) do
                "Kata editor is showing a different kata id to the kata created")
 end
 
-
 Then(/^I am viewing a dashboard for the kata I've just created$/) do
   assert_page_loaded(pages.dashboard_show)
   assert_equal(@context['short_kata_id'], kata_id[0..5],
          "Dashboard is showing a different kata id to the kata created")
 end
 
-Given(/^someone else has created an individual kata$/) do
+Given(/^I have created an individual kata$/) do
   step 'I navigate to the home page'
   step "I click the \"I'm on my own\" button"
   step 'I click the "create new session" button'
@@ -55,7 +54,10 @@ Given(/^someone else has created an individual kata$/) do
 
   @context['individual_short_kata_id'] = @context['short_kata_id']
   @context['individual_avatar'] = avatar
+end
 
+Given(/^someone else has created an individual kata$/) do
+  step 'I have previously created an individual kata'
   step 'I open a new browser'
 end
 
