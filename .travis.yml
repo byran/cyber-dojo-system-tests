@@ -9,9 +9,9 @@ script:
     - chmod +x cyber-dojo
 
     # build the cyber-dojo/system-tests-environment image?
-    #- cd system_test_environment
-    #- ./build.sh
-    #- cd ..
+    - cd system_test_environment
+    - ./build.sh
+    - cd ..
 
     - ./build.sh
 
