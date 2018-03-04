@@ -1,4 +1,5 @@
 require_relative 'minitest_assertions'
+require_relative 'common_operations'
 require_relative '../../browser/browser'
 
 module CyberDojo
@@ -11,6 +12,8 @@ module CyberDojo
       @context = {}
       @assertions = MinitestAssertions.new
       @browser = CyberDojo::Browser.new(@assertions)
+
+      extend(CyberDojo::CommonOperations)
     end
 
     def method_missing(sym, *args, &block)
@@ -27,14 +30,6 @@ module CyberDojo
       super ||
           assertions.respond_to?(method, include_private) ||
           browser.page_operations.respond_to?(method, include_private)
-    end
-
-    def debug_print_timing(message)
-      browser.debug_print_timing(message)
-    end
-
-    def pages
-      browser.pages
     end
 
   end

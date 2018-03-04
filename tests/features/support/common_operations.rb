@@ -1,8 +1,18 @@
 module CyberDojo
   module CommonOperations
 
+    def debug_print_timing(message)
+      browser.debug_print_timing(message)
+    end
+
+    def pages
+      browser.pages
+    end
+
     def wait_for_button_to_be_enabled(button)
-      assert(@browser.wait.until_or_false{ true if button.enabled? }, "'#{button.text}' button was not enabled")
+      assert(@browser.wait.until_or_false{
+        true if button.enabled?
+      }, "'#{button.text}' button was not enabled")
     end
 
     def switch_to_editor_window(index = 1)
@@ -15,7 +25,7 @@ module CyberDojo
 
       assert_page_loaded(pages.main)
     end
-
+=begin
     def create_and_enter_kata(language = "C (gcc)", framework = "assert", exercise = "(Verbal)")
       navigate_home
 
@@ -43,6 +53,6 @@ module CyberDojo
       @browser.switch_to_window_with_title_starting_with('home')
       assert_page_loaded(pages.main)
     end
-
+=end
   end
 end
