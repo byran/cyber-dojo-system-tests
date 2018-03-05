@@ -1,0 +1,6 @@
+source "https://rubygems.org"
+
+gem 'selenium-webdriver', '3.0.1'
+gem 'minitest', '5.8.4'
+gem 'cucumber', '2.4.0'
+gem 'simplecov', '0.15.0'

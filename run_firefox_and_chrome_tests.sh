@@ -8,7 +8,9 @@ bring_up_selenium_hub_and_nodes()
   docker-compose \
     --file=cyber_dojo_selenium/docker-compose.yml \
     up \
-    -d
+    -d \
+    --scale node_participant_chrome=3 \
+    --scale node_participant_firefox=3
 }
 
 # - - - - - - - - - - - - - - - - - - - - - -

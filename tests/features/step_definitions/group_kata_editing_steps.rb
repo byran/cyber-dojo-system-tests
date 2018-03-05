@@ -1,6 +1,6 @@
 And(/^(\d+) participants join the group session$/) do |numberOfParticipants|
   (1..numberOfParticipants.to_i).each do |i|
-    @participant_browser[i] = CyberDojo::Browser.new(assertions)
+    @participant_browser[i] = CyberDojo::Browser.new(scenario_assertions)
     @browser = @participant_browser[i]
     step 'I join the group kata'
     @context['avatar_' + i.to_s] = avatar
