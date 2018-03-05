@@ -8,5 +8,10 @@ After do |scenario|
       print "Save screenshot as '#{scenario.name}'\n"
     end
   end
-  @browser.close
+
+  main_browser.close
+
+  for participant in @participant_browser
+    participant[1].close
+  end
 end

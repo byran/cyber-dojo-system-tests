@@ -24,6 +24,20 @@ services:
     ports:
       - "5900:5900"
 
+  node_participant_firefox:
+    image: selenium/node-firefox:2.53.0
+    restart: on-failure
+    links:
+      - "hub"
+    environment:
+      - "HUB_PORT_4444_TCP_ADDR=hub"
+      - "HUB_PORT_4444_TCP_PORT=4444"
+      - "SCREEN_WIDTH=1920"
+      - "SCREEN_HEIGHT=1080"
+    networks:
+      - "default"
+      - "cyber-dojo"
+
   node_chrome:
     image: selenium/node-chrome:2.53.0
     container_name: cyber-dojo-selenium-node-chrome
@@ -40,6 +54,21 @@ services:
       - "cyber-dojo"
     ports:
       - "5901:5900"
+
+  node_participant_chrome:
+    image: selenium/node-chrome:2.53.0
+    restart: on-failure
+    links:
+      - "hub"
+    environment:
+      - "HUB_PORT_4444_TCP_ADDR=hub"
+      - "HUB_PORT_4444_TCP_PORT=4444"
+      - "SCREEN_WIDTH=1920"
+      - "SCREEN_HEIGHT=1080"
+    networks:
+      - "default"
+      - "cyber-dojo"
+
 
 networks:
   cyber-dojo:

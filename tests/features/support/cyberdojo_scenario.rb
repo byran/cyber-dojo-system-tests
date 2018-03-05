@@ -8,12 +8,15 @@ module CyberDojo
 
     attr_reader :assertions
     attr_reader :browser
+    attr_reader :main_browser
 
     def initialize
       @context = {}
       @assertions = MinitestAssertions.new
       @assertions.extend(CyberDojo::Assertions)
       @browser = CyberDojo::Browser.new(@assertions)
+      @main_browser = @browser
+      @participant_browser = {}
 
       extend(CyberDojo::CommonOperations)
     end

@@ -57,12 +57,12 @@ Given(/^I have created an individual kata$/) do
 end
 
 Given(/^someone else has created an individual kata$/) do
-  step 'I have previously created an individual kata'
+  step 'I have created an individual kata'
   step 'I open a new browser'
 end
 
 
-Given(/^the session leader has created a group kata$/) do
+Given(/^the session leader has created a group session$/) do
   step 'I navigate to the home page'
   step "I click the \"We're in a group\" button"
   step 'I click the "create new session" button'
@@ -71,7 +71,6 @@ Given(/^the session leader has created a group kata$/) do
   step 'I confirm my language/framework/exercise selection'
   step 'I acknowledge the groups session id'
   step "I am viewing a dashboard for the kata I've just created"
-  step 'I open a new browser'
 
   @context['group_short_kata_id'] = @context['short_kata_id']
 end

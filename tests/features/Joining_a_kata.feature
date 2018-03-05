@@ -1,7 +1,8 @@
 Feature: Joining a kata
 
   Scenario: Joining a group kata
-    Given the session leader has created a group kata
+    Given the session leader has created a group session
+    And I open a new browser
     When I navigate to the home page
     And I click the "We're in a group" button
     And I click the "join" button
