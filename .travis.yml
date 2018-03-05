@@ -8,9 +8,10 @@ script:
     # no need to build cyber-dojo/system-tests-environment
     # unless its source has changed...
 
-    #- cd system_test_environment
-    #- ./build.sh
-    #- cd ..
+    # temporarily re-enable build until the new image is pushed
+    - cd system_test_environment
+    - ./build.sh
+    - cd ..
 
     - ./build.sh
 
