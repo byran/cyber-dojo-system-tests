@@ -32,3 +32,13 @@ end
 Then(/^I have been assigned a valid avatar$/) do
   assert_avatar(avatar)
 end
+
+When(/^I join the group kata$/) do
+  step 'I navigate to the home page'
+  step "I click the \"We're in a group\" button"
+  step "I click the \"join\" button"
+  step "I enter and confirm the group kata's id"
+  step 'I switch to the editor window'
+  step 'I am in the group kata'
+  step 'I have been assigned a valid avatar'
+end

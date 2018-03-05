@@ -24,6 +24,7 @@ require_relative 'id_review_show_page'
 require_relative 'id_review_show_page_operations'
 
 require_relative 'dashboard_show_page'
+require_relative 'dashboard_show_page_assertions'
 require_relative 'dashboard_show_page_operations'
 
 require_relative 'page_assertions'
@@ -105,7 +106,7 @@ module CyberDojo
       add_page([ 'kata', 'edit' ], @kata_edit, @kata_edit_operations)
 
       @dashboard_show = DashboardShowPage.new(driver, browser, wait)
-      @dashboard_show_assertions = PageAssertions.new(browser, @dashboard_show, assertions)
+      @dashboard_show_assertions = DashboardShowPageAssertions.new(browser, @dashboard_show, assertions)
       @dashboard_show_operations = DashboardShowPageOperations.new(@dashboard_show, @dashboard_show_assertions, self)
       add_page([ 'dashboard', 'show' ], @dashboard_show, @dashboard_show_operations)
     end

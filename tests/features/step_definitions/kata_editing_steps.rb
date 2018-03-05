@@ -15,6 +15,16 @@ When(/^I edit "([^"]*)" to be$/) do |fileName, source_code|
   edit_file(fileName, source_code)
 end
 
+When(/^I run a failing test$/) do
+  edit_file('hiker.rb', 'def answer; 49; end')
+  run_kata_tests
+end
+
+When(/^I run a passing test$/) do
+  edit_file('hiker.rb', 'def answer; 42; end')
+  run_kata_tests
+end
+
 When(/^I rename "([^"]*)" to "([^"]*)"$/) do |originalFileName, newFileName|
   select_file(originalFileName)
 
