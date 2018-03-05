@@ -16,6 +16,7 @@ Feature: Reviewing a kata with the dashboard
     Then the dashboard traffic lights for the 1st participant are "red,green"
     And the dashboard traffic lights for the 2nd participant are "red"
 
+  @multiple-participant
   Scenario: The session leaders dashboard is updated when participants run tests
     Given the session leader has created a group session
     And 2 participants join the group session
