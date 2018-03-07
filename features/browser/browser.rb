@@ -88,11 +88,13 @@ module CyberDojo
     end
 
     def switch_to_window_with_title_starting_with(title)
-      for handle in @driver.window_handles
-        @driver.switch_to.window(handle)
-        return true if @driver.title.start_with?(title)
-      end
-      false
+      @wait.until_with_message("Unable to switch to window '#{title}'") {
+        for handle in @driver.window_handles
+          @driver.switch_to.window(handle)
+          return true if @driver.title.start_with?(title)
+        end
+        false
+      }
     end
 
     def save_screenshot(filename)
