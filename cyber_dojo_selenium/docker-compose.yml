@@ -2,13 +2,13 @@ version: '2'
 
 services:
   hub:
-    image: selenium/hub:2.53.0
+    image: selenium/hub
     container_name: cyber-dojo-selenium-hub
     ports:
       - "4444:4444"
 
   node_firefox:
-    image: selenium/node-firefox:2.53.0
+    image: selenium/node-firefox
     container_name: cyber-dojo-selenium-node-firefox
     restart: on-failure
     links:
@@ -25,7 +25,7 @@ services:
       - "5900:5900"
 
   node_participant_firefox:
-    image: selenium/node-firefox:2.53.0
+    image: selenium/node-firefox
     restart: on-failure
     links:
       - "hub"
@@ -39,7 +39,7 @@ services:
       - "cyber-dojo"
 
   node_chrome:
-    image: selenium/node-chrome:2.53.0
+    image: selenium/node-chrome
     container_name: cyber-dojo-selenium-node-chrome
     restart: on-failure
     links:
@@ -56,7 +56,7 @@ services:
       - "5901:5900"
 
   node_participant_chrome:
-    image: selenium/node-chrome:2.53.0
+    image: selenium/node-chrome
     restart: on-failure
     links:
       - "hub"
