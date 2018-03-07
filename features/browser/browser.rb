@@ -102,7 +102,7 @@ module CyberDojo
       # TODO: Find a better way to complete actions before taking a screen shot
       sleep 1
       time_string = DateTime.now.strftime('%Y-%m-%d-%H-%M-%S')
-      @driver.save_screenshot("artifacts/#{time_string}-#{ENV['browser']}-#{filename}.png")
+      @driver.save_screenshot("features/artifacts/#{time_string}-#{ENV['browser']}-#{filename}.png")
     end
 
     def page_url
