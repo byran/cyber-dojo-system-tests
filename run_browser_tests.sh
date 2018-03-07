@@ -32,7 +32,7 @@ run_tests_for()
     --tty \
     --rm \
     --network cyberdojoselenium_default \
-    --volume `pwd`/features:/features \
+    --volume `pwd`/features:/tests/features \
     cyberdojo/system-test-environment
 }
 

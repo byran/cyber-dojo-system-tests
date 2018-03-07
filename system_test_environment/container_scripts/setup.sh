@@ -13,3 +13,5 @@ gem install simplecov
 
 # remove packages to keep the image small
 apk del build-base libffi-dev
+
+mkdir -p /tests

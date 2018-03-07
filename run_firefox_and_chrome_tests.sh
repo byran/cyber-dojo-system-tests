@@ -29,7 +29,7 @@ run_tests_on()
     --tty \
     --rm \
     --network cyberdojoselenium_default \
-    --volume `pwd`/features/artifacts:/features/artifacts \
+    --volume `pwd`/features/artifacts:/tests/features/artifacts \
     cyberdojo/system-tests
 }
 
