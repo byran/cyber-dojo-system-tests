@@ -140,7 +140,7 @@ module CyberDojo
     end
 
     def url_to_id_and_avatar
-      /([0-9A-F]*)\?avatar\=([a-z]*)/.match(@browser.page_url[2])
+      /([0-9A-Za-z]*)\?avatar\=([a-z]*)/.match(@browser.page_url[2])
     end
 
     def cant_find(type, name)
