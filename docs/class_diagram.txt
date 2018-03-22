@@ -1,0 +1,68 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+hide class circle
+hide class fields
+hide interface fields
+
+set namespaceSeparator ::
+
+namespace CyberDojo {
+
+    class Scenario {
+    }
+    Scenario --> Assertions
+    Scenario --> Browser
+
+    class Assertions {
+    }
+
+    class Browser {
+    }
+    Browser --> Pages
+    Browser --> Selenium::WebDriver
+
+    class Pages {
+    }
+    Pages --> MainPageOperations
+
+    class Page {
+        + load_completed?() : bool
+    }
+
+    class PageOperations {
+    }
+    PageOperations --> Page
+    PageOperations --> PageAssertions
+
+    class PageAssertions {
+    }
+    PageAssertions --> Page
+    PageAssertions --> Assertions
+
+
+    class MainPage {
+    }
+    Page <|-down- MainPage
+
+    class MainPageOperations {
+    }
+    PageOperations <|-right- MainPageOperations
+    MainPageOperations --> MainPage
+    MainPageOperations --> MainPageAssertions
+
+    class MainPageAssertions {
+    }
+    PageAssertions <|-right- MainPageAssertions
+    MainPageAssertions --> MainPage
+
+}
+
+namespace Selenium {
+    class WebDriver
+    hide WebDriver fields
+    hide WebDriver methods
+}
+
+@enduml
