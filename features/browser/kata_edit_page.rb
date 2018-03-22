@@ -89,6 +89,21 @@ module CyberDojo
       }
     end
 
+    def test_output
+      select_file('output')
+      @wait.until_with_message(cant_find('CodeMirror', 'editor')) {
+        editor_divs = @driver.find_elements(:class => 'filename_div')
+        editor = editor_divs.find { |e| e.displayed? }
+        if !editor.nil?
+          codeMirror_div = editor.find_element(:css => '.CodeMirror')
+          output = @driver.execute_script('return arguments[0].CodeMirror.getValue();', codeMirror_div)
+          output.split
+        else
+          nil
+        end
+      }
+    end
+
     def diff_dialog
       @wait.until_with_message(cant_find('dialog', 'diff')) {
         @driver.find_element(:id => 'diff-content')

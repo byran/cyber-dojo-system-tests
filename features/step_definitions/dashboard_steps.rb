@@ -21,6 +21,12 @@ Then(/^the dashboard traffic lights for the (\d+)(st|nd|rd|th) participant are "
   assert_traffic_lights(@context['avatar_' + index.to_s], lights.split(','))
 end
 
+Then(/^the dashboard traffic lights for the only participant are "([^"]*)"$/) do |lights|
+  assert_page_loaded(pages.dashboard_show)
+  assert_traffic_lights(@context['avatar_1'], lights.split(','))
+  refute(@context.include?('avatar_2'))
+end
+
 Then(/^the session leader's dashboard traffic lights for participant (\d+) are "([^"]*)"$/) do |index, lights|
   assert_page_loaded(pages.dashboard_show)
   toggle_auto_refresh

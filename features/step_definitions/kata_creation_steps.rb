@@ -41,7 +41,7 @@ Then(/^I am viewing a dashboard for the kata I've just created$/) do
          "Dashboard is showing a different kata id to the kata created")
 end
 
-Given(/^I have created an individual kata$/) do
+Given(/^I have created an individual Ruby kata$/) do
   step 'I navigate to the home page'
   step "I click the \"I'm on my own\" button"
   step 'I click the "create new session" button'
@@ -54,6 +54,10 @@ Given(/^I have created an individual kata$/) do
 
   @context['individual_short_kata_id'] = @context['short_kata_id']
   @context['individual_avatar'] = avatar
+end
+
+Given(/^I have created an individual kata$/) do
+  step 'I have created an individual Ruby kata'
 end
 
 Given(/^someone else has created an individual kata$/) do

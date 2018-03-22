@@ -49,3 +49,14 @@ Then(/^the diff for the "([^"]*)" file is$/) do |fileName, expected|
 
   assert_equal(expected, diff_view.text)
 end
+
+
+Then(/^there is a "([^"]*)" line in the test output$/) do |line|
+  assert_page_loaded(pages.kata_edit)
+  assert(test_output.include?(line))
+end
+
+Then(/^there is no "([^"]*)" line in the test output$/) do |line|
+  assert_page_loaded(pages.kata_edit)
+  refute(test_output.include?(line))
+end

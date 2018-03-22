@@ -6,5 +6,5 @@ Feature: Rejoin a kata
     When I navigate to the individual rejoin page
     And I enter my previous kata id
     And I select my previous avatar
-    And I switch to the editor window
+    And I switch to my new editor window
     Then I am in my previous kata as my previous avatar
