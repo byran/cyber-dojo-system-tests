@@ -11,7 +11,9 @@ bring_up_selenium_hub_and_nodes()
   --file=cyber_dojo_selenium/docker-compose.yml \
   up \
   -d \
-  node_${1}
+  --scale node_participant_${1}=3 \
+  node_${1} \
+  node_participant_${1}
 }
 
 # - - - - - - - - - - - - - - - - - -
@@ -30,7 +32,7 @@ run_tests_for()
     --tty \
     --rm \
     --network cyberdojoselenium_default \
-    --volume `pwd`/tests:/tests \
+    --volume `pwd`/features:/tests/features \
     cyberdojo/system-test-environment
 }
 

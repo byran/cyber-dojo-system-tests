@@ -8,7 +8,9 @@ bring_up_selenium_hub_and_nodes()
   docker-compose \
     --file=cyber_dojo_selenium/docker-compose.yml \
     up \
-    -d
+    -d \
+    --scale node_participant_chrome=3 \
+    --scale node_participant_firefox=3
 }
 
 # - - - - - - - - - - - - - - - - - - - - - -
@@ -27,7 +29,7 @@ run_tests_on()
     --tty \
     --rm \
     --network cyberdojoselenium_default \
-    --volume `pwd`/tests/artifacts:/tests/artifacts \
+    --volume `pwd`/features/artifacts:/tests/features/artifacts \
     cyberdojo/system-tests
 }
 

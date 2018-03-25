@@ -1,6 +1,6 @@
 FROM  cyberdojo/system-test-environment
 LABEL maintainer=byran@adgico.co.uk
 
-COPY tests/ /tests/
+COPY features/ /tests/features/
 
 ENV browser=chrome

@@ -1,2 +1,4 @@
 .idea/
 
+# Code coverage report
+/coverage/
