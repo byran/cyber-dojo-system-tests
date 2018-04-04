@@ -18,6 +18,9 @@ bring_up_selenium_hub_and_nodes()
 number_of_nodes_attached_to_the_hub()
 {
   node_count=`curl -s 'http://localhost:4444/grid/api/hub' | jq -r '.slotCounts.total'`
+  if [ "$node_count" == "" ]; then
+    node_count=0
+  fi
 }
 
 # - - - - - - - - - - - - - - - - - - - - - -
