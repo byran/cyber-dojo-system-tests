@@ -15,9 +15,21 @@ bring_up_selenium_hub_and_nodes()
 
 # - - - - - - - - - - - - - - - - - - - - - -
 
+number_of_nodes_attached_to_the_hub()
+{
+  node_count=`curl -s 'http://localhost:4444/grid/api/hub' | jq -r '.slotCounts.total'`
+}
+
+# - - - - - - - - - - - - - - - - - - - - - -
+
 wait_for_nodes_to_connect_to_the_hub()
 {
-  sleep 5
+  number_of_nodes_attached_to_the_hub
+
+  while [ $node_count -lt 7 ]; do
+    sleep 1
+    number_of_nodes_attached_to_the_hub
+  done
 }
 
 # - - - - - - - - - - - - - - - - - - - - - -
