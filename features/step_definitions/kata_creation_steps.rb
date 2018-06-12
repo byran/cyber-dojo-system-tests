@@ -17,14 +17,6 @@ When(/^I confirm my language\/framework\/exercise selection$/) do
   ok_button.click
 end
 
-When(/^I acknowledge my session id$/) do
-  # This used to be a landing page showing the short-kata-id
-  # But now clicking ok on default setup page (for individual)
-  # takes you directly to the kata/edit page
-  assert_page_loaded(pages.kata_edit)
-  @context['short_kata_id'] = kata_id[0..5]
-end
-
 When(/^I acknowledge the groups session id$/) do
   assert_page_loaded(pages.kata_group)
   @context['short_kata_id'] = short_kata_id
@@ -33,6 +25,12 @@ end
 
 Then(/^I am in the kata I've just created$/) do
   assert_page_loaded(pages.kata_edit)
+
+  # There used to be a landing page showing the short-kata-id
+  # But now clicking [ok] on default setup page (for an individual)
+  # takes you directly to the kata/edit page
+  @context['short_kata_id'] = kata_id[0..5]
+
   assert_equal(@context['short_kata_id'], kata_id[0..5],
                "Kata editor is showing a different kata id to the kata created")
 end
@@ -50,7 +48,6 @@ Given(/^I have created an individual Ruby kata$/) do
   step 'I select the "Ruby, MiniTest" language and unit test framework'
   step 'I select the "(Verbal)" exercise'
   step 'I confirm my language/framework/exercise selection'
-  step 'I acknowledge my session id'
   step 'I switch to the editor window'
   step "I am in the kata I've just created"
 
