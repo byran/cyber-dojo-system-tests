@@ -6,15 +6,15 @@ module CyberDojo
 
     def load_completed?
       begin
-        @driver.find_element(:id => 'ok')
+        @driver.find_element(:id => 'dashboard')
       rescue
         false
       end
     end
 
-    def ok_button
-      @wait.until_with_message(cant_find_button('ok')) {
-        @driver.find_element(:id => 'ok')
+    def dashboard_button
+      @wait.until_with_message(cant_find_button('open a dashboard')) {
+        @driver.find_element(:id => 'dashboard')
       }
     end
 

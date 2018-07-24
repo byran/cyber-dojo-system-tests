@@ -17,5 +17,6 @@ Feature: Creating a kata
     And I select the "Ruby, MiniTest" language and unit test framework
     And I select the "(Verbal)" exercise
     And I confirm my language/framework/exercise selection
+    And I switch to the new tab
     And I acknowledge the groups session id
     Then I am viewing a dashboard for the kata I've just created

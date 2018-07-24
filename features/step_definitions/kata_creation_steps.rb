@@ -17,10 +17,14 @@ When(/^I confirm my language\/framework\/exercise selection$/) do
   ok_button.click
 end
 
+When(/^I switch to the new tab$/) do
+  switch_to_window(1)
+end
+
 When(/^I acknowledge the groups session id$/) do
   assert_page_loaded(pages.kata_group)
   @context['short_kata_id'] = short_kata_id
-  ok_button.click
+  dashboard_button.click
 end
 
 Then(/^I am in the kata I've just created$/) do
@@ -72,6 +76,7 @@ Given(/^the session leader has created a group session$/) do
   step 'I select the "Ruby, MiniTest" language and unit test framework'
   step 'I select the "(Verbal)" exercise'
   step 'I confirm my language/framework/exercise selection'
+  step 'I switch to the new tab'
   step 'I acknowledge the groups session id'
   step "I am viewing a dashboard for the kata I've just created"
 

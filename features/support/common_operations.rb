@@ -20,7 +20,11 @@ module CyberDojo
       assert_page_loaded(pages.kata_edit)
     end
 
-    def navigate_home
+    def switch_to_window(index)
+      @browser.switch_to_window(index)
+    end
+
+      def navigate_home
       @browser.navigate_home
 
       assert_page_loaded(pages.main)
