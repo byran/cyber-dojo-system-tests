@@ -88,6 +88,10 @@ module CyberDojo
     end
 
     def switch_to_window_with_title_starting_with(title)
+      # Not keen on this sleep but Firefox will crash the browser
+      # connection to selenium if it's not present because previous
+      # action might still be creating a new window.
+      sleep 5
       @wait.until_with_message("Unable to switch to window '#{title}'") {
         for handle in @driver.window_handles
           @driver.switch_to.window(handle)
